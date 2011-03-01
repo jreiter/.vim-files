@@ -16,6 +16,9 @@ set wildmenu
 set wildmode=list:longest,full
 set wildignore=*.class,*.git
 
+"leader key
+let mapleader = ","
+
 "Freemarker highlighting
 au BufRead,BufNewFile *.ftl set filetype=ftl
 au! Syntax ftl source /home/jreiter/.vim/syntax/ftl.vim
@@ -32,6 +35,14 @@ filetype plugin on
 "let g:EclimJavaCompilerAutoDetect = 0
 let g:EclimProjectTreeSharedInstance = 1
 let g:EclimLocateFileScope = 'workspace'
+
+"make w, b, and e use CamelCaseMotion
+map <silent>w <Plug>CamelCaseMotion_w
+map <silent>b <Plug>CamelCaseMotion_b
+map <silent>e <Plug>CamelCaseMotion_e
+sunmap w
+sunmap b
+sunmap e
 
 "fuzzyfinder options
 let g:fuzzy_ceiling = 40000
