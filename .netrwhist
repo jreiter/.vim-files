@@ -1,6 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/jreiter/db'
-let g:netrw_dirhist_2='/home/jreiter/prune_scripts'
-let g:netrw_dirhist_3='/home/jreiter/Perforce/workspaces/jreiter_ubuntu/jreiter_ubuntu/vhs/petroglyph/main/petroglyph/build'
-let g:netrw_dirhist_4='/home/jreiter/Perforce/workspaces/jreiter_ubuntu/jreiter_ubuntu/vhs/badlands'
