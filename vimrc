@@ -51,9 +51,6 @@ sunmap e
 "fuzzyfinder options
 let g:fuzzy_ceiling = 40000
 
-"leader key
-let mapleader = ","
-
 let g:FuzzyFinderOptions = { 'Base':{}, 'Buffer':{}, 'File':{}, 'Dir':{},
       \                      'MruFile':{}, 'MruCmd':{}, 'Bookmark':{},
       \                      'Tag':{}, 'TaggedFile':{},
@@ -65,7 +62,10 @@ let g:FuzzyFinderOptions.File.excluded_path = '\v\~$|\.o$|\.exe$|\.bak$|\.swp$|\
 nmap <silent> <Leader>t :FufFile **/<CR>
 nmap <silent> <Leader>r :LocateFile<CR>
 
-"Command-t mapping to ,t
+"Ctrl-PageUp/PageDown to move next/previous buffers
+nmap <silent> <C-PageDown> :bn<CR>
+nmap <silent> <C-PageUp> :bp<CR>
+
 "nmap <silent> <Leader>t :CommandT<CR>
 nmap <silent> <Leader>nt :NERDTreeToggle<CR>
 
