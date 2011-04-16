@@ -51,9 +51,6 @@ sunmap e
 "fuzzyfinder options
 let g:fuzzy_ceiling = 40000
 
-"leader key
-let mapleader = ","
-
 let g:FuzzyFinderOptions = { 'Base':{}, 'Buffer':{}, 'File':{}, 'Dir':{},
       \                      'MruFile':{}, 'MruCmd':{}, 'Bookmark':{},
       \                      'Tag':{}, 'TaggedFile':{},
@@ -73,7 +70,10 @@ if exists(":Tabularize")
   vmap <Leader>a: :Tabularize /:\zs<CR>
 endif
 
-"nmap <silent> <Leader>t :CommandT<CR>
+"Ctrl-PageUp/PageDown to move next/previous buffers
+nmap <silent> <C-PageDown> :bn<CR>
+nmap <silent> <C-PageUp> :bp<CR>
+
 nmap <silent> <Leader>nt :NERDTreeToggle<CR>
 
 "remove trailing whitespace with F5
