@@ -65,7 +65,14 @@ let g:FuzzyFinderOptions.File.excluded_path = '\v\~$|\.o$|\.exe$|\.bak$|\.swp$|\
 nmap <silent> <Leader>t :FufFile **/<CR>
 nmap <silent> <Leader>r :LocateFile<CR>
 
-"Command-t mapping to ,t
+"tabular bindings
+if exists(":Tabularize")
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
+
 "nmap <silent> <Leader>t :CommandT<CR>
 nmap <silent> <Leader>nt :NERDTreeToggle<CR>
 
