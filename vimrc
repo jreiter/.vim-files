@@ -48,6 +48,9 @@ sunmap w
 sunmap b
 sunmap e
 
+"supertab completion type
+let g:SuperTabDefaultCompletionType = "context"
+
 "fuzzyfinder options
 let g:fuzzy_ceiling = 40000
 
@@ -68,6 +71,8 @@ if exists(":Tabularize")
   vmap <Leader>a= :Tabularize /=<CR>
   nmap <Leader>a: :Tabularize /:\zs<CR>
   vmap <Leader>a: :Tabularize /:\zs<CR>
+  nmap <Leader>a, :Tabularize /,\zs<CR>
+  vmap <Leader>a, :Tabularize /,\zs<CR>
 endif
 
 "Ctrl-PageUp/PageDown to move next/previous buffers
