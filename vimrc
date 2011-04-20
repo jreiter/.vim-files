@@ -10,6 +10,8 @@ set tabstop=4 shiftwidth=4 expandtab
 set number
 "ignore case on searches
 set ic
+"liberal use of hidden buffers
+set hidden
 
 "turn off toolbar and menu
 set guioptions-=m
@@ -39,6 +41,8 @@ filetype plugin on
 "let g:EclimJavaCompilerAutoDetect = 0
 let g:EclimProjectTreeSharedInstance = 1
 let g:EclimLocateFileScope = 'workspace'
+"eclim bindings
+nmap <silent> <C-S-o> :JavaImportMissing<CR>:JavaImportClean<CR>
 
 "make w, b, and e use CamelCaseMotion
 map <silent>w <Plug>CamelCaseMotion_w
@@ -75,10 +79,11 @@ if exists(":Tabularize")
   vmap <Leader>a, :Tabularize /,\zs<CR>
 endif
 
-"Ctrl-PageUp/PageDown to move next/previous buffers
-nmap <silent> <C-PageDown> :bn<CR>
-nmap <silent> <C-PageUp> :bp<CR>
+"Ctrl-PageUp/PageDown to move next/previous tabs
+nmap <silent> <C-PageDown> gt
+nmap <silent> <C-PageUp> gT
 
+"nerdtree bindings
 nmap <silent> <Leader>nt :NERDTreeToggle<CR>
 
 "remove trailing whitespace with F5

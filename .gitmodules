@@ -10,3 +10,12 @@
 [submodule "bundle/supertab"]
 	path = bundle/supertab
 	url = git://github.com/ervandew/supertab.git
+[submodule "bundle/selectbuf"]
+	path = bundle/selectbuf
+	url = git://github.com/vim-scripts/SelectBuf.git
+[submodule "bundle/genutils"]
+	path = bundle/genutils
+	url = git://github.com/vim-scripts/genutils.git
+[submodule "bundle/multiselect"]
+	path = bundle/multiselect
+	url = git://github.com/vim-scripts/multiselect.git
