@@ -42,7 +42,7 @@ filetype plugin on
 let g:EclimProjectTreeSharedInstance = 1
 let g:EclimLocateFileScope = 'workspace'
 "eclim bindings
-nmap <silent> <C-S-o> :JavaImportMissing<CR>:JavaImportClean<CR>
+nmap <silent> <C-S-p> :JavaImportMissing<CR>:JavaImportClean<CR>
 
 "make w, b, and e use CamelCaseMotion
 map <silent>w <Plug>CamelCaseMotion_w
