@@ -37,6 +37,9 @@ augroup END
 "
 filetype plugin on
 
+"change working directory to current file
+map <Leader>cd :cd %:p:h<CR>
+
 "eclim options
 "let g:EclimJavaCompilerAutoDetect = 0
 let g:EclimProjectTreeSharedInstance = 1
