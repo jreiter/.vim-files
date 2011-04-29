@@ -22,3 +22,6 @@
 [submodule "bundle/visual-star-search"]
 	path = bundle/visual-star-search
 	url = git://github.com/nelstrom/vim-visual-star-search.git
+[submodule "bundle/vim-javascript"]
+	path = bundle/vim-javascript
+	url = git://github.com/pangloss/vim-javascript.git
