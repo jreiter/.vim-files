@@ -34,8 +34,8 @@ augroup mkd
   autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
 augroup END
 
-"
-filetype plugin on
+"File type detection and indenting
+filetype plugin indent on
 
 "eclim options
 "let g:EclimJavaCompilerAutoDetect = 0
