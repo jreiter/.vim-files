@@ -46,6 +46,7 @@ let g:EclimProjectTreeSharedInstance = 1
 let g:EclimLocateFileScope = 'workspace'
 "eclim bindings
 nmap <silent> <C-S-p> :JavaImportMissing<CR>:JavaImportClean<CR>
+nmap <silent> <Leader>j :JavaSearchContext<CR>
 
 "make w, b, and e use CamelCaseMotion
 map <silent>w <Plug>CamelCaseMotion_w
