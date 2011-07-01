@@ -44,6 +44,8 @@ map <Leader>cd :cd %:p:h<CR>
 "let g:EclimJavaCompilerAutoDetect = 0
 let g:EclimProjectTreeSharedInstance = 1
 let g:EclimLocateFileScope = 'workspace'
+let g:EclimBuffersDefaultAction = 'vsp'
+let g:EclimDefaultFileOpenAction = 'vsp'
 "eclim bindings
 nmap <silent> <C-S-p> :JavaImportMissing<CR>:JavaImportClean<CR>
 nmap <silent> <Leader>j :JavaSearchContext<CR>
