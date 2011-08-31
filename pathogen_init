@@ -1,0 +1,12 @@
+" To disable a plugin, add it's bundle name to the following list
+let g:pathogen_disabled = []
+
+if v:version < '702'
+    call add(g:pathogen_disabled, 'fuzzyfinder')
+endif
+
+" call add(g:pathogen_disabled, 'perforce')
+
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+

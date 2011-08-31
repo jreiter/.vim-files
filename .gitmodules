@@ -28,3 +28,9 @@
 [submodule "bundle/grep"]
 	path = bundle/grep
 	url = git://github.com/vim-scripts/grep.vim.git
+[submodule "bundle/perforce"]
+	path = bundle/perforce
+	url = git://github.com/vim-scripts/perforce.git
+[submodule "bundle/lustyjuggler"]
+	path = bundle/lustyjuggler
+	url = git://github.com/vim-scripts/LustyJuggler.git

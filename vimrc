@@ -1,8 +1,10 @@
-"pathogen
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+runtime pathogen_init
 
+"colors
 colorscheme desert
+
+"font
+set guifont=Monospace\ 10
 
 "set tabs to 4 spaces, soft
 set tabstop=4 shiftwidth=4 expandtab
@@ -14,20 +16,23 @@ set ic
 set hidden
 
 "turn off toolbar and menu
-set guioptions-=m
-set guioptions-=T
+"set guioptions-=mcheme
+"set guioptions-=T
 
 "wildmenu
 set wildmenu
 set wildmode=list:longest,full
 set wildignore=*.class,*.git
 
+"search highlight toggle
+nnoremap <F2> :set hlsearch!<CR>
+
 "leader key
 let mapleader = ","
 
 "Freemarker highlighting
 au BufRead,BufNewFile *.ftl set filetype=ftl
-au! Syntax ftl source /home/jreiter/.vim/syntax/ftl.vim
+au! Syntax ftl source /home/john/.vim/syntax/ftl.vim
 
 "Markdown highlighting
 augroup mkd
@@ -45,7 +50,6 @@ map <Leader>cd :cd %:p:h<CR>
 let g:EclimProjectTreeSharedInstance = 1
 let g:EclimLocateFileScope = 'workspace'
 let g:EclimBuffersDefaultAction = 'vsp'
-let g:EclimDefaultFileOpenAction = 'vsp'
 "eclim bindings
 nmap <silent> <C-S-p> :JavaImportMissing<CR>:JavaImportClean<CR>
 nmap <silent> <Leader>j :JavaSearchContext<CR>
@@ -102,35 +106,3 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
-
-"user-defined functions
-
-":PrettyXML command
-function! DoPrettyXML()
-  " save the filetype so we can restore it later
-  let l:origft = &ft
-  set ft=
-  " delete the xml header if it exists. This will
-  " permit us to surround the document with fake tags
-  " without creating invalid xml.
-  1s/<?xml .*?>//e
-  " insert fake tags around the entire document.
-  " This will permit us to pretty-format excerpts of
-  " XML that may contain multiple top-level elements.
-  0put ='<PrettyXML>'
-  $put ='</PrettyXML>'
-  silent %!xmllint --format -
-  " xmllint will insert an <?xml?> header. it's easy enough to delete
-  " if you don't want it.
-  " delete the fake tags
-  2d
-  $d
-  " restore the 'normal' indentation, which is one extra level
-  " too deep due to the extra tags we wrapped around the document.
-  silent %<
-  " back to home
-  1
-  " restore the filetype
-  exe "set ft=" . l:origft
-endfunction
-command! PrettyXML call DoPrettyXML()
