@@ -99,6 +99,8 @@ nmap <silent> <Leader>nt :NERDTreeToggle<CR>
 "remove trailing whitespace with F5
 :nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
+:nmap <silent><Leader>x :%s/></>\r</g<CR>
+
 "highlight trailing white space in red
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
