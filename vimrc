@@ -40,6 +40,8 @@ augroup mkd
 augroup END
 
 "File type detection and indenting
+filetype off
+syntax on
 filetype plugin indent on
 
 "change working directory to current file
