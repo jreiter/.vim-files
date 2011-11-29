@@ -16,8 +16,8 @@ set ic
 set hidden
 
 "turn off toolbar and menu
-"set guioptions-=mcheme
-"set guioptions-=T
+set guioptions-=mcheme
+set guioptions-=T
 
 "wildmenu
 set wildmenu
@@ -97,6 +97,10 @@ nmap <silent> <C-PageUp> gT
 
 "nerdtree bindings
 nmap <silent> <Leader>nt :NERDTreeToggle<CR>
+
+
+"tagbar binding
+nmap <silent> <Leader>b :TagbarToggle<CR>
 
 "remove trailing whitespace with F5
 :nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
