@@ -93,6 +93,9 @@ vmap <Leader>a, :Tabularize /,\zs<CR>
 nmap <Leader>z :ConqueTerm bash<CR>
 vmap <Leader>z :ConqueTerm bash<CR>
 
+"fugitive
+autocmd QuickFixCmdPost *grep* cwindow
+
 "Ctrl-PageUp/PageDown to move next/previous tabs
 nmap <silent> <C-PageDown> gt
 nmap <silent> <C-PageUp> gT
