@@ -82,14 +82,16 @@ nmap <silent> <Leader>t :FufFile **/<CR>
 nmap <silent> <Leader>r :LocateFile<CR>
 
 "tabular bindings
-if exists(":Tabularize")
-  nmap <Leader>a= :Tabularize /=<CR>
-  vmap <Leader>a= :Tabularize /=<CR>
-  nmap <Leader>a: :Tabularize /:\zs<CR>
-  vmap <Leader>a: :Tabularize /:\zs<CR>
-  nmap <Leader>a, :Tabularize /,\zs<CR>
-  vmap <Leader>a, :Tabularize /,\zs<CR>
-endif
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
+nmap <Leader>a, :Tabularize /,\zs<CR>
+vmap <Leader>a, :Tabularize /,\zs<CR>
+
+"conque bindings
+nmap <Leader>z :ConqueTerm bash<CR>
+vmap <Leader>z :ConqueTerm bash<CR>
 
 "Ctrl-PageUp/PageDown to move next/previous tabs
 nmap <silent> <C-PageDown> gt
