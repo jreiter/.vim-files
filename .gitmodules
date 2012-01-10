@@ -34,12 +34,6 @@
 [submodule "bundle/lustyjuggler"]
 	path = bundle/lustyjuggler
 	url = git://github.com/vim-scripts/LustyJuggler.git
-[submodule "bundles/yankring"]
-	path = bundles/yankring
-	url = https://github.com/vim-scripts/YankRing.vim.git
-[submodule "bundle/yankring"]
-	path = bundle/yankring
-	url = https://github.com/vim-scripts/YankRing.vim.git
 [submodule "bundle/tagbar"]
 	path = bundle/tagbar
 	url = https://github.com/majutsushi/tagbar.git
