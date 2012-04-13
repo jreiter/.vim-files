@@ -18,6 +18,7 @@ set hidden
 "turn off toolbar and menu
 set guioptions-=mcheme
 set guioptions-=T
+set guioptions-=m
 
 "wildmenu
 set wildmenu
@@ -43,6 +44,10 @@ augroup END
 filetype off
 syntax on
 filetype plugin indent on
+
+"location-list next/previous
+map <silent> <A-n> :lnext<CR>
+map <silent> <A-p> :lprevious<CR>
 
 "change working directory to current file
 map <Leader>cd :cd %:p:h<CR>
