@@ -1,10 +1,15 @@
 runtime pathogen_init
 
 "colors
-colorscheme desert
+syntax enable
+set background=dark
+let g:solarized_termcolors=256
+let g:solraized_contrast="high"
+let g:solarized_visibility="high"
+colorscheme solarized
 
 "font
-set guifont=Monospace\ 10
+set guifont="DejaVu Sans"
 
 "set tabs to 4 spaces, soft
 set tabstop=4 shiftwidth=4 expandtab
