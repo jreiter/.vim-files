@@ -3,7 +3,6 @@ runtime pathogen_init
 "colors
 syntax enable
 set background=dark
-let g:solarized_termcolors=256
 let g:solraized_contrast="high"
 let g:solarized_visibility="high"
 colorscheme solarized
@@ -62,9 +61,6 @@ map <Leader>cd :cd %:p:h<CR>
 let g:EclimProjectTreeSharedInstance = 1
 let g:EclimLocateFileScope = 'workspace'
 let g:EclimValidateSortResults = 'severity'
-"eclim bindings
-nmap <silent> <Leader>i :JavaImportMissing<CR>:JavaImportClean<CR>
-nmap <silent> <Leader>j :JavaSearchContext<CR>
 
 "make w, b, and e use CamelCaseMotion
 map <silent>w <Plug>CamelCaseMotion_w
