@@ -3,3 +3,4 @@
 *.swp
 eclim
 doc/*
+plugin/eclim.vim
