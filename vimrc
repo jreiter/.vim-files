@@ -3,12 +3,10 @@ runtime pathogen_init
 "colors
 syntax enable
 set background=dark
-let g:solraized_contrast="high"
-let g:solarized_visibility="high"
 colorscheme solarized
 
 "font
-set guifont="DejaVu Sans"
+set guifont=DejaVu\ Sans\ Mono\ Bold\ 10
 
 "set tabs to 4 spaces, soft
 set tabstop=4 shiftwidth=4 expandtab
@@ -85,7 +83,7 @@ let g:FuzzyFinderOptions = { 'Base':{}, 'Buffer':{}, 'File':{}, 'Dir':{},
 let g:FuzzyFinderOptions.File.excluded_path = '\v\~$|\.o$|\.exe$|\.bak$|\.swp$|\.class$'
 
 nmap <silent> <Leader>t :FufFile **/<CR>
-nmap <silent> <Leader>r :LocateFile<CR>
+nmap <silent> <C-S-r> :LocateFile<CR>
 
 "tabular bindings
 nmap <Leader>a= :Tabularize /=<CR>
