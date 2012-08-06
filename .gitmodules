@@ -46,3 +46,6 @@
 [submodule "bundle/mark-karkat"]
 	path = bundle/mark-karkat
 	url = https://github.com/vim-scripts/Mark--Karkat.git
+[submodule "bundle/session"]
+	path = bundle/session
+	url = https://github.com/xolox/vim-session.git
