@@ -83,7 +83,7 @@ let g:FuzzyFinderOptions = { 'Base':{}, 'Buffer':{}, 'File':{}, 'Dir':{},
 let g:FuzzyFinderOptions.File.excluded_path = '\v\~$|\.o$|\.exe$|\.bak$|\.swp$|\.class$'
 
 " session.vim settings
-let g:session_autosave = "yes"
+let g:session_autosave = "no"
 let g:session_autoload = "yes"
 
 nmap <silent> <Leader>t :FufFile **/<CR>
