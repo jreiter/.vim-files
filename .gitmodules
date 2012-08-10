@@ -49,3 +49,6 @@
 [submodule "bundle/session"]
 	path = bundle/session
 	url = https://github.com/xolox/vim-session.git
+[submodule "bundle/snipmate"]
+	path = bundle/snipmate
+	url = https://github.com/msanders/snipmate.vim.git
