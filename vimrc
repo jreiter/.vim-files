@@ -6,12 +6,13 @@ set background=dark
 colorscheme solarized
 
 "font
-set guifont=DejaVu\ Sans\ Mono\ Bold\ 10
+"set guifont=DejaVu\ Sans\ Mono\ Bold\ 10
 
 "set tabs to 4 spaces, soft
 set tabstop=4 shiftwidth=4 expandtab
 "line numbers
 set number
+set ruler
 "ignore case on searches
 set ic
 "liberal use of hidden buffers
@@ -87,7 +88,6 @@ let g:session_autosave = "no"
 let g:session_autoload = "yes"
 
 nmap <silent> <Leader>t :FufFile **/<CR>
-nmap <silent> <C-S-r> :LocateFile<CR>
 
 "tabular bindings
 nmap <Leader>a= :Tabularize /=<CR>
