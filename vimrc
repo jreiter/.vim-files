@@ -5,9 +5,6 @@ syntax enable
 set background=dark
 colorscheme solarized
 
-"font
-"set guifont=DejaVu\ Sans\ Mono\ Bold\ 10
-
 "set tabs to 4 spaces, soft
 set tabstop=4 shiftwidth=4 expandtab
 "line numbers
