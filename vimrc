@@ -84,6 +84,9 @@ let g:FuzzyFinderOptions.File.excluded_path = '\v\~$|\.o$|\.exe$|\.bak$|\.swp$|\
 let g:session_autosave = "no"
 let g:session_autoload = "yes"
 
+" rails.vim settings
+let g:rails_ctags_arguments='--exclude=.svn --exclude=log /usr/local/share/gems/*'
+
 nmap <silent> <Leader>t :FufFile **/<CR>
 
 "tabular bindings
@@ -108,9 +111,12 @@ nmap <silent> <C-PageUp> gT
 "nerdtree bindings
 nmap <silent> <Leader>nt :NERDTreeToggle<CR>
 
-
 "tagbar binding
 nmap <silent> <Leader>b :TagbarToggle<CR>
+
+"ruby-debugger bindings
+map <Leader>q  :call g:RubyDebugger.toggle_breakpoint()<CR>
+map <Leader>p  :call g:RubyDebugger.open_frames()<CR>
 
 "remove trailing whitespace with F5
 :nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>

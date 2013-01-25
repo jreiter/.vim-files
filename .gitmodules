@@ -49,3 +49,15 @@
 [submodule "bundle/snipmate"]
 	path = bundle/snipmate
 	url = https://github.com/msanders/snipmate.vim.git
+[submodule "bundle/rails.vim"]
+	path = bundle/rails.vim
+	url = https://github.com/tpope/vim-rails.git
+[submodule "bundle/vcscommand"]
+	path = bundle/vcscommand
+	url = https://github.com/vim-scripts/vcscommand.vim.git
+[submodule "bundle/endwise"]
+	path = bundle/endwise
+	url = https://github.com/tpope/vim-endwise.git
+[submodule "bundle/ruby-debugger"]
+	path = bundle/ruby-debugger
+	url = https://github.com/astashov/vim-ruby-debugger.git
