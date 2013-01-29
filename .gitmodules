@@ -58,6 +58,3 @@
 [submodule "bundle/endwise"]
 	path = bundle/endwise
 	url = https://github.com/tpope/vim-endwise.git
-[submodule "bundle/ruby-debugger"]
-	path = bundle/ruby-debugger
-	url = https://github.com/astashov/vim-ruby-debugger.git
