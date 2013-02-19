@@ -2,8 +2,7 @@ runtime pathogen_init
 
 "colors
 syntax enable
-set background=dark
-colorscheme solarized
+colorscheme badwolf
 
 "set tabs to 4 spaces, soft
 set tabstop=4 shiftwidth=4 expandtab
