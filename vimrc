@@ -81,7 +81,7 @@ let g:FuzzyFinderOptions.File.excluded_path = '\v\~$|\.o$|\.exe$|\.bak$|\.swp$|\
 
 " session.vim settings
 let g:session_autosave = "no"
-let g:session_autoload = "yes"
+let g:session_autoload = "no"
 
 " rails.vim settings
 let g:rails_ctags_arguments='--exclude=.svn --exclude=log /usr/local/share/gems/*'
