@@ -4,6 +4,16 @@ runtime pathogen_init
 syntax enable
 colorscheme badwolf
 
+"Set fonts
+if has("gui_running")
+    if has("gui_win32")
+        set guifont=Bitstream_Vera_Sans_Mono:h16:cANSI
+    else
+        set guifont=DejaVu\ Sans\ Mono\ 13
+    endif
+endif
+
+
 "set tabs to 4 spaces, soft
 set tabstop=4 shiftwidth=4 expandtab
 "line numbers
