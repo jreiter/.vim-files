@@ -8,6 +8,8 @@ colorscheme badwolf
 if has("gui_running")
     if has("gui_win32")
         set guifont=Bitstream_Vera_Sans_Mono:h16:cANSI
+    elseif has("gui_macvim")
+        set guifont=Menlo\ Regular:h13
     else
         set guifont=DejaVu\ Sans\ Mono\ 12
     endif
