@@ -9,7 +9,7 @@ if has("gui_running")
     if has("gui_win32")
         set guifont=Bitstream_Vera_Sans_Mono:h16:cANSI
     else
-        set guifont=DejaVu\ Sans\ Mono\ 13
+        set guifont=DejaVu\ Sans\ Mono\ 12
     endif
 endif
 
