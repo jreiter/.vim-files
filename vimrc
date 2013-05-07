@@ -96,7 +96,7 @@ let g:session_autosave = "no"
 let g:session_autoload = "no"
 
 " rails.vim settings
-let g:rails_ctags_arguments='--exclude=.svn --exclude=log /usr/local/share/gems/*'
+" let g:rails_ctags_arguments='--exclude=.svn --exclude=log /usr/local/share/gems/*'
 
 nmap <silent> <Leader>t :FufFile **/<CR>
 
