@@ -11,13 +11,13 @@ if has("gui_running")
     elseif has("gui_macvim")
         set guifont=Menlo\ Regular:h13
     else
-        set guifont=DejaVu\ Sans\ Mono\ 12
+        set guifont=DejaVu\ Sans\ Mono\ 11
     endif
 endif
 
 
-"set tabs to 4 spaces, soft
-set tabstop=4 shiftwidth=4 expandtab
+"set tabs to 2 spaces, soft
+set tabstop=2 shiftwidth=2 expandtab
 "line numbers
 set number
 set ruler
@@ -137,3 +137,27 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
+
+function! RailsScriptSearch(args)
+  let l:savegrepprg = &grepprg
+  let l:savegrepformat = &grepformat
+
+  try
+    set grepprg=script/find
+    set grepformat=%f:%l:%m
+
+    execute "grep " . a:args
+  finally
+    execute "set grepformat=" . l:savegrepformat
+    execute "set grepprg=" . l:savegrepprg
+  endtry
+endfunction
+
+" search with explicitly provided arguments
+command! -n=? Rgrep :call RailsScriptSearch('<args>')
+
+" search for the word under the cursor
+map <leader>rg :silent call RailsScriptSearch(expand("<cword>"))<CR>:cc<CR>
+
+" search for the method definition of the word under the cursor
+map <leader>rd :silent call RailsScriptSearch(expand("'def .*<cword>'"))<CR>:cc<CR>
