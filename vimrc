@@ -78,7 +78,7 @@ sunmap b
 sunmap e
 
 "supertab completion type
-let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabDefaultCompletionType = "tags"
 
 "fuzzyfinder options
 let g:fuzzy_ceiling = 40000
