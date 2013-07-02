@@ -161,3 +161,6 @@ map <leader>rg :silent call RailsScriptSearch(expand("<cword>"))<CR>:cc<CR>
 
 " search for the method definition of the word under the cursor
 map <leader>rd :silent call RailsScriptSearch(expand("'def .*<cword>'"))<CR>:cc<CR>
+
+"Check Ruby syntax with F9 key
+autocmd FileType ruby map <F9> :<CR>:!ruby -c %<CR>
