@@ -6,13 +6,13 @@ colorscheme badwolf
 
 "Set fonts
 if has("gui_running")
-    if has("gui_win32")
-        set guifont=Bitstream_Vera_Sans_Mono:h16:cANSI
-    elseif has("gui_macvim")
-        set guifont=Menlo\ Regular:h13
-    else
-        set guifont=DejaVu\ Sans\ Mono\ 11
-    endif
+  if has("gui_win32")
+    set guifont=Bitstream_Vera_Sans_Mono:h16:cANSI
+  elseif has("gui_macvim")
+    set guifont=Menlo\ Regular:h13
+  else
+    set guifont=DejaVu\ Sans\ Mono\ 11
+  endif
 endif
 
 
@@ -42,10 +42,6 @@ nnoremap <F2> :set hlsearch!<CR>
 "leader key
 let mapleader = ","
 
-"Freemarker highlighting
-au BufRead,BufNewFile *.ftl set filetype=ftl
-au! Syntax ftl source /home/john/.vim/syntax/ftl.vim
-
 "Markdown highlighting
 augroup mkd
   autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
@@ -62,6 +58,10 @@ map <silent> <A-p> :lprevious<CR>
 
 "change working directory to current file
 map <Leader>cd :cd %:p:h<CR>
+
+"syntastic settings
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_quiet_warnings = 0
 
 "eclim options
 "let g:EclimJavaCompilerAutoDetect = 0
@@ -161,6 +161,3 @@ map <leader>rg :silent call RailsScriptSearch(expand("<cword>"))<CR>:cc<CR>
 
 " search for the method definition of the word under the cursor
 map <leader>rd :silent call RailsScriptSearch(expand("'def .*<cword>'"))<CR>:cc<CR>
-
-"Check Ruby syntax with F9 key
-autocmd FileType ruby map <F9> :<CR>:!ruby -c %<CR>
