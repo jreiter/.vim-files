@@ -80,17 +80,6 @@ sunmap e
 "supertab completion type
 let g:SuperTabDefaultCompletionType = "tags"
 
-"fuzzyfinder options
-let g:fuzzy_ceiling = 40000
-
-let g:FuzzyFinderOptions = { 'Base':{}, 'Buffer':{}, 'File':{}, 'Dir':{},
-      \                      'MruFile':{}, 'MruCmd':{}, 'Bookmark':{},
-      \                      'Tag':{}, 'TaggedFile':{},
-      \                      'GivenFile':{}, 'GivenDir':{},
-      \                      'CallbackFile':{}, 'CallbackItem':{}, }
-
-let g:FuzzyFinderOptions.File.excluded_path = '\v\~$|\.o$|\.exe$|\.bak$|\.swp$|\.class$'
-
 " session.vim settings
 let g:session_autosave = "no"
 let g:session_autoload = "no"
@@ -98,7 +87,13 @@ let g:session_autoload = "no"
 " rails.vim settings
 " let g:rails_ctags_arguments='--exclude=.svn --exclude=log /usr/local/share/gems/*'
 
-nmap <silent> <Leader>t :FufFile **/<CR>
+" unite settings
+let g:unite_data_directory='~/.vim/.cache/unite'
+let g:unite_enable_start_insert=1
+
+nnoremap <silent> <Leader>t :Unite -start-insert file_rec/async<CR>
+nnoremap <space>/ :Unite grep:.<CR>
+nnoremap <space>s :Unite -quick-match -start-insert buffer<cr>
 
 "tabular bindings
 nmap <Leader>a= :Tabularize /=<CR>
