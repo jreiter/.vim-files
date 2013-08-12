@@ -15,7 +15,6 @@ if has("gui_running")
   endif
 endif
 
-
 "set tabs to 2 spaces, soft
 set tabstop=2 shiftwidth=2 expandtab
 "line numbers
@@ -35,6 +34,9 @@ set guioptions-=m
 set wildmenu
 set wildmode=list:longest,full
 set wildignore=*.class,*.git
+
+"turn on matchit
+runtime macros/matchit.vim
 
 "search highlight toggle
 nnoremap <F2> :set hlsearch!<CR>
@@ -99,7 +101,7 @@ let g:unite_enable_start_insert=1
 
 nnoremap <silent> <Leader>t :Unite -start-insert file_rec/async<CR>
 nnoremap <space>/ :Unite grep:.<CR>
-nnoremap <space>s :Unite -quick-match -start-insert buffer<cr>
+nnoremap <space>s :Unite buffer<cr>
 
 "tabular bindings
 nmap <Leader>a= :Tabularize /=<CR>
@@ -127,9 +129,7 @@ nmap <silent> <Leader>nt :NERDTreeToggle<CR>
 nmap <silent> <Leader>b :TagbarToggle<CR>
 
 "remove trailing whitespace with F5
-:nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-
-:nmap <silent><Leader>x :%s/></>\r</g<CR>
+nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 "highlight trailing white space in red
 highlight ExtraWhitespace ctermbg=red guibg=red
