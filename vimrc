@@ -59,6 +59,12 @@ map <silent> <A-p> :lprevious<CR>
 "change working directory to current file
 map <Leader>cd :cd %:p:h<CR>
 
+"indent guides settings
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
+
 "syntastic settings
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_quiet_warnings = 0
