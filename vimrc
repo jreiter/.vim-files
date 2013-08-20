@@ -11,7 +11,7 @@ if has("gui_running")
   elseif has("gui_macvim")
     set guifont=Menlo\ Regular:h13
   else
-    set guifont=DejaVu\ Sans\ Mono\ 11
+    set guifont=DejaVu\ Sans\ Mono\ 9
   endif
 endif
 
@@ -93,7 +93,7 @@ let g:session_autosave = "no"
 let g:session_autoload = "no"
 
 " rails.vim settings
-" let g:rails_ctags_arguments='--exclude=.svn --exclude=log /usr/local/share/gems/*'
+let g:rails_ctags_arguments='--exclude=.svn --exclude=log --languages=-javascript'
 
 " unite settings
 let g:unite_data_directory='~/.vim/.cache/unite'
