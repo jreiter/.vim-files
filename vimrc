@@ -70,6 +70,8 @@ let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
 "syntastic settings
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_quiet_warnings = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
 
 "eclim options
 "let g:EclimJavaCompilerAutoDetect = 0
