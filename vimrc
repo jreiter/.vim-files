@@ -87,9 +87,6 @@ sunmap w
 sunmap b
 sunmap e
 
-"supertab completion type
-let g:SuperTabDefaultCompletionType = "tags"
-
 " session.vim settings
 let g:session_autosave = "no"
 let g:session_autoload = "no"
