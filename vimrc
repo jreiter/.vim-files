@@ -92,13 +92,24 @@ let g:session_autoload = "no"
 " rails.vim settings
 let g:rails_ctags_arguments='--exclude=.svn --exclude=log --languages=-javascript'
 
+nnoremap <silent> <Leader>rc :Rake getline('.')<CR>
+
 " unite settings
 let g:unite_data_directory='~/.vim/.cache/unite'
 let g:unite_enable_start_insert=1
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#custom_source('file_rec,file_rec/async', 'max_candidates', 0)
-call unite#custom_source('file_rec,file_rec/async', 'ignore_pattern', '*.html')
+call unite#custom_source('file_rec,file_rec/async,grep',
+      \ 'ignore_pattern', join([
+      \ '\.git/',
+      \ '\.svn/',
+      \ '\.yardoc/',
+      \ 'tmp/',
+      \ 'tags',
+      \ '.*\.log',
+      \ 'doc/.*/.*\.html',
+      \ ], '\|'))
 
 " unite bindings
 nnoremap <silent> <Leader>t :Unite -start-insert file_rec/async<CR>
