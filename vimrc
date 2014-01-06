@@ -146,7 +146,10 @@ nmap <silent> <Leader>nt :NERDTreeToggle<CR>
 nmap <silent> <Leader>b :TagbarToggle<CR>
 
 "remove trailing whitespace with F5
-nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+nnoremap <silent> <F5> :call <SID>StripTrailingWhitespaces()<CR>
+
+"automatically remove trailing whitespace when saving files
+autocmd BufWritePre *.rb,*.erb*,.js,*.html,*.css,*.scss :call <SID>StripTrailingWhitespaces()
 
 " search with explicitly provided arguments
 command! -n=? Rgrep :call RailsScriptSearch('<args>')
@@ -156,3 +159,16 @@ map <leader>rg :silent call RailsScriptSearch(expand("<cword>"))<CR>:cc<CR>
 
 " search for the method definition of the word under the cursor
 map <leader>rd :silent call RailsScriptSearch(expand("'def .*<cword>'"))<CR>:cc<CR>
+
+"function for stripping trailing whitespace
+function! <SID>StripTrailingWhitespaces()
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  %s/\s\+$//e
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction
