@@ -58,11 +58,15 @@ filetype plugin indent on
 "change working directory to current file
 map <Leader>cd :cd %:p:h<CR>
 
+"calendar settings
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
+
 "indent guides settings
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'calendar']
 
 "syntastic ruby settings
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
@@ -143,29 +147,6 @@ nmap <silent> <Leader>b :TagbarToggle<CR>
 
 "remove trailing whitespace with F5
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-
-"highlight trailing white space in red
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
-
-function! RailsScriptSearch(args)
-  let l:savegrepprg = &grepprg
-  let l:savegrepformat = &grepformat
-
-  try
-    set grepprg=script/find
-    set grepformat=%f:%l:%m
-
-    execute "grep " . a:args
-  finally
-    execute "set grepformat=" . l:savegrepformat
-    execute "set grepprg=" . l:savegrepprg
-  endtry
-endfunction
 
 " search with explicitly provided arguments
 command! -n=? Rgrep :call RailsScriptSearch('<args>')

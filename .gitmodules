@@ -118,3 +118,6 @@
 [submodule "bundle/vinegar.vim"]
 	path = bundle/vinegar.vim
 	url = https://github.com/tpope/vim-vinegar.git
+[submodule "bundle/calender.vim"]
+	path = bundle/calender.vim
+	url = https://github.com/itchyny/calendar.vim.git
