@@ -121,3 +121,6 @@
 [submodule "bundle/calender.vim"]
 	path = bundle/calender.vim
 	url = https://github.com/itchyny/calendar.vim.git
+[submodule "bundle/sneak.vim"]
+	path = bundle/sneak.vim
+	url = https://github.com/justinmk/vim-sneak.git

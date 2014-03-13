@@ -89,6 +89,9 @@ sunmap w
 sunmap b
 sunmap e
 
+" sneak.vim settings
+let g:sneak#streak = 1
+
 " session.vim settings
 let g:session_autosave = "no"
 let g:session_autoload = "no"
