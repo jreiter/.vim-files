@@ -68,12 +68,18 @@ let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'calendar']
 
-"syntastic ruby settings
+"syntastic settings
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_quiet_warnings = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+
+"ultisnips settings
+let g:UltiSnipsSnippetDirectories=['snippets/UltiSnips', 'custom_snippets']
+let g:UltiSnipsExpandTrigger='<c-k>'
+let g:UltiSnipsJumpForwardTrigger='<c-k>'
+let g:UltiSnipsJumpBackwardTrigger='<s-c-j>'
 
 "eclim options
 "let g:EclimJavaCompilerAutoDetect = 0
@@ -88,6 +94,9 @@ map <silent>e <Plug>CamelCaseMotion_e
 sunmap w
 sunmap b
 sunmap e
+
+" Show airline without split buffers
+set laststatus=2
 
 " sneak.vim settings
 let g:sneak#streak = 1
@@ -112,6 +121,7 @@ call unite#custom_source('file_rec,file_rec/async,grep',
       \ '\.git/',
       \ '\.svn/',
       \ '\.yardoc/',
+      \ 'coverage/',
       \ 'tmp/',
       \ 'tags',
       \ '.*\.log',

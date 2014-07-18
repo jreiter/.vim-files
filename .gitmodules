@@ -124,3 +124,12 @@
 [submodule "bundle/sneak.vim"]
 	path = bundle/sneak.vim
 	url = https://github.com/justinmk/vim-sneak.git
+[submodule "bundle/bundle/ultisnips"]
+	path = bundle/bundle/ultisnips
+	url = git://github.com/SirVer/ultisnips.git
+[submodule "bundle/ultisnips"]
+	path = bundle/ultisnips
+	url = git://github.com/SirVer/ultisnips.git
+[submodule "snippets"]
+	path = snippets
+	url = https://github.com/honza/vim-snippets.git
