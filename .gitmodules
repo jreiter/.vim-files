@@ -133,3 +133,12 @@
 [submodule "snippets"]
 	path = snippets
 	url = https://github.com/honza/vim-snippets.git
+[submodule "bundle/gitgutter"]
+	path = bundle/gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
+[submodule "bundle/distinguished"]
+	path = bundle/distinguished
+	url = https://github.com/Lokaltog/vim-distinguished.git
+[submodule "bundle/golden-ratio"]
+	path = bundle/golden-ratio
+	url = https://github.com/roman/golden-ratio.git
