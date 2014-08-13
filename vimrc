@@ -1,4 +1,64 @@
-runtime pathogen_init
+"runtime pathogen_init
+
+" Start up neobundle
+if has('vim_starting')
+  set nocompatible
+  set runtimepath+=~/.vim/bundle/neobundle.vim
+endif
+
+set rtp+=~/.vim/bundle/neobundle
+call neobundle#begin(expand('~/.vim/neobundle'))
+
+NeoBundleFetch 'Shuogo/neobundle.vim'
+
+NeoBundle 'tpope/vim-abolish.git', { 'directory': 'abolish' }
+NeoBundle 'tpope/vim-rails.git', { 'directory': 'rails' }
+NeoBundle 'godlygeek/tabular.git', { 'directory': 'tabular' }
+NeoBundle 'scrooloose/nerdcommenter.git', { 'directory': 'nerdcommenter' }
+NeoBundle 'scrooloose/syntastic.git', { 'directory': 'syntastic' }
+NeoBundle 'vim-scripts/genutils.git', { 'directory': 'genutils' }
+NeoBundle 'vim-scripts/multiselect.git', { 'directory': 'multiselect' }
+NeoBundle 'nelstrom/vim-visual-star-search.git', { 'directory': 'visual-star-search' }
+NeoBundle 'pangloss/vim-javascript.git', { 'directory': 'javascript' }
+NeoBundle 'vim-scripts/grep.vim.git', { 'directory': 'grep' }
+NeoBundle 'majutsushi/tagbar.git', { 'directory': 'tagbar' }
+NeoBundle 'tpope/vim-fugitive.git', { 'directory': 'fugitive' }
+NeoBundle 'xolox/vim-session.git', { 'directory': 'session' }
+NeoBundle 'tpope/vim-endwise.git', { 'directory': 'endwise' }
+NeoBundle 'juvenn/mustache.vim.git', { 'directory': 'mustache' }
+NeoBundle 'sjl/badwolf.git', { 'directory': 'badwolf' }
+NeoBundle 'tomasr/molokai.git', { 'directory': 'molokai' }
+NeoBundle 'vim-ruby/vim-ruby.git', { 'directory': 'ruby' }
+NeoBundle 'tpope/vim-surround.git', { 'directory': 'surround' }
+NeoBundle 'vim-scripts/TailMinusF.git', { 'directory': 'tail-minus-f' }
+NeoBundle 'tpope/vim-rake.git', { 'directory': 'rake' }
+NeoBundle 'tpope/vim-bundler.git', { 'directory': 'bundler' }
+NeoBundle 'skammer/vim-css-color.git', { 'directory': 'css-color' }
+NeoBundle 'tpope/vim-haml.git', { 'directory': 'haml' }
+NeoBundle 'Shougo/unite.vim.git', { 'directory': 'unite' }
+NeoBundle 'Shougo/vimproc.vim.git', { 'directory': 'vimproc' }
+NeoBundle 'xolox/vim-misc.git', { 'directory': 'misc' }
+NeoBundle 'nathanaelkane/vim-indent-guides.git', { 'directory': 'indent-guides' }
+NeoBundle 'ecomba/vim-ruby-refactoring.git', { 'directory': 'ruby-refactoring' }
+NeoBundle 'tpope/vim-unimpaired.git', { 'directory': 'unimpaired' }
+NeoBundle 'marijnh/tern_for_vim.git', { 'directory': 'tern' }
+NeoBundle 'Valloric/YouCompleteMe.git', { 'directory': 'you-complete-me' }
+NeoBundle 'Raimondi/delimitMate.git', { 'directory': 'delimit-mate' }
+NeoBundle 'bling/vim-airline.git', { 'directory': 'airline' }
+NeoBundle 'terryma/vim-multiple-cursors.git', { 'directory': 'multiple-cursors' }
+NeoBundle 'tpope/vim-dispatch.git', { 'directory': 'dispatch' }
+NeoBundle 'tpope/vim-vinegar.git', { 'directory': 'vinegar' }
+NeoBundle 'itchyny/calendar.vim.git', { 'directory': 'calendar' }
+NeoBundle 'justinmk/vim-sneak.git', { 'directory': 'sneak' }
+NeoBundle 'SirVer/ultisnips.git', { 'directory': 'ultisnips' }
+NeoBundle 'honza/vim-snippets.git', { 'directory': 'ultisnips-snippets' }
+NeoBundle 'airblade/vim-gitgutter.git', { 'directory': 'git-gutter' }
+NeoBundle 'Lokaltog/vim-distinguished.git', { 'directory': 'distinguished' }
+NeoBundle 'roman/golden-ratio.git', { 'directory': 'golden-ratio' }
+
+call neobundle#end()
+
+NeoBundleCheck
 
 "colors
 set t_Co=256
