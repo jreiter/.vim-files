@@ -1,5 +1,3 @@
-"runtime pathogen_init
-
 " Start up neobundle
 if has('vim_starting')
   set nocompatible
@@ -11,50 +9,60 @@ call neobundle#begin(expand('~/.vim/neobundle'))
 
 NeoBundleFetch 'Shuogo/neobundle.vim'
 
-NeoBundle 'tpope/vim-abolish.git', { 'directory': 'abolish' }
-NeoBundle 'tpope/vim-rails.git', { 'directory': 'rails' }
-NeoBundle 'godlygeek/tabular.git', { 'directory': 'tabular' }
-NeoBundle 'scrooloose/nerdcommenter.git', { 'directory': 'nerdcommenter' }
-NeoBundle 'scrooloose/syntastic.git', { 'directory': 'syntastic' }
-NeoBundle 'vim-scripts/genutils.git', { 'directory': 'genutils' }
-NeoBundle 'vim-scripts/multiselect.git', { 'directory': 'multiselect' }
-NeoBundle 'nelstrom/vim-visual-star-search.git', { 'directory': 'visual-star-search' }
-NeoBundle 'pangloss/vim-javascript.git', { 'directory': 'javascript' }
-NeoBundle 'vim-scripts/grep.vim.git', { 'directory': 'grep' }
-NeoBundle 'majutsushi/tagbar.git', { 'directory': 'tagbar' }
-NeoBundle 'tpope/vim-fugitive.git', { 'directory': 'fugitive' }
-NeoBundle 'xolox/vim-session.git', { 'directory': 'session' }
-NeoBundle 'tpope/vim-endwise.git', { 'directory': 'endwise' }
-NeoBundle 'juvenn/mustache.vim.git', { 'directory': 'mustache' }
-NeoBundle 'sjl/badwolf.git', { 'directory': 'badwolf' }
-NeoBundle 'tomasr/molokai.git', { 'directory': 'molokai' }
-NeoBundle 'vim-ruby/vim-ruby.git', { 'directory': 'ruby' }
-NeoBundle 'tpope/vim-surround.git', { 'directory': 'surround' }
-NeoBundle 'vim-scripts/TailMinusF.git', { 'directory': 'tail-minus-f' }
-NeoBundle 'tpope/vim-rake.git', { 'directory': 'rake' }
-NeoBundle 'tpope/vim-bundler.git', { 'directory': 'bundler' }
-NeoBundle 'skammer/vim-css-color.git', { 'directory': 'css-color' }
-NeoBundle 'tpope/vim-haml.git', { 'directory': 'haml' }
-NeoBundle 'Shougo/unite.vim.git', { 'directory': 'unite' }
-NeoBundle 'Shougo/vimproc.vim.git', { 'directory': 'vimproc' }
-NeoBundle 'xolox/vim-misc.git', { 'directory': 'misc' }
+NeoBundle 'airblade/vim-gitgutter.git',          { 'directory': 'git-gutter' }
+NeoBundle 'bling/vim-airline.git',               { 'directory': 'airline' }
+NeoBundle 'ecomba/vim-ruby-refactoring.git',     { 'directory': 'ruby-refactoring' }
+NeoBundle 'godlygeek/tabular.git',               { 'directory': 'tabular' }
+NeoBundle 'honza/vim-snippets.git',              { 'directory': 'ultisnips-snippets' }
+NeoBundle 'itchyny/calendar.vim.git',            { 'directory': 'calendar' }
+NeoBundle 'juvenn/mustache.vim.git',             { 'directory': 'mustache' }
+NeoBundle 'justinmk/vim-sneak.git',              { 'directory': 'sneak' }
+NeoBundle 'majutsushi/tagbar.git',               { 'directory': 'tagbar' }
+NeoBundle 'marijnh/tern_for_vim.git',            { 'directory': 'tern' }
 NeoBundle 'nathanaelkane/vim-indent-guides.git', { 'directory': 'indent-guides' }
-NeoBundle 'ecomba/vim-ruby-refactoring.git', { 'directory': 'ruby-refactoring' }
-NeoBundle 'tpope/vim-unimpaired.git', { 'directory': 'unimpaired' }
-NeoBundle 'marijnh/tern_for_vim.git', { 'directory': 'tern' }
-NeoBundle 'Valloric/YouCompleteMe.git', { 'directory': 'you-complete-me' }
-NeoBundle 'Raimondi/delimitMate.git', { 'directory': 'delimit-mate' }
-NeoBundle 'bling/vim-airline.git', { 'directory': 'airline' }
-NeoBundle 'terryma/vim-multiple-cursors.git', { 'directory': 'multiple-cursors' }
-NeoBundle 'tpope/vim-dispatch.git', { 'directory': 'dispatch' }
-NeoBundle 'tpope/vim-vinegar.git', { 'directory': 'vinegar' }
-NeoBundle 'itchyny/calendar.vim.git', { 'directory': 'calendar' }
-NeoBundle 'justinmk/vim-sneak.git', { 'directory': 'sneak' }
-NeoBundle 'SirVer/ultisnips.git', { 'directory': 'ultisnips' }
-NeoBundle 'honza/vim-snippets.git', { 'directory': 'ultisnips-snippets' }
-NeoBundle 'airblade/vim-gitgutter.git', { 'directory': 'git-gutter' }
-NeoBundle 'Lokaltog/vim-distinguished.git', { 'directory': 'distinguished' }
-NeoBundle 'roman/golden-ratio.git', { 'directory': 'golden-ratio' }
+NeoBundle 'nelstrom/vim-visual-star-search.git', { 'directory': 'visual-star-search' }
+NeoBundle 'pangloss/vim-javascript.git',         { 'directory': 'javascript' }
+NeoBundle 'Lokaltog/vim-distinguished.git',      { 'directory': 'distinguished' }
+NeoBundle 'Raimondi/delimitMate.git',            { 'directory': 'delimit-mate' }
+NeoBundle 'roman/golden-ratio.git',              { 'directory': 'golden-ratio' }
+NeoBundle 'scrooloose/nerdcommenter.git',        { 'directory': 'nerdcommenter' }
+NeoBundle 'scrooloose/syntastic.git',            { 'directory': 'syntastic' }
+NeoBundle 'Shougo/unite.vim.git',                { 'directory': 'unite' }
+NeoBundle 'Shougo/vimproc.vim.git',              { 'directory': 'vimproc',
+                                               \   'build': {
+                                               \     'mac':  'make -f make_mac.mak',
+                                               \     'unix': 'make -f make_unix.mak'
+                                               \    },
+                                               \ }
+NeoBundle 'sjl/badwolf.git',                     { 'directory': 'badwolf' }
+NeoBundle 'SirVer/ultisnips.git',                { 'directory': 'ultisnips' }
+NeoBundle 'skammer/vim-css-color.git',           { 'directory': 'css-color' }
+NeoBundle 'terryma/vim-multiple-cursors.git',    { 'directory': 'multiple-cursors' }
+NeoBundle 'tomasr/molokai.git',                  { 'directory': 'molokai' }
+NeoBundle 'tpope/vim-bundler.git',               { 'directory': 'bundler' }
+NeoBundle 'tpope/vim-abolish.git',               { 'directory': 'abolish' }
+NeoBundle 'tpope/vim-dispatch.git',              { 'directory': 'dispatch' }
+NeoBundle 'tpope/vim-endwise.git',               { 'directory': 'endwise' }
+NeoBundle 'tpope/vim-fugitive.git',              { 'directory': 'fugitive' }
+NeoBundle 'tpope/vim-haml.git',                  { 'directory': 'haml' }
+NeoBundle 'tpope/vim-rails.git',                 { 'directory': 'rails' }
+NeoBundle 'tpope/vim-rake.git',                  { 'directory': 'rake' }
+NeoBundle 'tpope/vim-surround.git',              { 'directory': 'surround' }
+NeoBundle 'tpope/vim-unimpaired.git',            { 'directory': 'unimpaired' }
+NeoBundle 'tpope/vim-vinegar.git',               { 'directory': 'vinegar' }
+NeoBundle 'Valloric/YouCompleteMe.git',          { 'directory': 'you-complete-me',
+                                               \   'build': {
+                                               \     'mac':  './install.sh --clang-completer',
+                                               \     'unix': './install.sh --clang-completer'
+                                               \    },
+                                               \ }
+NeoBundle 'vim-ruby/vim-ruby.git',               { 'directory': 'ruby' }
+NeoBundle 'vim-scripts/genutils.git',            { 'directory': 'genutils' }
+NeoBundle 'vim-scripts/grep.vim.git',            { 'directory': 'grep' }
+NeoBundle 'vim-scripts/multiselect.git',         { 'directory': 'multiselect' }
+NeoBundle 'vim-scripts/TailMinusF.git',          { 'directory': 'tail-minus-f' }
+NeoBundle 'xolox/vim-misc.git',                  { 'directory': 'misc' }
+NeoBundle 'xolox/vim-session.git',               { 'directory': 'session' }
 
 call neobundle#end()
 
@@ -135,7 +143,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=grey15 ctermbg=242
 "syntastic settings
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_quiet_warnings = 0
+let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
