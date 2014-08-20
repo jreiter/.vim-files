@@ -1,8 +1,9 @@
-.VimballRecord
-.netrwhist
 *.swp
-eclim
+.cache
+.netrwhist
+.VimballRecord
 doc/*
+eclim
+neobundle
 plugin/eclim.vim
 sessions
-.cache
