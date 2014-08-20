@@ -18,7 +18,12 @@ NeoBundle 'itchyny/calendar.vim.git',            { 'directory': 'calendar' }
 NeoBundle 'juvenn/mustache.vim.git',             { 'directory': 'mustache' }
 NeoBundle 'justinmk/vim-sneak.git',              { 'directory': 'sneak' }
 NeoBundle 'majutsushi/tagbar.git',               { 'directory': 'tagbar' }
-NeoBundle 'marijnh/tern_for_vim.git',            { 'directory': 'tern' }
+NeoBundle 'marijnh/tern_for_vim.git',            { 'directory': 'tern',
+                                               \   'build': {
+                                               \     'mac':  'npm install',
+                                               \     'unix': 'npm install'
+                                               \    },
+                                               \ }
 NeoBundle 'nathanaelkane/vim-indent-guides.git', { 'directory': 'indent-guides' }
 NeoBundle 'nelstrom/vim-visual-star-search.git', { 'directory': 'visual-star-search' }
 NeoBundle 'pangloss/vim-javascript.git',         { 'directory': 'javascript' }
