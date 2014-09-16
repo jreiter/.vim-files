@@ -114,11 +114,6 @@ nnoremap <F2> :set hlsearch!<CR>
 "leader key
 let mapleader = ","
 
-"Markdown highlighting
-augroup mkd
-  autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
-augroup END
-
 "File type detection and indenting
 filetype off
 syntax on
