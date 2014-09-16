@@ -37,6 +37,7 @@ NeoBundle 'Shougo/vimproc.vim.git',              { 'directory': 'vimproc',
 NeoBundle 'sjl/badwolf.git',                     { 'directory': 'badwolf' }
 NeoBundle 'SirVer/ultisnips.git',                { 'directory': 'ultisnips' }
 NeoBundle 'skammer/vim-css-color.git',           { 'directory': 'css-color' }
+NeoBundle 'suan/vim-instant-markdown.git',       { 'directory': 'instant-markdown' }
 NeoBundle 'terryma/vim-multiple-cursors.git',    { 'directory': 'multiple-cursors' }
 NeoBundle 'tomasr/molokai.git',                  { 'directory': 'molokai' }
 NeoBundle 'tpope/vim-bundler.git',               { 'directory': 'bundler' }
@@ -122,6 +123,8 @@ augroup END
 filetype off
 syntax on
 filetype plugin indent on
+
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 "change working directory to current file
 map <Leader>cd :cd %:p:h<CR>
