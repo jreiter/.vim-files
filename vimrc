@@ -140,8 +140,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=grey15 ctermbg=242
 
 "syntastic settings
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_quiet_messages = {'level': 'warnings'}
+let g:syntastic_javascript_checkers = ['jscs']
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
@@ -189,13 +188,18 @@ call unite#custom_source('file_rec,file_rec/async', 'max_candidates', 0)
 call unite#custom_source('file_rec,file_rec/async,grep',
       \ 'ignore_pattern', join([
       \ '\.git/',
+      \ '\.sass-cache/',
       \ '\.svn/',
+      \ '\.tmp/',
       \ '\.yardoc/',
+      \ 'bower_components/',
+      \ 'node_modules/',
       \ 'coverage/',
       \ 'tmp/',
       \ 'tags',
       \ '.*\.log',
       \ 'doc/.*/.*\.html',
+      \ 'docs/html/.*',
       \ ], '\|'))
 
 " unite bindings
@@ -206,8 +210,8 @@ nnoremap <space>s :Unite buffer<cr>
 "tabular bindings
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /:\zs<CR>
-vmap <Leader>a: :Tabularize /:\zs<CR>
+nmap <Leader>a: :Tabularize /:<CR>
+vmap <Leader>a: :Tabularize /:<CR>
 nmap <Leader>a, :Tabularize /,\zs<CR>
 vmap <Leader>a, :Tabularize /,\zs<CR>
 
