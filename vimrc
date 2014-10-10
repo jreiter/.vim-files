@@ -77,7 +77,7 @@ NeoBundleCheck
 "colors
 set t_Co=256
 syntax enable
-colorscheme badwolf
+colorscheme molokai
 
 "Set fonts
 if has("gui_running")
@@ -150,7 +150,7 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 "ultisnips settings
-let g:UltiSnipsSnippetDirectories=['snippets/UltiSnips', 'custom_snippets']
+let g:UltiSnipsSnippetDirectories=['Ultisnips', 'custom_snippets']
 let g:UltiSnipsExpandTrigger='<c-k>'
 let g:UltiSnipsJumpForwardTrigger='<c-k>'
 let g:UltiSnipsJumpBackwardTrigger='<s-c-j>'
@@ -198,6 +198,7 @@ call unite#custom_source('file_rec,file_rec/async,grep',
       \ '\.tmp/',
       \ '\.yardoc/',
       \ 'bower_components/',
+      \ 'dist/',
       \ 'node_modules/',
       \ 'coverage/',
       \ 'tmp/',
@@ -241,7 +242,7 @@ nmap <silent> <Leader>b :TagbarToggle<CR>
 nnoremap <silent> <F5> :call <SID>StripTrailingWhitespaces()<CR>
 
 "automatically remove trailing whitespace when saving files
-autocmd BufWritePre *.rb,*.erb*,.js,*.html,*.css,*.scss :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre *.rb,*.erb*,*.js,*.html,*.css,*.scss :call <SID>StripTrailingWhitespaces()
 
 " search with explicitly provided arguments
 command! -n=? Rgrep :call RailsScriptSearch('<args>')
