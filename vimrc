@@ -10,8 +10,10 @@ call neobundle#begin(expand('~/.vim/neobundle'))
 NeoBundleFetch 'Shuogo/neobundle.vim'
 
 NeoBundle 'airblade/vim-gitgutter.git',          { 'directory': 'git-gutter' }
+NeoBundle 'benjaminwhite/Benokai.git',           { 'directory': 'benokai' }
 NeoBundle 'bling/vim-airline.git',               { 'directory': 'airline' }
 NeoBundle 'ecomba/vim-ruby-refactoring.git',     { 'directory': 'ruby-refactoring' }
+NeoBundle 'flazz/vim-colorschemes.git',          { 'directory': 'vim-colorschemes' }
 NeoBundle 'godlygeek/tabular.git',               { 'directory': 'tabular' }
 NeoBundle 'honza/vim-snippets.git',              { 'directory': 'ultisnips-snippets' }
 NeoBundle 'itchyny/calendar.vim.git',            { 'directory': 'calendar' }
@@ -39,12 +41,10 @@ NeoBundle 'Shougo/vimproc.vim.git',              { 'directory': 'vimproc',
                                                \     'unix': 'make -f make_unix.mak'
                                                \    },
                                                \ }
-NeoBundle 'sjl/badwolf.git',                     { 'directory': 'badwolf' }
 NeoBundle 'SirVer/ultisnips.git',                { 'directory': 'ultisnips' }
 NeoBundle 'skammer/vim-css-color.git',           { 'directory': 'css-color' }
 NeoBundle 'suan/vim-instant-markdown.git',       { 'directory': 'instant-markdown' }
 NeoBundle 'terryma/vim-multiple-cursors.git',    { 'directory': 'multiple-cursors' }
-NeoBundle 'tomasr/molokai.git',                  { 'directory': 'molokai' }
 NeoBundle 'tpope/vim-bundler.git',               { 'directory': 'bundler' }
 NeoBundle 'tpope/vim-abolish.git',               { 'directory': 'abolish' }
 NeoBundle 'tpope/vim-dispatch.git',              { 'directory': 'dispatch' }
@@ -58,8 +58,8 @@ NeoBundle 'tpope/vim-unimpaired.git',            { 'directory': 'unimpaired' }
 NeoBundle 'tpope/vim-vinegar.git',               { 'directory': 'vinegar' }
 NeoBundle 'Valloric/YouCompleteMe.git',          { 'directory': 'you-complete-me',
                                                \   'build': {
-                                               \     'mac':  './install.sh --clang-completer',
-                                               \     'unix': './install.sh --clang-completer'
+                                               \     'mac':  './install.sh',
+                                               \     'unix': './install.sh'
                                                \    },
                                                \ }
 NeoBundle 'vim-ruby/vim-ruby.git',               { 'directory': 'ruby' }
@@ -77,7 +77,7 @@ NeoBundleCheck
 "colors
 set t_Co=256
 syntax enable
-colorscheme molokai
+colorscheme Benokai
 
 "Set fonts
 if has("gui_running")
@@ -86,7 +86,7 @@ if has("gui_running")
   elseif has("gui_macvim")
     set guifont=Menlo\ Regular:h13
   else
-    set guifont=DejaVu\ Sans\ Mono\ 9
+    set guifont=DejaVu\ Sans\ Mono\ 11
   endif
 endif
 
@@ -201,11 +201,13 @@ call unite#custom_source('file_rec,file_rec/async,grep',
       \ 'dist/',
       \ 'node_modules/',
       \ 'coverage/',
+      \ 'doc/.*/.*\.html',
+      \ 'docs/html/.*',
+      \ 'docs/generated/.*',
       \ 'tmp/',
       \ 'tags',
       \ '.*\.log',
-      \ 'doc/.*/.*\.html',
-      \ 'docs/html/.*',
+      \ '.*\.png',
       \ ], '\|'))
 
 " unite bindings
@@ -216,8 +218,8 @@ nnoremap <space>s :Unite buffer<cr>
 "tabular bindings
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /:<CR>
-vmap <Leader>a: :Tabularize /:<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
 nmap <Leader>a, :Tabularize /,\zs<CR>
 vmap <Leader>a, :Tabularize /,\zs<CR>
 
