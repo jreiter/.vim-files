@@ -44,3 +44,26 @@ snippet ngs "Angular service"
     }
 } )();
 endsnippet
+
+snippet ngf "Angular factory"
+( function() {
+  'use strict';
+
+  /**
+   * @ngdoc service
+   * @name $1.$2
+   * @description
+   * # $2
+   * TODO: Describe service at high level.
+   */
+  angular
+    .module( '${1:module_name}'  )
+    .factory( '${2:factory_name}', $2 );
+
+    $2.$inject = [''];
+
+    function $2( ${3:params} ) {
+      var vm = this;
+    }
+} )();
+endsnippet
