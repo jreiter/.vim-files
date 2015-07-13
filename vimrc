@@ -12,10 +12,12 @@ NeoBundleFetch 'Shuogo/neobundle.vim'
 NeoBundle 'airblade/vim-gitgutter.git',          { 'directory': 'git-gutter' }
 NeoBundle 'benjaminwhite/Benokai.git',           { 'directory': 'benokai' }
 NeoBundle 'bling/vim-airline.git',               { 'directory': 'airline' }
+NeoBundle 'chriskempson/base16-vim.git',         { 'directory': 'base16'}
 NeoBundle 'ecomba/vim-ruby-refactoring.git',     { 'directory': 'ruby-refactoring' }
 NeoBundle 'flazz/vim-colorschemes.git',          { 'directory': 'vim-colorschemes' }
 NeoBundle 'godlygeek/tabular.git',               { 'directory': 'tabular' }
 NeoBundle 'honza/vim-snippets.git',              { 'directory': 'ultisnips-snippets' }
+NeoBundle 'idanarye/vim-merginal.git',           { 'directory': 'merginal' }
 NeoBundle 'itchyny/calendar.vim.git',            { 'directory': 'calendar' }
 NeoBundle 'juvenn/mustache.vim.git',             { 'directory': 'mustache' }
 NeoBundle 'justinmk/vim-sneak.git',              { 'directory': 'sneak' }
@@ -77,17 +79,19 @@ NeoBundleCheck
 "colors
 set t_Co=256
 syntax enable
-colorscheme Benokai
 
 "Set fonts
 if has("gui_running")
+  colorscheme base16-monokai
   if has("gui_win32")
     set guifont=Bitstream_Vera_Sans_Mono:h16:cANSI
   elseif has("gui_macvim")
     set guifont=Menlo\ Regular:h13
   else
-    set guifont=DejaVu\ Sans\ Mono\ 11
+    set guifont=DejaVu\ Sans\ Mono\ \Bold\ 11
   endif
+else
+  colorscheme badwolf
 endif
 
 "set tabs to 2 spaces, soft
@@ -137,7 +141,7 @@ let g:calendar_google_task = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'calendar']
+let g:indent_guides_exclude_filetypes = ['help', 'calendar']
 
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=grey30 ctermbg=0
@@ -233,9 +237,6 @@ autocmd QuickFixCmdPost *grep* cwindow
 "Ctrl-PageUp/PageDown to move next/previous tabs
 nmap <silent> <C-PageDown> gt
 nmap <silent> <C-PageUp> gT
-
-"nerdtree bindings
-nmap <silent> <Leader>nt :NERDTreeToggle<CR>
 
 "tagbar binding
 nmap <silent> <Leader>b :TagbarToggle<CR>
