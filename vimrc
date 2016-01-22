@@ -1,80 +1,62 @@
-" Start up neobundle
+" Start up Plug
 if has('vim_starting')
   set nocompatible
-  set runtimepath+=~/.vim/bundle/neobundle.vim
+  set runtimepath+=~/.vim/bundle/Plug.vim
 endif
 
-set rtp+=~/.vim/bundle/neobundle
-call neobundle#begin(expand('~/.vim/neobundle'))
+call plug#begin('~/.vim/plugged')
 
-NeoBundleFetch 'Shuogo/neobundle.vim'
+Plug 'airblade/vim-gitgutter.git',          
+Plug 'benjaminwhite/Benokai.git',           
+Plug 'bkad/CamelCaseMotion.git',
+Plug 'bling/vim-airline.git',               
+Plug 'chriskempson/base16-vim.git',         
+Plug 'ecomba/vim-ruby-refactoring.git',     
+Plug 'flazz/vim-colorschemes.git',          
+Plug 'godlygeek/tabular.git',               
+Plug 'honza/vim-snippets.git',              
+Plug 'idanarye/vim-merginal.git',           
+Plug 'itchyny/calendar.vim.git',            
+Plug 'juvenn/mustache.vim.git',             
+Plug 'justinmk/vim-sneak.git',              
+Plug 'majutsushi/tagbar.git',               
+Plug 'marijnh/tern_for_vim.git',           
+Plug 'nathanaelkane/vim-indent-guides.git', 
+Plug 'nelstrom/vim-visual-star-search.git',
+Plug 'pangloss/vim-javascript.git',         
+Plug 'Lokaltog/vim-distinguished.git',      
+Plug 'Raimondi/delimitMate.git',            
+Plug 'roman/golden-ratio.git',              
+Plug 'scrooloose/nerdcommenter.git',        
+Plug 'scrooloose/syntastic.git',            
+Plug 'Shougo/unite.vim.git',                
+Plug 'Shougo/vimproc.vim.git',              
+Plug 'SirVer/ultisnips.git',                
+Plug 'skammer/vim-css-color.git',           
+Plug 'suan/vim-instant-markdown.git',       
+Plug 'terryma/vim-multiple-cursors.git',    
+Plug 'tpope/vim-bundler.git',               
+Plug 'tpope/vim-abolish.git',               
+Plug 'tpope/vim-dispatch.git',              
+Plug 'tpope/vim-endwise.git',               
+Plug 'tpope/vim-fugitive.git',              
+Plug 'tpope/vim-haml.git',                  
+Plug 'tpope/vim-rails.git',                 
+Plug 'tpope/vim-rake.git',                  
+Plug 'tpope/vim-surround.git',              
+Plug 'tpope/vim-unimpaired.git',            
+Plug 'tpope/vim-vinegar.git',               
+Plug 'Valloric/YouCompleteMe.git',          
+Plug 'vim-ruby/vim-ruby.git',             
+Plug 'vim-scripts/genutils.git',            
+Plug 'vim-scripts/grep.vim.git',            
+Plug 'vim-scripts/multiselect.git',         
+Plug 'vim-scripts/TailMinusF.git',          
+Plug 'xolox/vim-misc.git',                  
+Plug 'xolox/vim-session.git'               
 
-NeoBundle 'airblade/vim-gitgutter.git',          { 'directory': 'git-gutter' }
-NeoBundle 'benjaminwhite/Benokai.git',           { 'directory': 'benokai' }
-NeoBundle 'bling/vim-airline.git',               { 'directory': 'airline' }
-NeoBundle 'chriskempson/base16-vim.git',         { 'directory': 'base16'}
-NeoBundle 'ecomba/vim-ruby-refactoring.git',     { 'directory': 'ruby-refactoring' }
-NeoBundle 'flazz/vim-colorschemes.git',          { 'directory': 'vim-colorschemes' }
-NeoBundle 'godlygeek/tabular.git',               { 'directory': 'tabular' }
-NeoBundle 'honza/vim-snippets.git',              { 'directory': 'ultisnips-snippets' }
-NeoBundle 'idanarye/vim-merginal.git',           { 'directory': 'merginal' }
-NeoBundle 'itchyny/calendar.vim.git',            { 'directory': 'calendar' }
-NeoBundle 'juvenn/mustache.vim.git',             { 'directory': 'mustache' }
-NeoBundle 'justinmk/vim-sneak.git',              { 'directory': 'sneak' }
-NeoBundle 'majutsushi/tagbar.git',               { 'directory': 'tagbar' }
-NeoBundle 'marijnh/tern_for_vim.git',            { 'directory': 'tern',
-                                               \   'build': {
-                                               \     'mac':  'npm install',
-                                               \     'unix': 'npm install'
-                                               \    },
-                                               \ }
-NeoBundle 'nathanaelkane/vim-indent-guides.git', { 'directory': 'indent-guides' }
-NeoBundle 'nelstrom/vim-visual-star-search.git', { 'directory': 'visual-star-search' }
-NeoBundle 'pangloss/vim-javascript.git',         { 'directory': 'javascript' }
-NeoBundle 'Lokaltog/vim-distinguished.git',      { 'directory': 'distinguished' }
-NeoBundle 'Raimondi/delimitMate.git',            { 'directory': 'delimit-mate' }
-NeoBundle 'roman/golden-ratio.git',              { 'directory': 'golden-ratio' }
-NeoBundle 'scrooloose/nerdcommenter.git',        { 'directory': 'nerdcommenter' }
-NeoBundle 'scrooloose/syntastic.git',            { 'directory': 'syntastic' }
-NeoBundle 'Shougo/unite.vim.git',                { 'directory': 'unite' }
-NeoBundle 'Shougo/vimproc.vim.git',              { 'directory': 'vimproc',
-                                               \   'build': {
-                                               \     'mac':  'make -f make_mac.mak',
-                                               \     'unix': 'make -f make_unix.mak'
-                                               \    },
-                                               \ }
-NeoBundle 'SirVer/ultisnips.git',                { 'directory': 'ultisnips' }
-NeoBundle 'skammer/vim-css-color.git',           { 'directory': 'css-color' }
-NeoBundle 'suan/vim-instant-markdown.git',       { 'directory': 'instant-markdown' }
-NeoBundle 'terryma/vim-multiple-cursors.git',    { 'directory': 'multiple-cursors' }
-NeoBundle 'tpope/vim-bundler.git',               { 'directory': 'bundler' }
-NeoBundle 'tpope/vim-abolish.git',               { 'directory': 'abolish' }
-NeoBundle 'tpope/vim-dispatch.git',              { 'directory': 'dispatch' }
-NeoBundle 'tpope/vim-endwise.git',               { 'directory': 'endwise' }
-NeoBundle 'tpope/vim-fugitive.git',              { 'directory': 'fugitive' }
-NeoBundle 'tpope/vim-haml.git',                  { 'directory': 'haml' }
-NeoBundle 'tpope/vim-rails.git',                 { 'directory': 'rails' }
-NeoBundle 'tpope/vim-rake.git',                  { 'directory': 'rake' }
-NeoBundle 'tpope/vim-surround.git',              { 'directory': 'surround' }
-NeoBundle 'tpope/vim-unimpaired.git',            { 'directory': 'unimpaired' }
-NeoBundle 'tpope/vim-vinegar.git',               { 'directory': 'vinegar' }
-NeoBundle 'Valloric/YouCompleteMe.git',          { 'directory': 'you-complete-me',
-                                               \   'build': {
-                                               \     'mac':  './install.sh',
-                                               \     'unix': './install.sh'
-                                               \    },
-                                               \ }
-NeoBundle 'vim-ruby/vim-ruby.git',               { 'directory': 'ruby' }
-NeoBundle 'vim-scripts/genutils.git',            { 'directory': 'genutils' }
-NeoBundle 'vim-scripts/grep.vim.git',            { 'directory': 'grep' }
-NeoBundle 'vim-scripts/multiselect.git',         { 'directory': 'multiselect' }
-NeoBundle 'vim-scripts/TailMinusF.git',          { 'directory': 'tail-minus-f' }
-NeoBundle 'xolox/vim-misc.git',                  { 'directory': 'misc' }
-NeoBundle 'xolox/vim-session.git',               { 'directory': 'session' }
-
-call neobundle#end()
-
-NeoBundleCheck
+"Add plugins to &runtimepath
+call plug#end()
 
 "colors
 set t_Co=256
@@ -86,7 +68,7 @@ if has("gui_running")
   if has("gui_win32")
     set guifont=Bitstream_Vera_Sans_Mono:h16:cANSI
   elseif has("gui_macvim")
-    set guifont=Menlo\ Regular:h13
+    set guifont=Menlo\ Regular:h14
   else
     set guifont=DejaVu\ Sans\ Mono\ \Bold\ 11
   endif
@@ -108,6 +90,10 @@ set hidden
 set guioptions-=mcheme
 set guioptions-=T
 set guioptions-=m
+set guioptions-=l
+set guioptions-=L
+set guioptions-=r
+set guioptions-=R
 
 "wildmenu
 set wildmenu
@@ -133,6 +119,9 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 "change working directory to current file
 map <Leader>cd :cd %:p:h<CR>
 
+"golden-ratio settings
+let g:golden_ratio_autocommand = 0
+
 "calendar settings
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
@@ -149,7 +138,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=grey15 ctermbg=242
 
 "syntastic settings
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_javascript_checkers = ['jscs']
+let g:syntastic_javascript_checkers = ['jscs', 'jshint']
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
