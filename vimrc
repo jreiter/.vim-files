@@ -6,54 +6,57 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'airblade/vim-gitgutter.git',          
-Plug 'benjaminwhite/Benokai.git',           
-Plug 'bkad/CamelCaseMotion.git',
-Plug 'bling/vim-airline.git',               
-Plug 'chriskempson/base16-vim.git',         
-Plug 'ecomba/vim-ruby-refactoring.git',     
-Plug 'flazz/vim-colorschemes.git',          
-Plug 'godlygeek/tabular.git',               
-Plug 'honza/vim-snippets.git',              
-Plug 'idanarye/vim-merginal.git',           
-Plug 'itchyny/calendar.vim.git',            
-Plug 'juvenn/mustache.vim.git',             
-Plug 'justinmk/vim-sneak.git',              
-Plug 'majutsushi/tagbar.git',               
-Plug 'marijnh/tern_for_vim.git',           
-Plug 'nathanaelkane/vim-indent-guides.git', 
-Plug 'nelstrom/vim-visual-star-search.git',
-Plug 'pangloss/vim-javascript.git',         
-Plug 'Lokaltog/vim-distinguished.git',      
-Plug 'Raimondi/delimitMate.git',            
-Plug 'roman/golden-ratio.git',              
-Plug 'scrooloose/nerdcommenter.git',        
-Plug 'scrooloose/syntastic.git',            
-Plug 'Shougo/unite.vim.git',                
-Plug 'Shougo/vimproc.vim.git',              
-Plug 'SirVer/ultisnips.git',                
-Plug 'skammer/vim-css-color.git',           
-Plug 'suan/vim-instant-markdown.git',       
-Plug 'terryma/vim-multiple-cursors.git',    
-Plug 'tpope/vim-bundler.git',               
-Plug 'tpope/vim-abolish.git',               
-Plug 'tpope/vim-dispatch.git',              
-Plug 'tpope/vim-endwise.git',               
-Plug 'tpope/vim-fugitive.git',              
-Plug 'tpope/vim-haml.git',                  
-Plug 'tpope/vim-rails.git',                 
-Plug 'tpope/vim-rake.git',                  
-Plug 'tpope/vim-surround.git',              
-Plug 'tpope/vim-unimpaired.git',            
-Plug 'tpope/vim-vinegar.git',               
-Plug 'Valloric/YouCompleteMe.git',          
-Plug 'vim-ruby/vim-ruby.git',             
-Plug 'vim-scripts/genutils.git',            
-Plug 'vim-scripts/grep.vim.git',            
-Plug 'vim-scripts/multiselect.git',         
-Plug 'vim-scripts/TailMinusF.git',          
-Plug 'xolox/vim-misc.git',                  
-Plug 'xolox/vim-session.git'               
+Plug 'airblade/vim-gitgutter',
+Plug 'benjaminwhite/Benokai',
+Plug 'bkad/CamelCaseMotion',
+Plug 'bling/vim-airline',
+Plug 'chriskempson/base16-vim',
+Plug 'ecomba/vim-ruby-refactoring',
+Plug 'flazz/vim-colorschemes',
+Plug 'godlygeek/tabular',
+Plug 'honza/vim-snippets',
+Plug 'idanarye/vim-merginal',
+Plug 'itchyny/calendar.vim',
+Plug 'juvenn/mustache.vim',
+Plug 'justinmk/vim-sneak',
+Plug 'majutsushi/tagbar',
+Plug 'marijnh/tern_for_vim',
+Plug 'nathanaelkane/vim-indent-guides',
+Plug 'nelstrom/vim-visual-star-search',
+Plug 'pangloss/vim-javascript',
+Plug 'lokaltog/vim-distinguished',
+Plug 'raimondi/delimitMate',
+Plug 'roman/golden-ratio',
+Plug 'scrooloose/nerdcommenter',
+Plug 'scrooloose/syntastic',
+Plug 'shougo/unite.vim',
+Plug 'shougo/vimproc.vim', { 'do': 'make' }
+Plug 'sirVer/ultisnips',
+Plug 'skammer/vim-css-color',
+Plug 'suan/vim-instant-markdown',
+Plug 'terryma/vim-multiple-cursors',
+Plug 'tpope/vim-bundler',
+Plug 'tpope/vim-abolish',
+Plug 'tpope/vim-dispatch',
+Plug 'tpope/vim-endwise',
+Plug 'tpope/vim-fugitive',
+Plug 'tpope/vim-haml',
+Plug 'tpope/vim-rails',
+Plug 'tpope/vim-rake',
+Plug 'tpope/vim-surround',
+Plug 'tpope/vim-unimpaired',
+Plug 'tpope/vim-vinegar',
+"Plug 'valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'vim-ruby/vim-ruby',
+Plug 'vim-scripts/genutils',
+Plug 'vim-scripts/grep.vim',
+Plug 'vim-scripts/groovy.vim',
+Plug 'vim-scripts/multiselect',
+Plug 'vim-scripts/TailMinusF',
+Plug 'xolox/vim-misc',
+Plug 'xolox/vim-session'
+
+Plug 'ervandew/supertab'
 
 "Add plugins to &runtimepath
 call plug#end()
@@ -62,9 +65,13 @@ call plug#end()
 set t_Co=256
 syntax enable
 
+"Always use dark background
+set background=dark
+let base16colorspace=256
+colorscheme base16-monokai
+
 "Set fonts
 if has("gui_running")
-  colorscheme base16-monokai
   if has("gui_win32")
     set guifont=Bitstream_Vera_Sans_Mono:h16:cANSI
   elseif has("gui_macvim")
@@ -72,8 +79,6 @@ if has("gui_running")
   else
     set guifont=DejaVu\ Sans\ Mono\ \Bold\ 11
   endif
-else
-  colorscheme badwolf
 endif
 
 "set tabs to 2 spaces, soft
@@ -110,7 +115,6 @@ nnoremap <F2> :set hlsearch!<CR>
 let mapleader = ","
 
 "File type detection and indenting
-filetype off
 syntax on
 filetype plugin indent on
 
@@ -149,10 +153,11 @@ let g:UltiSnipsJumpForwardTrigger='<c-k>'
 let g:UltiSnipsJumpBackwardTrigger='<s-c-j>'
 
 "eclim options
-"let g:EclimJavaCompilerAutoDetect = 0
-let g:EclimProjectTreeSharedInstance = 1
+"let g:EclimCompletionMethod = 'omnifunc'
 let g:EclimLocateFileScope = 'workspace'
+let g:EclimProjectTreeSharedInstance = 1
 let g:EclimValidateSortResults = 'severity'
+let g:SuperTabDefaultCompletionType = 'context'
 
 "make w, b, and e use CamelCaseMotion
 map <silent>w <Plug>CamelCaseMotion_w
