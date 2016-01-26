@@ -46,7 +46,7 @@ Plug 'tpope/vim-rake',
 Plug 'tpope/vim-surround',
 Plug 'tpope/vim-unimpaired',
 Plug 'tpope/vim-vinegar',
-"Plug 'valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'vim-ruby/vim-ruby',
 Plug 'vim-scripts/genutils',
 Plug 'vim-scripts/grep.vim',
@@ -55,8 +55,6 @@ Plug 'vim-scripts/multiselect',
 Plug 'vim-scripts/TailMinusF',
 Plug 'xolox/vim-misc',
 Plug 'xolox/vim-session'
-
-Plug 'ervandew/supertab'
 
 "Add plugins to &runtimepath
 call plug#end()
@@ -153,11 +151,10 @@ let g:UltiSnipsJumpForwardTrigger='<c-k>'
 let g:UltiSnipsJumpBackwardTrigger='<s-c-j>'
 
 "eclim options
-"let g:EclimCompletionMethod = 'omnifunc'
+let g:EclimCompletionMethod = 'omnifunc'
 let g:EclimLocateFileScope = 'workspace'
 let g:EclimProjectTreeSharedInstance = 1
 let g:EclimValidateSortResults = 'severity'
-let g:SuperTabDefaultCompletionType = 'context'
 
 "make w, b, and e use CamelCaseMotion
 map <silent>w <Plug>CamelCaseMotion_w
