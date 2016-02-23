@@ -32,6 +32,7 @@ Plug 'scrooloose/nerdcommenter',
 Plug 'scrooloose/syntastic',
 Plug 'shougo/unite.vim',
 Plug 'shougo/vimproc.vim', { 'do': 'make' }
+Plug 'shougo/neoyank.vim'
 Plug 'sirVer/ultisnips',
 Plug 'skammer/vim-css-color',
 Plug 'suan/vim-instant-markdown',
@@ -188,7 +189,9 @@ call unite#custom_source('file_rec,file_rec/async', 'max_candidates', 0)
 call unite#custom_source('file_rec,file_rec/async,grep',
       \ 'ignore_pattern', join([
       \ '\.git/',
+      \ '\.gradle/',
       \ '\.sass-cache/',
+      \ '\.settings/',
       \ '\.svn/',
       \ '\.tmp/',
       \ '\.yardoc/',
