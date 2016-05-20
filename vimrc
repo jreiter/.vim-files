@@ -7,11 +7,13 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter',
+Plug 'b4b4r07/vim-hcl',
 Plug 'benjaminwhite/Benokai',
 Plug 'bkad/CamelCaseMotion',
 Plug 'bling/vim-airline',
 Plug 'chriskempson/base16-vim',
 Plug 'ecomba/vim-ruby-refactoring',
+Plug 'fatih/vim-nginx',
 Plug 'flazz/vim-colorschemes',
 Plug 'godlygeek/tabular',
 Plug 'honza/vim-snippets',
@@ -21,9 +23,12 @@ Plug 'juvenn/mustache.vim',
 Plug 'justinmk/vim-sneak',
 Plug 'majutsushi/tagbar',
 Plug 'marijnh/tern_for_vim',
+Plug 'mickaobrien/vim-stackoverflow',
 Plug 'modille/groovy.vim',
+Plug 'mtth/scratch.vim',
 Plug 'nathanaelkane/vim-indent-guides',
 Plug 'nelstrom/vim-visual-star-search',
+Plug 'nikolavp/vim-jape',
 Plug 'pangloss/vim-javascript',
 Plug 'lokaltog/vim-distinguished',
 Plug 'raimondi/delimitMate',
@@ -80,6 +85,11 @@ if has("gui_running")
   endif
 endif
 
+"Display ruler at 120 characters
+if exists('+colorcolumn')
+  set colorcolumn=120
+endif
+
 "set tabs to 2 spaces, soft
 set tabstop=2 shiftwidth=2 expandtab
 "line numbers
@@ -103,6 +113,9 @@ set guioptions-=R
 set wildmenu
 set wildmode=list:longest,full
 set wildignore=*.class,*.git
+
+"no swap files
+set noswapfile
 
 "turn on matchit
 runtime macros/matchit.vim
@@ -146,16 +159,20 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 "ultisnips settings
-let g:UltiSnipsSnippetDirectories=['Ultisnips', 'custom_snippets']
+let g:UltiSnipsSnippetDirectories=['vim-snippets/UltiSnips', 'custom_snippets']
 let g:UltiSnipsExpandTrigger='<c-k>'
 let g:UltiSnipsJumpForwardTrigger='<c-k>'
 let g:UltiSnipsJumpBackwardTrigger='<s-c-j>'
+
+"YouCompleteMe settings
+let g:ycm_autoclose_preview_window_after_completion = 1
 
 "eclim options
 let g:EclimCompletionMethod = 'omnifunc'
 let g:EclimLocateFileScope = 'workspace'
 let g:EclimProjectTreeSharedInstance = 1
 let g:EclimValidateSortResults = 'severity'
+let g:EclimLoggingDisabled = 1
 
 "make w, b, and e use CamelCaseMotion
 map <silent>w <Plug>CamelCaseMotion_w
@@ -188,6 +205,8 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#custom_source('file_rec,file_rec/async', 'max_candidates', 0)
 call unite#custom_source('file_rec,file_rec/async,grep',
       \ 'ignore_pattern', join([
+      \ 'build/',
+      \ 'bin/',
       \ '\.git/',
       \ '\.gradle/',
       \ '\.sass-cache/',
