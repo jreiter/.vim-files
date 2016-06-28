@@ -81,7 +81,7 @@ if has("gui_running")
   elseif has("gui_macvim")
     set guifont=Menlo\ Regular:h14
   else
-    set guifont=DejaVu\ Sans\ Mono\ \Bold\ 11
+    set guifont=Menlo\ Regular:14
   endif
 endif
 
@@ -119,6 +119,9 @@ set noswapfile
 
 "turn on matchit
 runtime macros/matchit.vim
+
+"Map ESC to enter normal mode in terminal
+:tnoremap <Esc> <C-\><C-n>
 
 "search highlight toggle
 nnoremap <F2> :set hlsearch!<CR>
@@ -169,9 +172,6 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 
 "eclim options
 let g:EclimCompletionMethod = 'omnifunc'
-let g:EclimLocateFileScope = 'workspace'
-let g:EclimProjectTreeSharedInstance = 1
-let g:EclimValidateSortResults = 'severity'
 let g:EclimLoggingDisabled = 1
 
 "make w, b, and e use CamelCaseMotion
@@ -224,7 +224,7 @@ call unite#custom_source('file_rec,file_rec/async,grep',
       \ 'tmp/',
       \ 'tags',
       \ '.*\.log',
-      \ '.*\.png',
+      \ '.*\.png'
       \ ], '\|'))
 
 " unite bindings
@@ -281,3 +281,27 @@ function! <SID>StripTrailingWhitespaces()
   let @/=_s
   call cursor(l, c)
 endfunction
+
+augroup AutoSwap
+  autocmd!
+  autocmd SwapExists *  call AS_HandleSwapfile(expand('<afile>:p'), v:swapname)
+augroup END
+
+function! AS_HandleSwapfile (filename, swapname)
+  " if swapfile is older than file itself, just get rid of it
+  if getftime(v:swapname) < getftime(a:filename)
+    call delete(v:swapname)
+    let v:swapchoice = 'e'
+  endif
+endfunction
+autocmd CursorHold,BufWritePost,BufReadPost,BufLeave *
+      \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
+
+augroup checktime
+  au!
+  if !has("gui_running")
+    "silent! necessary otherwise throws errors when using command
+    "line window.
+    autocmd BufEnter,CursorHold,CursorHoldI,CursorMoved,CursorMovedI,FocusGained,BufEnter,FocusLost,WinLeave * checktime
+  endif
+augroup END
