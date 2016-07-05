@@ -13,6 +13,7 @@ Plug 'bkad/CamelCaseMotion',
 Plug 'bling/vim-airline',
 Plug 'chriskempson/base16-vim',
 Plug 'ecomba/vim-ruby-refactoring',
+Plug 'eugen0329/vim-esearch',
 Plug 'fatih/vim-nginx',
 Plug 'flazz/vim-colorschemes',
 Plug 'godlygeek/tabular',
@@ -25,16 +26,15 @@ Plug 'majutsushi/tagbar',
 Plug 'marijnh/tern_for_vim',
 Plug 'mickaobrien/vim-stackoverflow',
 Plug 'modille/groovy.vim',
-Plug 'mtth/scratch.vim',
 Plug 'nathanaelkane/vim-indent-guides',
 Plug 'nelstrom/vim-visual-star-search',
+Plug 'neomake/neomake',
 Plug 'nikolavp/vim-jape',
 Plug 'pangloss/vim-javascript',
 Plug 'lokaltog/vim-distinguished',
 Plug 'raimondi/delimitMate',
 Plug 'roman/golden-ratio',
 Plug 'scrooloose/nerdcommenter',
-Plug 'scrooloose/syntastic',
 Plug 'shougo/unite.vim',
 Plug 'shougo/vimproc.vim', { 'do': 'make' }
 Plug 'shougo/neoyank.vim'
@@ -56,11 +56,9 @@ Plug 'tpope/vim-vinegar',
 Plug 'valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'vim-ruby/vim-ruby',
 Plug 'vim-scripts/genutils',
-Plug 'vim-scripts/grep.vim',
 Plug 'vim-scripts/multiselect',
 Plug 'vim-scripts/TailMinusF',
-Plug 'xolox/vim-misc',
-Plug 'xolox/vim-session'
+Plug 'xolox/vim-misc'
 
 "Add plugins to &runtimepath
 call plug#end()
@@ -120,9 +118,6 @@ set noswapfile
 "turn on matchit
 runtime macros/matchit.vim
 
-"Map ESC to enter normal mode in terminal
-:tnoremap <Esc> <C-\><C-n>
-
 "search highlight toggle
 nnoremap <F2> :set hlsearch!<CR>
 
@@ -155,11 +150,10 @@ let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=grey30 ctermbg=0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=grey15 ctermbg=242
 
-"syntastic settings
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_javascript_checkers = ['jscs', 'jshint']
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+"neomake settings
+let g:neomake_java_enabled_makers = [] 
+
+autocmd! BufWritePost * Neomake
 
 "ultisnips settings
 let g:UltiSnipsSnippetDirectories=['vim-snippets/UltiSnips', 'custom_snippets']
@@ -188,10 +182,6 @@ set laststatus=2
 " sneak.vim settings
 let g:sneak#streak = 1
 
-" session.vim settings
-let g:session_autosave = "no"
-let g:session_autoload = "no"
-
 " rails.vim settings
 let g:rails_ctags_arguments='--exclude=.svn --exclude=log --languages=-javascript'
 
@@ -200,6 +190,18 @@ nnoremap <silent> <Leader>rc :Rake getline('.')<CR>
 " unite settings
 let g:unite_data_directory='~/.vim/.cache/unite'
 let g:unite_enable_start_insert=1
+
+if executable('ag')
+  " Use ag (the silver searcher)
+  " https://github.com/ggreer/the_silver_searcher
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts =
+  \ '-i --vimgrep --hidden ' .
+  \ '--ignore ''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'' ' .
+  \ '--ignore ''.gradle'' --ignore ''.settings'' --ignore ''.tmp'' --ignore ''.yardoc'' ' .
+  \ '--ignore ''bower_components'' --ignore ''node_modules'''
+  let g:unite_source_grep_recursive_opt = ''
+endif
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#custom_source('file_rec,file_rec/async', 'max_candidates', 0)
