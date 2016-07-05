@@ -260,7 +260,7 @@ nmap <silent> <Leader>b :TagbarToggle<CR>
 nnoremap <silent> <F5> :call <SID>StripTrailingWhitespaces()<CR>
 
 "automatically remove trailing whitespace when saving files
-autocmd BufWritePre *.rb,*.erb*,*.js,*.html,*.css,*.scss :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre *.rb,*.erb*,*.js,*.java,*.html,*.css,*.scss :call <SID>StripTrailingWhitespaces()
 
 " search with explicitly provided arguments
 command! -n=? Rgrep :call RailsScriptSearch('<args>')
