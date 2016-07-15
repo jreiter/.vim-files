@@ -9,6 +9,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter',
 Plug 'b4b4r07/vim-hcl',
 Plug 'benjaminwhite/Benokai',
+Plug 'bfredl/nvim-miniyank',
 Plug 'bkad/CamelCaseMotion',
 Plug 'bling/vim-airline',
 Plug 'chriskempson/base16-vim',
@@ -37,7 +38,6 @@ Plug 'roman/golden-ratio',
 Plug 'scrooloose/nerdcommenter',
 Plug 'shougo/unite.vim',
 Plug 'shougo/vimproc.vim', { 'do': 'make' }
-Plug 'shougo/neoyank.vim'
 Plug 'sirVer/ultisnips',
 Plug 'skammer/vim-css-color',
 Plug 'suan/vim-instant-markdown',
@@ -136,6 +136,11 @@ map <Leader>cd :cd %:p:h<CR>
 "golden-ratio settings
 let g:golden_ratio_autocommand = 0
 
+"miniyank settings
+map <leader>p <Plug>(miniyank-startput)
+map <leader>P <Plug>(miniyank-startPut)
+map <leader>n <Plug>(miniyank-cycle)
+
 "calendar settings
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
@@ -152,6 +157,8 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=grey15 ctermbg=242
 
 "neomake settings
 let g:neomake_java_enabled_makers = [] 
+let g:neomake_error_sign = {'text': '>>', 'texthl': 'ErrorMsg'}
+let g:neomake_warning_sign = {'text': '>>', 'texthl': 'WarningMsg'}
 
 autocmd! BufWritePost * Neomake
 
