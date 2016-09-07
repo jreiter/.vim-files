@@ -4,8 +4,16 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/Plug.vim
 endif
 
-call plug#begin('~/.vim/plugged')
+"Build vim-markdown-composer
+function! BuildComposer(info)
+  if a:info.status != 'unchanged' || a:info.force
+    !cargo build --release
+    UpdateRemotePlugins
+  endif
+endfunction
 
+call plug#begin('~/.vim/plugged')
+ 
 Plug 'airblade/vim-gitgutter',
 Plug 'b4b4r07/vim-hcl',
 Plug 'benjaminwhite/Benokai',
@@ -14,6 +22,7 @@ Plug 'bkad/CamelCaseMotion',
 Plug 'bling/vim-airline',
 Plug 'chriskempson/base16-vim',
 Plug 'ecomba/vim-ruby-refactoring',
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') },
 Plug 'eugen0329/vim-esearch',
 Plug 'fatih/vim-nginx',
 Plug 'flazz/vim-colorschemes',
@@ -24,7 +33,7 @@ Plug 'itchyny/calendar.vim',
 Plug 'juvenn/mustache.vim',
 Plug 'justinmk/vim-sneak',
 Plug 'majutsushi/tagbar',
-Plug 'marijnh/tern_for_vim',
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install' },
 Plug 'mickaobrien/vim-stackoverflow',
 Plug 'modille/groovy.vim',
 Plug 'nathanaelkane/vim-indent-guides',
@@ -34,13 +43,13 @@ Plug 'nikolavp/vim-jape',
 Plug 'pangloss/vim-javascript',
 Plug 'lokaltog/vim-distinguished',
 Plug 'raimondi/delimitMate',
+Plug 'rizzatti/dash.vim',
 Plug 'roman/golden-ratio',
 Plug 'scrooloose/nerdcommenter',
 Plug 'shougo/unite.vim',
 Plug 'shougo/vimproc.vim', { 'do': 'make' }
 Plug 'sirVer/ultisnips',
 Plug 'skammer/vim-css-color',
-Plug 'suan/vim-instant-markdown',
 Plug 'terryma/vim-multiple-cursors',
 Plug 'tpope/vim-bundler',
 Plug 'tpope/vim-abolish',
@@ -112,6 +121,10 @@ set wildmenu
 set wildmode=list:longest,full
 set wildignore=*.class,*.git
 
+"python
+let g:python_host_prog = '/Users/reiterj/.pyenv/versions/2.7.11/bin/python'
+let g:python3_host_prog = '/Users/reiterj/.pyenv/versions/3.4.3/bin/python'
+
 "no swap files
 set noswapfile
 
@@ -137,8 +150,8 @@ map <Leader>cd :cd %:p:h<CR>
 let g:golden_ratio_autocommand = 0
 
 "miniyank settings
-map <leader>p <Plug>(miniyank-startput)
-map <leader>P <Plug>(miniyank-startPut)
+map p <Plug>(miniyank-autoput)
+map P <Plug>(miniyank-autoPut)
 map <leader>n <Plug>(miniyank-cycle)
 
 "calendar settings
