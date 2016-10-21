@@ -16,7 +16,6 @@ call plug#begin('~/.vim/plugged')
  
 Plug 'airblade/vim-gitgutter',
 Plug 'b4b4r07/vim-hcl',
-Plug 'benjaminwhite/Benokai',
 Plug 'bfredl/nvim-miniyank',
 Plug 'bkad/CamelCaseMotion',
 Plug 'bling/vim-airline',
@@ -30,6 +29,8 @@ Plug 'godlygeek/tabular',
 Plug 'honza/vim-snippets',
 Plug 'idanarye/vim-merginal',
 Plug 'itchyny/calendar.vim',
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' },
+Plug 'junegunn/fzf.vim',
 Plug 'juvenn/mustache.vim',
 Plug 'justinmk/vim-sneak',
 Plug 'majutsushi/tagbar',
@@ -46,8 +47,8 @@ Plug 'raimondi/delimitMate',
 Plug 'rizzatti/dash.vim',
 Plug 'roman/golden-ratio',
 Plug 'scrooloose/nerdcommenter',
-Plug 'shougo/unite.vim',
 Plug 'shougo/vimproc.vim', { 'do': 'make' }
+Plug 'shumphrey/fugitive-gitlab.vim',
 Plug 'sirVer/ultisnips',
 Plug 'skammer/vim-css-color',
 Plug 'terryma/vim-multiple-cursors',
@@ -207,52 +208,12 @@ let g:rails_ctags_arguments='--exclude=.svn --exclude=log --languages=-javascrip
 
 nnoremap <silent> <Leader>rc :Rake getline('.')<CR>
 
-" unite settings
-let g:unite_data_directory='~/.vim/.cache/unite'
-let g:unite_enable_start_insert=1
-
-if executable('ag')
-  " Use ag (the silver searcher)
-  " https://github.com/ggreer/the_silver_searcher
-  let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts =
-  \ '-i --vimgrep --hidden ' .
-  \ '--ignore ''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'' ' .
-  \ '--ignore ''.gradle'' --ignore ''.settings'' --ignore ''.tmp'' --ignore ''.yardoc'' ' .
-  \ '--ignore ''bower_components'' --ignore ''node_modules'''
-  let g:unite_source_grep_recursive_opt = ''
-endif
-
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#custom_source('file_rec,file_rec/async', 'max_candidates', 0)
-call unite#custom_source('file_rec,file_rec/async,grep',
-      \ 'ignore_pattern', join([
-      \ 'build/',
-      \ 'bin/',
-      \ '\.git/',
-      \ '\.gradle/',
-      \ '\.sass-cache/',
-      \ '\.settings/',
-      \ '\.svn/',
-      \ '\.tmp/',
-      \ '\.yardoc/',
-      \ 'bower_components/',
-      \ 'dist/',
-      \ 'node_modules/',
-      \ 'coverage/',
-      \ 'doc/.*/.*\.html',
-      \ 'docs/html/.*',
-      \ 'docs/generated/.*',
-      \ 'tmp/',
-      \ 'tags',
-      \ '.*\.log',
-      \ '.*\.png'
-      \ ], '\|'))
-
-" unite bindings
-nnoremap <silent> <Leader>t :Unite -start-insert file_rec/async<CR>
-nnoremap <space>/ :Unite -no-quit -buffer-name=search grep:.<CR>
-nnoremap <space>s :Unite buffer<cr>
+" fzf settings/bindings
+let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
+let g:fzf_history_dir = '~/.fzf-history'
+nnoremap <silent> <Leader>t :Files<CR>
+nnoremap <space>/ :Ag<CR>
+nnoremap <space>s :Buffers<cr>
 
 "tabular bindings
 nmap <Leader>a= :Tabularize /=<CR>
@@ -267,6 +228,7 @@ nmap <Leader>z :ConqueTerm bash<CR>
 vmap <Leader>z :ConqueTerm bash<CR>
 
 "fugitive
+let g:fugitive_gitlab_domains = ['htts://git.tdc.upmc.edu']
 autocmd QuickFixCmdPost *grep* cwindow
 
 "Ctrl-PageUp/PageDown to move next/previous tabs
