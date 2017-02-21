@@ -4,14 +4,6 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/Plug.vim
 endif
 
-"Build vim-markdown-composer
-function! BuildComposer(info)
-  if a:info.status != 'unchanged' || a:info.force
-    !cargo build --release
-    UpdateRemotePlugins
-  endif
-endfunction
-
 call plug#begin('~/.vim/plugged')
  
 Plug 'airblade/vim-gitgutter',
@@ -21,21 +13,22 @@ Plug 'bkad/CamelCaseMotion',
 Plug 'bling/vim-airline',
 Plug 'chriskempson/base16-vim',
 Plug 'ecomba/vim-ruby-refactoring',
-Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') },
+Plug 'elzr/vim-json',
 Plug 'eugen0329/vim-esearch',
 Plug 'fatih/vim-nginx',
 Plug 'flazz/vim-colorschemes',
 Plug 'godlygeek/tabular',
+Plug 'hallison/vim-rdoc'
 Plug 'honza/vim-snippets',
 Plug 'idanarye/vim-merginal',
 Plug 'itchyny/calendar.vim',
+Plug 'jiangmiao/auto-pairs',
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' },
 Plug 'junegunn/fzf.vim',
 Plug 'juvenn/mustache.vim',
 Plug 'justinmk/vim-sneak',
 Plug 'majutsushi/tagbar',
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install' },
-Plug 'mickaobrien/vim-stackoverflow',
 Plug 'modille/groovy.vim',
 Plug 'nathanaelkane/vim-indent-guides',
 Plug 'nelstrom/vim-visual-star-search',
@@ -43,7 +36,6 @@ Plug 'neomake/neomake',
 Plug 'nikolavp/vim-jape',
 Plug 'pangloss/vim-javascript',
 Plug 'lokaltog/vim-distinguished',
-Plug 'raimondi/delimitMate',
 Plug 'rizzatti/dash.vim',
 Plug 'roman/golden-ratio',
 Plug 'scrooloose/nerdcommenter',
@@ -58,8 +50,10 @@ Plug 'tpope/vim-dispatch',
 Plug 'tpope/vim-endwise',
 Plug 'tpope/vim-fugitive',
 Plug 'tpope/vim-haml',
+Plug 'tpope/vim-projectionist',
 Plug 'tpope/vim-rails',
 Plug 'tpope/vim-rake',
+Plug 'tpope/vim-rbenv',
 Plug 'tpope/vim-surround',
 Plug 'tpope/vim-unimpaired',
 Plug 'tpope/vim-vinegar',
@@ -89,7 +83,7 @@ if has("gui_running")
   elseif has("gui_macvim")
     set guifont=Menlo\ Regular:h14
   else
-    set guifont=Menlo\ Regular:14
+    set guifont=Menlo\ Regular:h14
   endif
 endif
 
@@ -155,9 +149,8 @@ map p <Plug>(miniyank-autoput)
 map P <Plug>(miniyank-autoPut)
 map <leader>n <Plug>(miniyank-cycle)
 
-"calendar settings
-let g:calendar_google_calendar = 1
-let g:calendar_google_task = 1
+"nyaovim markdown preview
+let g:markdown_preview_eager = 1
 
 "indent guides settings
 let g:indent_guides_start_level = 2
@@ -184,6 +177,7 @@ let g:UltiSnipsJumpBackwardTrigger='<s-c-j>'
 
 "YouCompleteMe settings
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_complete_in_comments = 0
 
 "eclim options
 let g:EclimCompletionMethod = 'omnifunc'
@@ -199,6 +193,7 @@ sunmap e
 
 " Show airline without split buffers
 set laststatus=2
+let g:airline#extensions#eclim#enabled = 1
 
 " sneak.vim settings
 let g:sneak#streak = 1
