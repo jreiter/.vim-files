@@ -27,15 +27,18 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' },
 Plug 'junegunn/fzf.vim',
 Plug 'juvenn/mustache.vim',
 Plug 'justinmk/vim-sneak',
+Plug 'leafgarland/typescript-vim',
 Plug 'majutsushi/tagbar',
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install' },
 Plug 'modille/groovy.vim',
 Plug 'nathanaelkane/vim-indent-guides',
 Plug 'nelstrom/vim-visual-star-search',
 Plug 'neomake/neomake',
+Plug 'neovim/node-host', { 'do': 'npm install' },
 Plug 'nikolavp/vim-jape',
 Plug 'pangloss/vim-javascript',
 Plug 'lokaltog/vim-distinguished',
+Plug 'Quramy/tsuquyomi',
 Plug 'rizzatti/dash.vim',
 Plug 'roman/golden-ratio',
 Plug 'scrooloose/nerdcommenter',
@@ -164,6 +167,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=grey15 ctermbg=242
 
 "neomake settings
 let g:neomake_java_enabled_makers = [] 
+let g:neomake_javascript_enabled_makers=['eslint']
 let g:neomake_error_sign = {'text': '>>', 'texthl': 'ErrorMsg'}
 let g:neomake_warning_sign = {'text': '>>', 'texthl': 'WarningMsg'}
 
@@ -178,10 +182,12 @@ let g:UltiSnipsJumpBackwardTrigger='<s-c-j>'
 "YouCompleteMe settings
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_complete_in_comments = 0
+let g:ycm_add_preview_to_completeopt = 0
 
 "eclim options
 let g:EclimCompletionMethod = 'omnifunc'
 let g:EclimLoggingDisabled = 1
+let g:EclimJavascriptValidate = 0
 
 "make w, b, and e use CamelCaseMotion
 map <silent>w <Plug>CamelCaseMotion_w
