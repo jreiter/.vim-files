@@ -30,6 +30,7 @@ Plug 'justinmk/vim-sneak',
 Plug 'leafgarland/typescript-vim',
 Plug 'majutsushi/tagbar',
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install' },
+Plug 'heavenshell/vim-jsdoc',
 Plug 'modille/groovy.vim',
 Plug 'nathanaelkane/vim-indent-guides',
 Plug 'nelstrom/vim-visual-star-search',
@@ -164,6 +165,10 @@ let g:indent_guides_exclude_filetypes = ['help', 'calendar']
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=grey30 ctermbg=0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=grey15 ctermbg=242
+
+"vim-javascript settings
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
 
 "neomake settings
 let g:neomake_java_enabled_makers = [] 
