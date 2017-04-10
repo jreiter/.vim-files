@@ -5,7 +5,7 @@ if has('vim_starting')
 endif
 
 call plug#begin('~/.vim/plugged')
- 
+
 Plug 'airblade/vim-gitgutter',
 Plug 'b4b4r07/vim-hcl',
 Plug 'bfredl/nvim-miniyank',
@@ -34,7 +34,6 @@ Plug 'heavenshell/vim-jsdoc',
 Plug 'modille/groovy.vim',
 Plug 'nathanaelkane/vim-indent-guides',
 Plug 'nelstrom/vim-visual-star-search',
-Plug 'neomake/neomake',
 Plug 'neovim/node-host', { 'do': 'npm install' },
 Plug 'nikolavp/vim-jape',
 Plug 'pangloss/vim-javascript',
@@ -66,6 +65,7 @@ Plug 'vim-ruby/vim-ruby',
 Plug 'vim-scripts/genutils',
 Plug 'vim-scripts/multiselect',
 Plug 'vim-scripts/TailMinusF',
+Plug 'w0rp/ale',
 Plug 'xolox/vim-misc'
 
 "Add plugins to &runtimepath
@@ -170,13 +170,10 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=grey15 ctermbg=242
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 
-"neomake settings
-let g:neomake_java_enabled_makers = [] 
-let g:neomake_javascript_enabled_makers=['eslint']
-let g:neomake_error_sign = {'text': '>>', 'texthl': 'ErrorMsg'}
-let g:neomake_warning_sign = {'text': '>>', 'texthl': 'WarningMsg'}
-
-autocmd! BufWritePost * Neomake
+"ale settings
+let g:ale_linters = {
+\   'javascript': ['eslint']
+\}
 
 "ultisnips settings
 let g:UltiSnipsSnippetDirectories=['vim-snippets/UltiSnips', 'custom_snippets']
@@ -205,6 +202,7 @@ sunmap e
 " Show airline without split buffers
 set laststatus=2
 let g:airline#extensions#eclim#enabled = 1
+let g:airline#extensions#branch#format = 2
 
 " sneak.vim settings
 let g:sneak#streak = 1
