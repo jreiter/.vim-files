@@ -22,6 +22,7 @@ Plug 'hallison/vim-rdoc'
 Plug 'honza/vim-snippets',
 Plug 'idanarye/vim-merginal',
 Plug 'itchyny/calendar.vim',
+Plug 'janko-m/vim-test',
 Plug 'jiangmiao/auto-pairs',
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' },
 Plug 'junegunn/fzf.vim',
@@ -46,6 +47,7 @@ Plug 'shougo/vimproc.vim', { 'do': 'make' }
 Plug 'shumphrey/fugitive-gitlab.vim',
 Plug 'sirVer/ultisnips',
 Plug 'skammer/vim-css-color',
+Plug 'skywind3000/asyncrun.vim',
 Plug 'terryma/vim-multiple-cursors',
 Plug 'tpope/vim-bundler',
 Plug 'tpope/vim-abolish',
@@ -148,13 +150,14 @@ map <Leader>cd :cd %:p:h<CR>
 "golden-ratio settings
 let g:golden_ratio_autocommand = 0
 
+"vim-test settings
+let test#strategy = 'asyncrun'
+let test#javascript#jasmine#executable = 'node --inspect-brk node_modules/jasmine/bin/jasmine.js'
+
 "miniyank settings
 map p <Plug>(miniyank-autoput)
 map P <Plug>(miniyank-autoPut)
 map <leader>n <Plug>(miniyank-cycle)
-
-"nyaovim markdown preview
-let g:markdown_preview_eager = 1
 
 "indent guides settings
 let g:indent_guides_start_level = 2
