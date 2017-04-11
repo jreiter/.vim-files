@@ -30,7 +30,6 @@ Plug 'juvenn/mustache.vim',
 Plug 'justinmk/vim-sneak',
 Plug 'leafgarland/typescript-vim',
 Plug 'majutsushi/tagbar',
-Plug 'marijnh/tern_for_vim', { 'do': 'npm install' },
 Plug 'heavenshell/vim-jsdoc',
 Plug 'modille/groovy.vim',
 Plug 'nathanaelkane/vim-indent-guides',
@@ -41,7 +40,6 @@ Plug 'pangloss/vim-javascript',
 Plug 'lokaltog/vim-distinguished',
 Plug 'Quramy/tsuquyomi',
 Plug 'rizzatti/dash.vim',
-Plug 'roman/golden-ratio',
 Plug 'scrooloose/nerdcommenter',
 Plug 'shougo/vimproc.vim', { 'do': 'make' }
 Plug 'shumphrey/fugitive-gitlab.vim',
@@ -62,7 +60,7 @@ Plug 'tpope/vim-rbenv',
 Plug 'tpope/vim-surround',
 Plug 'tpope/vim-unimpaired',
 Plug 'tpope/vim-vinegar',
-Plug 'valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 Plug 'vim-ruby/vim-ruby',
 Plug 'vim-scripts/genutils',
 Plug 'vim-scripts/multiselect',
@@ -144,12 +142,6 @@ filetype plugin indent on
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
-"change working directory to current file
-map <Leader>cd :cd %:p:h<CR>
-
-"golden-ratio settings
-let g:golden_ratio_autocommand = 0
-
 "vim-test settings
 let test#strategy = 'asyncrun'
 let test#javascript#jasmine#executable = 'node --inspect-brk node_modules/jasmine/bin/jasmine.js'
@@ -213,8 +205,6 @@ let g:sneak#streak = 1
 " rails.vim settings
 let g:rails_ctags_arguments='--exclude=.svn --exclude=log --languages=-javascript'
 
-nnoremap <silent> <Leader>rc :Rake getline('.')<CR>
-
 " fzf settings/bindings
 let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 let g:fzf_history_dir = '~/.fzf-history'
@@ -230,35 +220,14 @@ vmap <Leader>a: :Tabularize /:\zs<CR>
 nmap <Leader>a, :Tabularize /,\zs<CR>
 vmap <Leader>a, :Tabularize /,\zs<CR>
 
-"conque bindings
-nmap <Leader>z :ConqueTerm bash<CR>
-vmap <Leader>z :ConqueTerm bash<CR>
-
 "fugitive
-let g:fugitive_gitlab_domains = ['htts://git.tdc.upmc.edu']
 autocmd QuickFixCmdPost *grep* cwindow
-
-"Ctrl-PageUp/PageDown to move next/previous tabs
-nmap <silent> <C-PageDown> gt
-nmap <silent> <C-PageUp> gT
 
 "tagbar binding
 nmap <silent> <Leader>b :TagbarToggle<CR>
 
-"remove trailing whitespace with F5
-nnoremap <silent> <F5> :call <SID>StripTrailingWhitespaces()<CR>
-
 "automatically remove trailing whitespace when saving files
-autocmd BufWritePre *.rb,*.erb*,*.js,*.java,*.html,*.css,*.scss :call <SID>StripTrailingWhitespaces()
-
-" search with explicitly provided arguments
-command! -n=? Rgrep :call RailsScriptSearch('<args>')
-
-" search for the word under the cursor
-map <leader>rg :silent call RailsScriptSearch(expand("<cword>"))<CR>:cc<CR>
-
-" search for the method definition of the word under the cursor
-map <leader>rd :silent call RailsScriptSearch(expand("'def .*<cword>'"))<CR>:cc<CR>
+autocmd BufWritePre :call <SID>StripTrailingWhitespaces()
 
 "function for stripping trailing whitespace
 function! <SID>StripTrailingWhitespaces()
@@ -272,27 +241,3 @@ function! <SID>StripTrailingWhitespaces()
   let @/=_s
   call cursor(l, c)
 endfunction
-
-augroup AutoSwap
-  autocmd!
-  autocmd SwapExists *  call AS_HandleSwapfile(expand('<afile>:p'), v:swapname)
-augroup END
-
-function! AS_HandleSwapfile (filename, swapname)
-  " if swapfile is older than file itself, just get rid of it
-  if getftime(v:swapname) < getftime(a:filename)
-    call delete(v:swapname)
-    let v:swapchoice = 'e'
-  endif
-endfunction
-autocmd CursorHold,BufWritePost,BufReadPost,BufLeave *
-      \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
-
-augroup checktime
-  au!
-  if !has("gui_running")
-    "silent! necessary otherwise throws errors when using command
-    "line window.
-    autocmd BufEnter,CursorHold,CursorHoldI,CursorMoved,CursorMovedI,FocusGained,BufEnter,FocusLost,WinLeave * checktime
-  endif
-augroup END
