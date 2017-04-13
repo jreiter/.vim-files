@@ -30,6 +30,7 @@ Plug 'juvenn/mustache.vim',
 Plug 'justinmk/vim-sneak',
 Plug 'leafgarland/typescript-vim',
 Plug 'majutsushi/tagbar',
+Plug 'moll/vim-node',
 Plug 'heavenshell/vim-jsdoc',
 Plug 'modille/groovy.vim',
 Plug 'nathanaelkane/vim-indent-guides',
@@ -78,7 +79,7 @@ syntax enable
 "Always use dark background
 set background=dark
 let base16colorspace=256
-colorscheme base16-monokai
+colorscheme base16-oceanicnext
 
 "Set fonts
 if has("gui_running")
@@ -241,3 +242,29 @@ function! <SID>StripTrailingWhitespaces()
   let @/=_s
   call cursor(l, c)
 endfunction
+
+"Handle reloading files if they are changed outside of the editor: https://github.com/neovim/neovim/issues/2127
+augroup AutoSwap
+        autocmd!
+        autocmd SwapExists *  call AS_HandleSwapfile(expand('<afile>:p'), v:swapname)
+augroup END
+
+function! AS_HandleSwapfile (filename, swapname)
+        " if swapfile is older than file itself, just get rid of it
+        if getftime(v:swapname) < getftime(a:filename)
+                call delete(v:swapname)
+                let v:swapchoice = 'e'
+        endif
+endfunction
+
+autocmd CursorHold,BufWritePost,BufReadPost,BufLeave *
+  \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
+
+augroup checktime
+    au!
+    if !has("gui_running")
+        "silent! necessary otherwise throws errors when using command
+        "line window.
+        autocmd BufEnter,CursorHold,CursorHoldI,CursorMoved,CursorMovedI,FocusGained,BufEnter,FocusLost,WinLeave * checktime
+    endif
+augroup END
