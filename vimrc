@@ -12,6 +12,7 @@ Plug 'bfredl/nvim-miniyank',
 Plug 'bkad/CamelCaseMotion',
 Plug 'bling/vim-airline',
 Plug 'chriskempson/base16-vim',
+Plug 'digitaltoad/vim-pug',
 Plug 'ecomba/vim-ruby-refactoring',
 Plug 'elzr/vim-json',
 Plug 'eugen0329/vim-esearch',
@@ -45,7 +46,6 @@ Plug 'scrooloose/nerdcommenter',
 Plug 'shougo/vimproc.vim', { 'do': 'make' }
 Plug 'shumphrey/fugitive-gitlab.vim',
 Plug 'sirVer/ultisnips',
-Plug 'skammer/vim-css-color',
 Plug 'skywind3000/asyncrun.vim',
 Plug 'terryma/vim-multiple-cursors',
 Plug 'tpope/vim-bundler',
@@ -214,12 +214,9 @@ nnoremap <space>/ :Ag<CR>
 nnoremap <space>s :Buffers<cr>
 
 "tabular bindings
-nmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /:\zs<CR>
-vmap <Leader>a: :Tabularize /:\zs<CR>
-nmap <Leader>a, :Tabularize /,\zs<CR>
-vmap <Leader>a, :Tabularize /,\zs<CR>
+map <Leader>a= :Tabularize /=<CR>
+map <Leader>a: :Tabularize /:\zs<CR>
+map <Leader>a, :Tabularize /,\zs<CR>
 
 "fugitive
 autocmd QuickFixCmdPost *grep* cwindow
