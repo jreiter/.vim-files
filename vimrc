@@ -143,6 +143,16 @@ filetype plugin indent on
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
+"Use +/- for resizing windows by a sane amount
+nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
+
+"Navigate splits more easily
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
 "vim-test settings
 let test#strategy = 'asyncrun'
 let test#javascript#jasmine#executable = 'node --inspect-brk node_modules/jasmine/bin/jasmine.js'
@@ -161,6 +171,9 @@ let g:indent_guides_exclude_filetypes = ['help', 'calendar']
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=grey30 ctermbg=0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=grey15 ctermbg=242
+
+"jsdoc settings
+let g:jsdoc_enable_es6=1
 
 "vim-javascript settings
 let g:javascript_plugin_jsdoc = 1
