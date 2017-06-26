@@ -11,6 +11,7 @@ Plug 'b4b4r07/vim-hcl',
 Plug 'bfredl/nvim-miniyank',
 Plug 'bkad/CamelCaseMotion',
 Plug 'bling/vim-airline',
+Plug 'briancollins/vim-jst',
 Plug 'chriskempson/base16-vim',
 Plug 'digitaltoad/vim-pug',
 Plug 'ecomba/vim-ruby-refactoring',
@@ -18,6 +19,7 @@ Plug 'elzr/vim-json',
 Plug 'eugen0329/vim-esearch',
 Plug 'fatih/vim-nginx',
 Plug 'flazz/vim-colorschemes',
+Plug 'freitass/todo.txt-vim',
 Plug 'godlygeek/tabular',
 Plug 'hallison/vim-rdoc'
 Plug 'honza/vim-snippets',
@@ -144,8 +146,8 @@ filetype plugin indent on
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 "Use +/- for resizing windows by a sane amount
-nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
+map <leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
 "Navigate splits more easily
 nnoremap <C-h> <C-w>h
@@ -180,9 +182,8 @@ let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 
 "ale settings
-let g:ale_linters = {
-\   'javascript': ['eslint']
-\}
+let g:ale_linters = {'javascript': ['eslint']}
+let g:ale_fixers = {'javascript': ['prettier', 'eslint']}
 
 "ultisnips settings
 let g:UltiSnipsSnippetDirectories=['vim-snippets/UltiSnips', 'custom_snippets']
