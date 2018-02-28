@@ -29,11 +29,11 @@ Plug 'janko-m/vim-test',
 Plug 'jiangmiao/auto-pairs',
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' },
 Plug 'junegunn/fzf.vim',
-Plug 'juvenn/mustache.vim',
 Plug 'justinmk/vim-sneak',
 Plug 'leafgarland/typescript-vim',
 Plug 'majutsushi/tagbar',
 Plug 'moll/vim-node',
+Plug 'mustache/vim-mustache-handlebars',
 Plug 'heavenshell/vim-jsdoc',
 Plug 'modille/groovy.vim',
 Plug 'nathanaelkane/vim-indent-guides',
@@ -52,6 +52,7 @@ Plug 'skywind3000/asyncrun.vim',
 Plug 'terryma/vim-multiple-cursors',
 Plug 'tpope/vim-bundler',
 Plug 'tpope/vim-abolish',
+Plug 'tpope/vim-cucumber',
 Plug 'tpope/vim-dispatch',
 Plug 'tpope/vim-endwise',
 Plug 'tpope/vim-fugitive',
@@ -80,8 +81,11 @@ syntax enable
 
 "Always use dark background
 set background=dark
-let base16colorspace=256
-colorscheme base16-oceanicnext
+
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
 
 "Set fonts
 if has("gui_running")
@@ -156,8 +160,9 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 "vim-test settings
-let test#strategy = 'asyncrun'
+let test#strategy = 'neovim'
 let test#javascript#jasmine#executable = 'node --inspect-brk node_modules/jasmine/bin/jasmine.js'
+let test#javascript#jest#executable = 'node --inspect-brk node_modules/jest/bin/jest.js'
 
 "miniyank settings
 map p <Plug>(miniyank-autoput)
@@ -183,7 +188,7 @@ let g:javascript_plugin_ngdoc = 1
 
 "ale settings
 let g:ale_linters = {'javascript': ['eslint']}
-let g:ale_fixers = {'javascript': ['prettier', 'eslint']}
+let g:ale_fixers = {'javascript': ['prettier', 'eslint'], 'ruby': ['rubocop', 'remove_trailing_lines']}
 
 "ultisnips settings
 let g:UltiSnipsSnippetDirectories=['vim-snippets/UltiSnips', 'custom_snippets']
