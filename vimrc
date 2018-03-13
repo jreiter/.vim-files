@@ -134,6 +134,9 @@ let g:python3_host_prog = '/Users/reiterj/.pyenv/versions/3.4.3/bin/python'
 "no swap files
 set noswapfile
 
+"Update git gutter more often
+set updatetime=100
+
 "turn on matchit
 runtime macros/matchit.vim
 
@@ -230,7 +233,7 @@ let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 let g:fzf_history_dir = '~/.fzf-history'
 nnoremap <silent> <Leader>t :Files<CR>
 nnoremap <space>/ :Ag<CR>
-nnoremap <space>s :Buffers<cr>
+nnoremap <space>s :Buffers<CR>
 
 "tabular bindings
 map <Leader>a= :Tabularize /=<CR>
