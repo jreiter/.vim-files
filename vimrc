@@ -12,6 +12,7 @@ Plug 'bfredl/nvim-miniyank',
 Plug 'bkad/CamelCaseMotion',
 Plug 'bling/vim-airline',
 Plug 'briancollins/vim-jst',
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'chriskempson/base16-vim',
 Plug 'digitaltoad/vim-pug',
 Plug 'ecomba/vim-ruby-refactoring',
@@ -35,6 +36,7 @@ Plug 'majutsushi/tagbar',
 Plug 'moll/vim-node',
 Plug 'mustache/vim-mustache-handlebars',
 Plug 'heavenshell/vim-jsdoc',
+Plug 'mhartington/nvim-typescript',
 Plug 'modille/groovy.vim',
 Plug 'nathanaelkane/vim-indent-guides',
 Plug 'nelstrom/vim-visual-star-search',
@@ -64,13 +66,20 @@ Plug 'tpope/vim-rbenv',
 Plug 'tpope/vim-surround',
 Plug 'tpope/vim-unimpaired',
 Plug 'tpope/vim-vinegar',
-Plug 'valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 Plug 'vim-ruby/vim-ruby',
 Plug 'vim-scripts/genutils',
 Plug 'vim-scripts/multiselect',
 Plug 'vim-scripts/TailMinusF',
 Plug 'w0rp/ale',
 Plug 'xolox/vim-misc'
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 "Add plugins to &runtimepath
 call plug#end()
@@ -135,7 +144,7 @@ let g:python3_host_prog = '/Users/reiterj/.pyenv/versions/3.4.3/bin/python'
 set noswapfile
 
 "Update git gutter more often
-set updatetime=100
+set updatetime=1000
 
 "turn on matchit
 runtime macros/matchit.vim
@@ -161,6 +170,13 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+"deoplete
+let g:deoplete#sources = {}
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_profile = 1
+let g:deoplete#sources.javascript = ['buffer', 'tern']
+call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
 
 "vim-test settings
 let test#strategy = 'neovim'
@@ -195,14 +211,8 @@ let g:ale_fixers = {'javascript': ['prettier', 'eslint'], 'ruby': ['rubocop', 'r
 
 "ultisnips settings
 let g:UltiSnipsSnippetDirectories=['vim-snippets/UltiSnips', 'custom_snippets']
-let g:UltiSnipsExpandTrigger='<c-k>'
 let g:UltiSnipsJumpForwardTrigger='<c-k>'
 let g:UltiSnipsJumpBackwardTrigger='<s-c-j>'
-
-"YouCompleteMe settings
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_complete_in_comments = 0
-let g:ycm_add_preview_to_completeopt = 0
 
 "eclim options
 let g:EclimCompletionMethod = 'omnifunc'
