@@ -38,6 +38,7 @@ Plug 'mustache/vim-mustache-handlebars',
 Plug 'heavenshell/vim-jsdoc',
 Plug 'mhartington/nvim-typescript',
 Plug 'modille/groovy.vim',
+Plug 'mxw/vim-jsx',
 Plug 'nathanaelkane/vim-indent-guides',
 Plug 'nelstrom/vim-visual-star-search',
 Plug 'neovim/node-host', { 'do': 'npm install' },
@@ -107,10 +108,14 @@ if has("gui_running")
   endif
 endif
 
-"Display ruler at 120 characters
+"Display ruler at 80 characters
 if exists('+colorcolumn')
-  set colorcolumn=120
+  set colorcolumn=80
 endif
+
+"auto-select completions
+set completeopt+=noinsert
+set completeopt+=preview
 
 "set tabs to 2 spaces, soft
 set tabstop=2 shiftwidth=2 expandtab
@@ -136,15 +141,15 @@ set wildmenu
 set wildmode=list:longest,full
 set wildignore=*.class,*.git
 
+"allow live substitution
+set inccommand=nosplit
+
 "python
 let g:python_host_prog = '/Users/reiterj/.pyenv/versions/2.7.11/bin/python'
 let g:python3_host_prog = '/Users/reiterj/.pyenv/versions/3.4.3/bin/python'
 
 "no swap files
 set noswapfile
-
-"Update git gutter more often
-set updatetime=1000
 
 "turn on matchit
 runtime macros/matchit.vim
@@ -174,14 +179,13 @@ nnoremap <C-l> <C-w>l
 "deoplete
 let g:deoplete#sources = {}
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_profile = 1
-let g:deoplete#sources.javascript = ['buffer', 'tern']
+let g:deoplete#sources.javascript = ['buffer', 'tern', 'ultisnips']
 call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
 
 "vim-test settings
 let test#strategy = 'neovim'
-let test#javascript#jasmine#executable = 'node --inspect-brk node_modules/jasmine/bin/jasmine.js'
-let test#javascript#jest#executable = 'node --inspect-brk node_modules/jest/bin/jest.js'
+let test#javascript#jasmine#executable = 'ndb node_modules/jasmine/bin/jasmine.js'
+let test#javascript#jest#executable = 'ndb node_modules/jest/bin/jest.js'
 
 "miniyank settings
 map p <Plug>(miniyank-autoput)
@@ -208,6 +212,8 @@ let g:javascript_plugin_ngdoc = 1
 "ale settings
 let g:ale_linters = {'javascript': ['eslint']}
 let g:ale_fixers = {'javascript': ['prettier', 'eslint'], 'ruby': ['rubocop', 'remove_trailing_lines']}
+let g:ale_sign_warning = '>>'
+highlight ALEWarning ctermbg=Red
 
 "ultisnips settings
 let g:UltiSnipsSnippetDirectories=['vim-snippets/UltiSnips', 'custom_snippets']
@@ -239,10 +245,9 @@ let g:sneak#streak = 1
 let g:rails_ctags_arguments='--exclude=.svn --exclude=log --languages=-javascript'
 
 " fzf settings/bindings
-let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 let g:fzf_history_dir = '~/.fzf-history'
 nnoremap <silent> <Leader>t :Files<CR>
-nnoremap <space>/ :Ag<CR>
+nnoremap <space>/ :Ag
 nnoremap <space>s :Buffers<CR>
 
 "tabular bindings
