@@ -145,8 +145,8 @@ set wildignore=*.class,*.git
 set inccommand=nosplit
 
 "python
-let g:python_host_prog = '/Users/reiterj/.pyenv/versions/2.7.11/bin/python'
-let g:python3_host_prog = '/Users/reiterj/.pyenv/versions/3.4.3/bin/python'
+let g:python_host_prog = $HOME.'/.pyenv/shims/python'
+let g:python3_host_prog = $HOME.'/.pyenv/shims/python3'
 
 "no swap files
 set noswapfile
@@ -211,7 +211,7 @@ let g:javascript_plugin_ngdoc = 1
 
 "ale settings
 let g:ale_linters = {'javascript': ['eslint']}
-let g:ale_fixers = {'javascript': ['prettier', 'eslint'], 'ruby': ['rubocop', 'remove_trailing_lines']}
+let g:ale_fixers = {'javascript': ['prettier', 'eslint', 'remove_trailing_lines'], 'ruby': ['rubocop', 'remove_trailing_lines']}
 let g:ale_sign_warning = '>>'
 highlight ALEWarning ctermbg=Red
 
