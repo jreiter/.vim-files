@@ -7,7 +7,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter',
-Plug 'b4b4r07/vim-hcl',
 Plug 'bfredl/nvim-miniyank',
 Plug 'bkad/CamelCaseMotion',
 Plug 'bling/vim-airline',
@@ -19,13 +18,11 @@ Plug 'ecomba/vim-ruby-refactoring',
 Plug 'elzr/vim-json',
 Plug 'eugen0329/vim-esearch',
 Plug 'fatih/vim-nginx',
-Plug 'flazz/vim-colorschemes',
 Plug 'freitass/todo.txt-vim',
 Plug 'godlygeek/tabular',
 Plug 'hallison/vim-rdoc'
 Plug 'honza/vim-snippets',
 Plug 'idanarye/vim-merginal',
-Plug 'itchyny/calendar.vim',
 Plug 'janko-m/vim-test',
 Plug 'jiangmiao/auto-pairs',
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' },
@@ -44,7 +41,6 @@ Plug 'nelstrom/vim-visual-star-search',
 Plug 'neovim/node-host', { 'do': 'npm install' },
 Plug 'nikolavp/vim-jape',
 Plug 'pangloss/vim-javascript',
-Plug 'lokaltog/vim-distinguished',
 Plug 'Quramy/tsuquyomi',
 Plug 'rizzatti/dash.vim',
 Plug 'scrooloose/nerdcommenter',
@@ -213,7 +209,8 @@ let g:javascript_plugin_ngdoc = 1
 let g:ale_linters = {'javascript': ['eslint']}
 let g:ale_fixers = {'javascript': ['prettier', 'eslint', 'remove_trailing_lines'], 'ruby': ['rubocop', 'remove_trailing_lines']}
 let g:ale_sign_warning = '>>'
-highlight ALEWarning ctermbg=Red
+highlight ALEWarning ctermbg=100
+highlight ALEError ctermbg=Red
 
 "ultisnips settings
 let g:UltiSnipsSnippetDirectories=['vim-snippets/UltiSnips', 'custom_snippets']
