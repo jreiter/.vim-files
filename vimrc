@@ -11,7 +11,6 @@ Plug 'bfredl/nvim-miniyank',
 Plug 'bkad/CamelCaseMotion',
 Plug 'bling/vim-airline',
 Plug 'briancollins/vim-jst',
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'chriskempson/base16-vim',
 Plug 'digitaltoad/vim-pug',
 Plug 'ecomba/vim-ruby-refactoring',
@@ -20,7 +19,8 @@ Plug 'eugen0329/vim-esearch',
 Plug 'fatih/vim-nginx',
 Plug 'freitass/todo.txt-vim',
 Plug 'godlygeek/tabular',
-Plug 'hallison/vim-rdoc'
+Plug 'hallison/vim-rdoc',
+Plug 'HerringtonDarkholme/yats.vim',
 Plug 'honza/vim-snippets',
 Plug 'idanarye/vim-merginal',
 Plug 'janko-m/vim-test',
@@ -28,16 +28,15 @@ Plug 'jiangmiao/auto-pairs',
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' },
 Plug 'junegunn/fzf.vim',
 Plug 'justinmk/vim-sneak',
-Plug 'leafgarland/typescript-vim',
 Plug 'majutsushi/tagbar',
 Plug 'moll/vim-node',
 Plug 'mustache/vim-mustache-handlebars',
 Plug 'heavenshell/vim-jsdoc',
-Plug 'mhartington/nvim-typescript',
 Plug 'modille/groovy.vim',
 Plug 'mxw/vim-jsx',
 Plug 'nathanaelkane/vim-indent-guides',
 Plug 'nelstrom/vim-visual-star-search',
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'neovim/node-host', { 'do': 'npm install' },
 Plug 'nikolavp/vim-jape',
 Plug 'pangloss/vim-javascript',
@@ -69,14 +68,6 @@ Plug 'vim-scripts/multiselect',
 Plug 'vim-scripts/TailMinusF',
 Plug 'w0rp/ale',
 Plug 'xolox/vim-misc'
-
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
 
 "Add plugins to &runtimepath
 call plug#end()
@@ -171,12 +162,6 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-
-"deoplete
-let g:deoplete#sources = {}
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources.javascript = ['buffer', 'tern', 'ultisnips']
-call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
 
 "vim-test settings
 let test#strategy = 'neovim'
