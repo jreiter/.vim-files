@@ -7,6 +7,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter',
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'bfredl/nvim-miniyank',
 Plug 'bkad/CamelCaseMotion',
 Plug 'bling/vim-airline',
@@ -45,7 +46,6 @@ Plug 'rizzatti/dash.vim',
 Plug 'scrooloose/nerdcommenter',
 Plug 'shougo/vimproc.vim', { 'do': 'make' }
 Plug 'shumphrey/fugitive-gitlab.vim',
-Plug 'sirVer/ultisnips',
 Plug 'skywind3000/asyncrun.vim',
 Plug 'terryma/vim-multiple-cursors',
 Plug 'tpope/vim-bundler',
@@ -101,8 +101,23 @@ if exists('+colorcolumn')
 endif
 
 "auto-select completions
-set completeopt+=noinsert
-set completeopt+=preview
+"set completeopt+=noinsert
+"set completeopt+=preview
+
+let g:LanguageClient_autoStart = 1
+"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 "set tabs to 2 spaces, soft
 set tabstop=2 shiftwidth=2 expandtab
@@ -168,6 +183,10 @@ let test#strategy = 'neovim'
 let test#javascript#jasmine#executable = 'ndb node_modules/jasmine/bin/jasmine.js'
 let test#javascript#jest#executable = 'ndb node_modules/jest/bin/jest.js'
 
+"copying to os clipboard
+map <leader>y "*y
+map <leader>Y "+y
+
 "miniyank settings
 map p <Plug>(miniyank-autoput)
 map P <Plug>(miniyank-autoPut)
@@ -192,15 +211,27 @@ let g:javascript_plugin_ngdoc = 1
 
 "ale settings
 let g:ale_linters = {'javascript': ['eslint']}
-let g:ale_fixers = {'javascript': ['prettier', 'eslint', 'remove_trailing_lines'], 'ruby': ['rubocop', 'remove_trailing_lines']}
+let g:ale_fixers = {'javascript': ['prettier', 'eslint', 'remove_trailing_lines'],
+                    \'ruby': ['rubocop', 'remove_trailing_lines'],
+                    \'markdown': ['prettier', 'remove_trailing_lines']}
 let g:ale_sign_warning = '>>'
 highlight ALEWarning ctermbg=100
 highlight ALEError ctermbg=Red
 
 "ultisnips settings
-let g:UltiSnipsSnippetDirectories=['vim-snippets/UltiSnips', 'custom_snippets']
-let g:UltiSnipsJumpForwardTrigger='<c-k>'
-let g:UltiSnipsJumpBackwardTrigger='<s-c-j>'
+"let g:UltiSnipsSnippetDirectories=['vim-snippets/UltiSnips', 'custom_snippets']
+"let g:UltiSnipsJumpForwardTrigger='<c-k>'
+"let g:UltiSnipsJumpBackwardTrigger='<s-c-j>'
+
+let g:coc_user_config = {
+      \ 'snippets.extends': {
+      \   'javascriptreact': ['javascript'],
+      \   'gitcommit_markdown': ['gitcommit']
+      \ },
+      \ 'snippets.ultisnips.directories': [
+      \   'UltiSnips'
+      \ ]
+      \ }
 
 "eclim options
 let g:EclimCompletionMethod = 'omnifunc'
