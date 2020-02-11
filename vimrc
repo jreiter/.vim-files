@@ -18,12 +18,10 @@ Plug 'ecomba/vim-ruby-refactoring',
 Plug 'elzr/vim-json',
 Plug 'eugen0329/vim-esearch',
 Plug 'fatih/vim-nginx',
-Plug 'freitass/todo.txt-vim',
 Plug 'godlygeek/tabular',
 Plug 'hallison/vim-rdoc',
 Plug 'HerringtonDarkholme/yats.vim',
 Plug 'honza/vim-snippets',
-Plug 'idanarye/vim-merginal',
 Plug 'janko-m/vim-test',
 Plug 'jiangmiao/auto-pairs',
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' },
@@ -47,7 +45,6 @@ Plug 'scrooloose/nerdcommenter',
 Plug 'shougo/vimproc.vim', { 'do': 'make' }
 Plug 'shumphrey/fugitive-gitlab.vim',
 Plug 'skywind3000/asyncrun.vim',
-Plug 'terryma/vim-multiple-cursors',
 Plug 'tpope/vim-bundler',
 Plug 'tpope/vim-abolish',
 Plug 'tpope/vim-cucumber',
@@ -64,7 +61,6 @@ Plug 'tpope/vim-unimpaired',
 Plug 'tpope/vim-vinegar',
 Plug 'vim-ruby/vim-ruby',
 Plug 'vim-scripts/genutils',
-Plug 'vim-scripts/multiselect',
 Plug 'vim-scripts/TailMinusF',
 Plug 'w0rp/ale',
 Plug 'xolox/vim-misc'
@@ -217,11 +213,6 @@ let g:ale_fixers = {'javascript': ['prettier', 'eslint', 'remove_trailing_lines'
 let g:ale_sign_warning = '>>'
 highlight ALEWarning ctermbg=100
 highlight ALEError ctermbg=Red
-
-"ultisnips settings
-"let g:UltiSnipsSnippetDirectories=['vim-snippets/UltiSnips', 'custom_snippets']
-"let g:UltiSnipsJumpForwardTrigger='<c-k>'
-"let g:UltiSnipsJumpBackwardTrigger='<s-c-j>'
 
 let g:coc_user_config = {
       \ 'snippets.extends': {
