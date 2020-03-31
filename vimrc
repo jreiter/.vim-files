@@ -38,10 +38,12 @@ Plug 'nelstrom/vim-visual-star-search',
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'neovim/node-host', { 'do': 'npm install' },
 Plug 'nikolavp/vim-jape',
+Plug 'OmniSharp/omnisharp-vim',
 Plug 'pangloss/vim-javascript',
 Plug 'Quramy/tsuquyomi',
 Plug 'rizzatti/dash.vim',
 Plug 'scrooloose/nerdcommenter',
+Plug 'https://github.com/sheerun/vim-polyglot',
 Plug 'shougo/vimproc.vim', { 'do': 'make' }
 Plug 'shumphrey/fugitive-gitlab.vim',
 Plug 'skywind3000/asyncrun.vim',
@@ -62,6 +64,7 @@ Plug 'tpope/vim-vinegar',
 Plug 'vim-ruby/vim-ruby',
 Plug 'vim-scripts/genutils',
 Plug 'vim-scripts/TailMinusF',
+Plug 'voldikss/vim-floaterm'
 Plug 'w0rp/ale',
 Plug 'xolox/vim-misc'
 
@@ -152,9 +155,6 @@ set noswapfile
 "turn on matchit
 runtime macros/matchit.vim
 
-"search highlight toggle
-nnoremap <F2> :set hlsearch!<CR>
-
 "leader key
 let mapleader = ","
 
@@ -192,7 +192,7 @@ map <leader>n <Plug>(miniyank-cycle)
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_exclude_filetypes = ['help', 'calendar']
+let g:indent_guides_exclude_filetypes = ['help']
 
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=grey30 ctermbg=0
@@ -206,13 +206,14 @@ let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 
 "ale settings
-let g:ale_linters = {'javascript': ['eslint']}
+let g:ale_linters = {'javascript': ['eslint', 'tsserver'], 'cs': ['omnisharp']}
 let g:ale_fixers = {'javascript': ['prettier', 'eslint', 'remove_trailing_lines'],
                     \'ruby': ['rubocop', 'remove_trailing_lines'],
                     \'markdown': ['prettier', 'remove_trailing_lines']}
-let g:ale_sign_warning = '>>'
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+let g:ale_fix_on_save = 1
 highlight ALEWarning ctermbg=100
-highlight ALEError ctermbg=Red
 
 let g:coc_user_config = {
       \ 'snippets.extends': {
@@ -223,6 +224,12 @@ let g:coc_user_config = {
       \   'UltiSnips'
       \ ]
       \ }
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 "eclim options
 let g:EclimCompletionMethod = 'omnifunc'
@@ -247,6 +254,12 @@ let g:sneak#streak = 1
 
 " rails.vim settings
 let g:rails_ctags_arguments='--exclude=.svn --exclude=log --languages=-javascript'
+
+" floaterm settings
+let g:floaterm_keymap_new    = '<F1>'
+let g:floaterm_keymap_prev   = '<F2>'
+let g:floaterm_keymap_next   = '<F3>'
+let g:floaterm_keymap_toggle = '<F4>'
 
 " fzf settings/bindings
 let g:fzf_history_dir = '~/.fzf-history'
