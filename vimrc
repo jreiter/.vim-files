@@ -30,12 +30,15 @@ Plug 'justinmk/vim-sneak',
 Plug 'majutsushi/tagbar',
 Plug 'moll/vim-node',
 Plug 'mustache/vim-mustache-handlebars',
-Plug 'heavenshell/vim-jsdoc',
+Plug 'heavenshell/vim-jsdoc', { 
+  \ 'for': ['javascript', 'javascript.jsx','typescript'], 
+  \ 'do': 'make install'
+\}
 Plug 'modille/groovy.vim',
 Plug 'mxw/vim-jsx',
 Plug 'nathanaelkane/vim-indent-guides',
 Plug 'nelstrom/vim-visual-star-search',
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neovim/node-host', { 'do': 'npm install' },
 Plug 'nikolavp/vim-jape',
 Plug 'OmniSharp/omnisharp-vim',
@@ -43,7 +46,6 @@ Plug 'pangloss/vim-javascript',
 Plug 'Quramy/tsuquyomi',
 Plug 'rizzatti/dash.vim',
 Plug 'scrooloose/nerdcommenter',
-Plug 'https://github.com/sheerun/vim-polyglot',
 Plug 'shougo/vimproc.vim', { 'do': 'make' }
 Plug 'shumphrey/fugitive-gitlab.vim',
 Plug 'skywind3000/asyncrun.vim',
@@ -127,6 +129,8 @@ set ruler
 set ic
 "liberal use of hidden buffers
 set hidden
+"smart indent
+set autoindent smartindent
 
 "turn off toolbar and menu
 set guioptions-=mcheme
@@ -163,6 +167,7 @@ syntax on
 filetype plugin indent on
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd BufNewFile,BufReadPost *.dialog set filetype=json
 
 "Use +/- for resizing windows by a sane amount
 map <leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
@@ -176,8 +181,8 @@ nnoremap <C-l> <C-w>l
 
 "vim-test settings
 let test#strategy = 'neovim'
-let test#javascript#jasmine#executable = 'ndb node_modules/jasmine/bin/jasmine.js'
-let test#javascript#jest#executable = 'ndb node_modules/jest/bin/jest.js'
+let test#javascript#jasmine#executable = 'npx ndb node_modules/jasmine/bin/jasmine.js'
+let test#javascript#jest#executable = 'npx ndb node_modules/jest/bin/jest.js'
 
 "copying to os clipboard
 map <leader>y "*y
@@ -211,7 +216,7 @@ let g:ale_fixers = {'javascript': ['prettier', 'eslint', 'remove_trailing_lines'
                     \'ruby': ['rubocop', 'remove_trailing_lines'],
                     \'markdown': ['prettier', 'remove_trailing_lines']}
 let g:ale_sign_error = '❌'
-let g:ale_sign_warning = '⚠️'
+let g:ale_sign_warning = '⚠'
 let g:ale_fix_on_save = 1
 highlight ALEWarning ctermbg=100
 
@@ -230,6 +235,8 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+" Rename symbol
+nmap <leader>rn <Plug>(coc-rename)
 
 "eclim options
 let g:EclimCompletionMethod = 'omnifunc'
