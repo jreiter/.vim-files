@@ -27,11 +27,11 @@ Plug 'jiangmiao/auto-pairs',
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' },
 Plug 'junegunn/fzf.vim',
 Plug 'justinmk/vim-sneak',
-Plug 'majutsushi/tagbar',
+Plug 'liuchengxu/vista.vim',
 Plug 'moll/vim-node',
 Plug 'mustache/vim-mustache-handlebars',
-Plug 'heavenshell/vim-jsdoc', { 
-  \ 'for': ['javascript', 'javascript.jsx','typescript'], 
+Plug 'heavenshell/vim-jsdoc', {
+  \ 'for': ['javascript', 'javascript.jsx','typescript'],
   \ 'do': 'make install'
 \}
 Plug 'modille/groovy.vim',
@@ -212,9 +212,11 @@ let g:javascript_plugin_ngdoc = 1
 
 "ale settings
 let g:ale_linters = {'javascript': ['eslint', 'tsserver'], 'cs': ['omnisharp']}
-let g:ale_fixers = {'javascript': ['prettier', 'eslint', 'remove_trailing_lines'],
+let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'],
+                    \'javascript': ['prettier', 'eslint', 'remove_trailing_lines'],
                     \'ruby': ['rubocop', 'remove_trailing_lines'],
-                    \'markdown': ['prettier', 'remove_trailing_lines']}
+                    \'markdown': ['prettier', 'remove_trailing_lines'],
+                    \'sql': ['sqlfmt', 'remove_trailing_lines']}
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠'
 let g:ale_fix_on_save = 1
@@ -237,6 +239,17 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 " Rename symbol
 nmap <leader>rn <Plug>(coc-rename)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocActionAsync('doHover')
+  endif
+endfunction
 
 "eclim options
 let g:EclimCompletionMethod = 'omnifunc'
@@ -283,7 +296,8 @@ map <Leader>a, :Tabularize /,\zs<CR>
 autocmd QuickFixCmdPost *grep* cwindow
 
 "tagbar binding
-nmap <silent> <Leader>b :TagbarToggle<CR>
+let g:vista_default_executive = 'coc'
+nmap <silent> <Leader>b :Vista!!<CR>
 
 "automatically remove trailing whitespace when saving files
 autocmd BufWritePre :call <SID>StripTrailingWhitespaces()
