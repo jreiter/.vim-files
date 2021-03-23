@@ -180,9 +180,38 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 "vim-test settings
-let test#strategy = 'neovim'
-let test#javascript#jasmine#executable = 'npx ndb node_modules/jasmine/bin/jasmine.js'
-let test#javascript#jest#executable = 'npx ndb node_modules/jest/bin/jest.js'
+let test#strategy = {
+  \ 'nearest': 'neovim',
+  \ 'file':    'asyncrun_background',
+  \ 'suite':   'neovim',
+\}
+
+
+function! DebugNearest()
+  let g:test#javascript#jest#executable = 'npx ndb node_modules/jest/bin/jest.js'
+  TestNearest
+  unlet g:test#javascript#jest#executable
+endfunction
+nmap <silent> t<C-d> :call DebugNearest()<CR>
+
+augroup test
+  autocmd!
+  autocmd BufWrite *.js,*.rb if test#exists() |
+    \   TestFile |
+    \ endif
+augroup END
+
+autocmd FileType qf wincmd J
+
+function! ToggleQuickFix()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+        copen
+    else
+        cclose
+    endif
+endfunction
+
+nnoremap <leader>q :call ToggleQuickFix()<cr>
 
 "copying to os clipboard
 map <leader>y "*y
@@ -211,12 +240,13 @@ let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 
 "ale settings
-let g:ale_linters = {'javascript': ['eslint', 'tsserver'], 'cs': ['omnisharp']}
+let g:ale_linters = {'javascript': ['eslint', 'tsserver'], 'cs': ['omnisharp'], 'ruby': ['rubocop']}
 let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'],
                     \'javascript': ['prettier', 'eslint', 'remove_trailing_lines'],
                     \'ruby': ['rubocop', 'remove_trailing_lines'],
                     \'markdown': ['prettier', 'remove_trailing_lines'],
                     \'sql': ['sqlfmt', 'remove_trailing_lines']}
+let g:ale_ruby_rubocop_executable = 'bundle'
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠'
 let g:ale_fix_on_save = 1
