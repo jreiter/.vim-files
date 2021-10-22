@@ -7,7 +7,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter',
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' },
 Plug 'bfredl/nvim-miniyank',
 Plug 'bkad/CamelCaseMotion',
 Plug 'bling/vim-airline',
@@ -20,6 +20,10 @@ Plug 'eugen0329/vim-esearch',
 Plug 'fatih/vim-nginx',
 Plug 'godlygeek/tabular',
 Plug 'hallison/vim-rdoc',
+Plug 'heavenshell/vim-jsdoc', {
+  \ 'for': ['javascript', 'javascript.jsx','typescript'],
+  \ 'do': 'make install'
+\}
 Plug 'HerringtonDarkholme/yats.vim',
 Plug 'honza/vim-snippets',
 Plug 'janko-m/vim-test',
@@ -28,23 +32,25 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' },
 Plug 'junegunn/fzf.vim',
 Plug 'justinmk/vim-sneak',
 Plug 'liuchengxu/vista.vim',
+Plug 'mfussenegger/nvim-dap',
+Plug 'rcarriga/nvim-dap-ui',
+Plug 'Pocco81/DAPInstall.nvim', { 'branch': 'main' },
+Plug 'David-Kunz/jester', { 'branch': 'main' },
 Plug 'moll/vim-node',
 Plug 'mustache/vim-mustache-handlebars',
-Plug 'heavenshell/vim-jsdoc', {
-  \ 'for': ['javascript', 'javascript.jsx','typescript'],
-  \ 'do': 'make install'
-\}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'},
 Plug 'modille/groovy.vim',
-Plug 'mxw/vim-jsx',
 Plug 'nathanaelkane/vim-indent-guides',
 Plug 'nelstrom/vim-visual-star-search',
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'},
 Plug 'neovim/node-host', { 'do': 'npm install' },
 Plug 'nikolavp/vim-jape',
 Plug 'OmniSharp/omnisharp-vim',
 Plug 'pangloss/vim-javascript',
+Plug 'maxmellon/vim-jsx-pretty', { 'for': 'javascript' },
 Plug 'Quramy/tsuquyomi',
 Plug 'rizzatti/dash.vim',
+Plug 'rhysd/vim-grammarous',
 Plug 'scrooloose/nerdcommenter',
 Plug 'shougo/vimproc.vim', { 'do': 'make' }
 Plug 'shumphrey/fugitive-gitlab.vim',
@@ -73,17 +79,19 @@ Plug 'xolox/vim-misc'
 "Add plugins to &runtimepath
 call plug#end()
 
+"Always use dark background
+set background=dark
+
 "colors
 set t_Co=256
 syntax enable
-
-"Always use dark background
-set background=dark
 
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
 endif
+
+set termguicolors
 
 "Set fonts
 if has("gui_running")
@@ -102,11 +110,10 @@ if exists('+colorcolumn')
 endif
 
 "auto-select completions
-"set completeopt+=noinsert
-"set completeopt+=preview
+set completeopt+=noinsert
+set completeopt+=preview
 
 let g:LanguageClient_autoStart = 1
-"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
@@ -179,6 +186,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+nnoremap <leader>v <Plug>VimspectorToggleBreakpoint
+
 "vim-test settings
 let test#strategy = {
   \ 'nearest': 'neovim',
@@ -186,13 +195,44 @@ let test#strategy = {
   \ 'suite':   'neovim',
 \}
 
-
-function! DebugNearest()
-  let g:test#javascript#jest#executable = 'npx ndb node_modules/jest/bin/jest.js'
-  TestNearest
-  unlet g:test#javascript#jest#executable
+function! DebugJest()
+  lua require'dapui'.open()
+  lua require'jester'.debug()
 endfunction
-nmap <silent> t<C-d> :call DebugNearest()<CR>
+
+nmap <silent> t<C-d> :call DebugJest()<CR>
+
+lua << EOF
+local dap_install = require('dap-install')
+
+dap_install.setup({
+	installation_path = vim.fn.stdpath('data') .. '/dapinstall/',
+})
+
+local dbg_list = require('dap-install.api.debuggers').get_installed_debuggers()
+
+for _, debugger in ipairs(dbg_list) do
+	dap_install.config(debugger)
+end
+
+require('dapui').setup()
+EOF
+
+function! ContinueDebug()
+  lua require'dapui'.open()
+  lua require'dap'.continue()
+endfunction
+
+nnoremap <silent> <F5> :call ContinueDebug()<CR>
+nnoremap <silent> <F6> :lua require'dap'.step_over()<CR>
+nnoremap <silent> <F7> :lua require'dap'.step_into()<CR>
+nnoremap <silent> <F8> :lua require'dap'.step_out()<CR>
+nnoremap <silent> <F10> :lua require'dapui'.close()<CR>
+nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
+nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
 
 augroup test
   autocmd!
@@ -306,9 +346,6 @@ let g:sneak#streak = 1
 let g:rails_ctags_arguments='--exclude=.svn --exclude=log --languages=-javascript'
 
 " floaterm settings
-let g:floaterm_keymap_new    = '<F1>'
-let g:floaterm_keymap_prev   = '<F2>'
-let g:floaterm_keymap_next   = '<F3>'
 let g:floaterm_keymap_toggle = '<F4>'
 
 " fzf settings/bindings
@@ -325,9 +362,9 @@ map <Leader>a, :Tabularize /,\zs<CR>
 "fugitive
 autocmd QuickFixCmdPost *grep* cwindow
 
-"tagbar binding
+"vista binding
 let g:vista_default_executive = 'coc'
-nmap <silent> <Leader>b :Vista!!<CR>
+nmap <silent> <Leader>v :Vista!!<CR>
 
 "automatically remove trailing whitespace when saving files
 autocmd BufWritePre :call <SID>StripTrailingWhitespaces()
