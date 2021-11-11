@@ -36,6 +36,8 @@ Plug 'mfussenegger/nvim-dap',
 Plug 'rcarriga/nvim-dap-ui',
 Plug 'Pocco81/DAPInstall.nvim', { 'branch': 'main' },
 Plug 'David-Kunz/jester', { 'branch': 'main' },
+Plug 'dhruvasagar/vim-marp',
+Plug 'mattf1n/vimmarp',
 Plug 'moll/vim-node',
 Plug 'mustache/vim-mustache-handlebars',
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'},
@@ -75,6 +77,11 @@ Plug 'vim-scripts/TailMinusF',
 Plug 'voldikss/vim-floaterm'
 Plug 'w0rp/ale',
 Plug 'xolox/vim-misc'
+"telescope
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+"icons
+Plug 'kyazdani42/nvim-web-devicons'
 
 "Add plugins to &runtimepath
 call plug#end()
@@ -186,8 +193,6 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-nnoremap <leader>v <Plug>VimspectorToggleBreakpoint
-
 "vim-test settings
 let test#strategy = {
   \ 'nearest': 'neovim',
@@ -201,22 +206,6 @@ function! DebugJest()
 endfunction
 
 nmap <silent> t<C-d> :call DebugJest()<CR>
-
-lua << EOF
-local dap_install = require('dap-install')
-
-dap_install.setup({
-	installation_path = vim.fn.stdpath('data') .. '/dapinstall/',
-})
-
-local dbg_list = require('dap-install.api.debuggers').get_installed_debuggers()
-
-for _, debugger in ipairs(dbg_list) do
-	dap_install.config(debugger)
-end
-
-require('dapui').setup()
-EOF
 
 function! ContinueDebug()
   lua require'dapui'.open()
@@ -243,6 +232,12 @@ augroup END
 
 autocmd FileType qf wincmd J
 
+"telescope
+nnoremap <silent> <Leader>t :Telescope find_files<CR>
+nnoremap <space>/ :Telescope live_grep<CR>
+nnoremap <space>s :Telescope buffers<CR>
+
+" Quickfix
 function! ToggleQuickFix()
     if empty(filter(getwininfo(), 'v:val.quickfix'))
         copen
@@ -321,11 +316,6 @@ function! s:show_documentation()
   endif
 endfunction
 
-"eclim options
-let g:EclimCompletionMethod = 'omnifunc'
-let g:EclimLoggingDisabled = 1
-let g:EclimJavascriptValidate = 0
-
 "make w, b, and e use CamelCaseMotion
 map <silent>w <Plug>CamelCaseMotion_w
 map <silent>b <Plug>CamelCaseMotion_b
@@ -342,17 +332,11 @@ let g:airline#extensions#branch#format = 2
 " sneak.vim settings
 let g:sneak#streak = 1
 
-" rails.vim settings
-let g:rails_ctags_arguments='--exclude=.svn --exclude=log --languages=-javascript'
-
 " floaterm settings
+let g:floaterm_keymap_new    = '<F1>'
+let g:floaterm_keymap_prev   = '<F2>'
+let g:floaterm_keymap_next   = '<F3>'
 let g:floaterm_keymap_toggle = '<F4>'
-
-" fzf settings/bindings
-let g:fzf_history_dir = '~/.fzf-history'
-nnoremap <silent> <Leader>t :Files<CR>
-nnoremap <space>/ :Ag
-nnoremap <space>s :Buffers<CR>
 
 "tabular bindings
 map <Leader>a= :Tabularize /=<CR>
@@ -366,44 +350,4 @@ autocmd QuickFixCmdPost *grep* cwindow
 let g:vista_default_executive = 'coc'
 nmap <silent> <Leader>v :Vista!!<CR>
 
-"automatically remove trailing whitespace when saving files
-autocmd BufWritePre :call <SID>StripTrailingWhitespaces()
-
-"function for stripping trailing whitespace
-function! <SID>StripTrailingWhitespaces()
-  " Preparation: save last search, and cursor position.
-  let _s=@/
-  let l = line(".")
-  let c = col(".")
-  " Do the business:
-  %s/\s\+$//e
-  " Clean up: restore previous search history, and cursor position
-  let @/=_s
-  call cursor(l, c)
-endfunction
-
-"Handle reloading files if they are changed outside of the editor: https://github.com/neovim/neovim/issues/2127
-augroup AutoSwap
-        autocmd!
-        autocmd SwapExists *  call AS_HandleSwapfile(expand('<afile>:p'), v:swapname)
-augroup END
-
-function! AS_HandleSwapfile (filename, swapname)
-        " if swapfile is older than file itself, just get rid of it
-        if getftime(v:swapname) < getftime(a:filename)
-                call delete(v:swapname)
-                let v:swapchoice = 'e'
-        endif
-endfunction
-
-autocmd CursorHold,BufWritePost,BufReadPost,BufLeave *
-  \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
-
-augroup checktime
-    au!
-    if !has("gui_running")
-        "silent! necessary otherwise throws errors when using command
-        "line window.
-        autocmd BufEnter,CursorHold,CursorHoldI,CursorMoved,CursorMovedI,FocusGained,BufEnter,FocusLost,WinLeave * checktime
-    endif
-augroup END
+lua require('jreiter')
