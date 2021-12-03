@@ -7,7 +7,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter',
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' },
 Plug 'bfredl/nvim-miniyank',
 Plug 'bkad/CamelCaseMotion',
 Plug 'bling/vim-airline',
@@ -34,8 +33,8 @@ Plug 'justinmk/vim-sneak',
 Plug 'liuchengxu/vista.vim',
 Plug 'mfussenegger/nvim-dap',
 Plug 'rcarriga/nvim-dap-ui',
-Plug 'Pocco81/DAPInstall.nvim', { 'branch': 'main' },
-Plug 'David-Kunz/jester', { 'branch': 'main' },
+Plug 'Pocco81/DAPInstall.nvim'
+Plug 'David-Kunz/jester'
 Plug 'dhruvasagar/vim-marp',
 Plug 'mattf1n/vimmarp',
 Plug 'moll/vim-node',
@@ -44,7 +43,6 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'},
 Plug 'modille/groovy.vim',
 Plug 'nathanaelkane/vim-indent-guides',
 Plug 'nelstrom/vim-visual-star-search',
-Plug 'neoclide/coc.nvim', {'branch': 'release'},
 Plug 'neovim/node-host', { 'do': 'npm install' },
 Plug 'nikolavp/vim-jape',
 Plug 'OmniSharp/omnisharp-vim',
@@ -82,6 +80,19 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 "icons
 Plug 'kyazdani42/nvim-web-devicons'
+"lsp
+Plug 'neovim/nvim-lspconfig'
+Plug 'tami5/lspsaga.nvim'
+"completion
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+"snippets
+Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'rafamadriz/friendly-snippets'
 
 "Add plugins to &runtimepath
 call plug#end()
@@ -121,18 +132,6 @@ set completeopt+=noinsert
 set completeopt+=preview
 
 let g:LanguageClient_autoStart = 1
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-let g:coc_snippet_next = '<tab>'
 
 "set tabs to 2 spaces, soft
 set tabstop=2 shiftwidth=2 expandtab
@@ -275,13 +274,15 @@ let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 
 "ale settings
-let g:ale_linters = {'javascript': ['eslint', 'tsserver'], 'cs': ['omnisharp'], 'ruby': ['rubocop']}
+let g:ale_linters = {'javascript': ['eslint', 'tsserver'], 'cs': ['omnisharp'], 'ruby': [], 'python': ['flake8']}
 let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'],
                     \'javascript': ['prettier', 'eslint', 'remove_trailing_lines'],
                     \'ruby': ['rubocop', 'remove_trailing_lines'],
                     \'markdown': ['prettier', 'remove_trailing_lines'],
+                    \'python': ['remove_trailing_lines'],
                     \'sql': ['sqlfmt', 'remove_trailing_lines']}
 let g:ale_ruby_rubocop_executable = 'bundle'
+let g:ale_python_auto_pipenv = 1
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠'
 let g:ale_fix_on_save = 1
@@ -347,7 +348,7 @@ map <Leader>a, :Tabularize /,\zs<CR>
 autocmd QuickFixCmdPost *grep* cwindow
 
 "vista binding
-let g:vista_default_executive = 'coc'
+"let g:vista_default_executive = 'coc'
 nmap <silent> <Leader>v :Vista!!<CR>
 
 lua require('jreiter')
