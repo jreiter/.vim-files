@@ -1,8 +1,9 @@
 local actions = require('telescope.actions')
 local builtin = require('telescope.builtin')
+local telescope = require('telescope')
 
 -- https://github.com/nvim-telescope/telescope.nvim
-require('telescope').setup({
+telescope.setup({
   defaults = {
     prompt_prefix = '> ',
     selection_caret = '  ',
@@ -22,3 +23,5 @@ require('telescope').setup({
     },
   },
 })
+
+telescope.load_extension('fzf')

@@ -27,8 +27,6 @@ Plug 'HerringtonDarkholme/yats.vim',
 Plug 'honza/vim-snippets',
 Plug 'janko-m/vim-test',
 Plug 'jiangmiao/auto-pairs',
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' },
-Plug 'junegunn/fzf.vim',
 Plug 'justinmk/vim-sneak',
 Plug 'liuchengxu/vista.vim',
 Plug 'mfussenegger/nvim-dap',
@@ -78,6 +76,7 @@ Plug 'xolox/vim-misc'
 "telescope
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 "icons
 Plug 'kyazdani42/nvim-web-devicons'
 "lsp
@@ -299,23 +298,15 @@ let g:coc_user_config = {
       \ }
 
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gd :Telescope lsp_definitions<CR>
+nmap <silent> gy :Telescope lsp_type_definitions<CR>
+nmap <silent> gi :Telescope lsp_implementations<CR>
+nmap <silent> gr :Telescope lsp_references<CR>
 " Rename symbol
 nmap <leader>rn <Plug>(coc-rename)
 
 " Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocActionAsync('doHover')
-  endif
-endfunction
+nnoremap <silent> K :Lspsaga hover_doc<CR>
 
 "make w, b, and e use CamelCaseMotion
 map <silent>w <Plug>CamelCaseMotion_w
