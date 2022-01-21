@@ -32,6 +32,7 @@ Plug 'liuchengxu/vista.vim',
 Plug 'mfussenegger/nvim-dap',
 Plug 'rcarriga/nvim-dap-ui',
 Plug 'Pocco81/DAPInstall.nvim'
+Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'David-Kunz/jester'
 Plug 'dhruvasagar/vim-marp',
 Plug 'mattf1n/vimmarp',
@@ -44,8 +45,6 @@ Plug 'nelstrom/vim-visual-star-search',
 Plug 'neovim/node-host', { 'do': 'npm install' },
 Plug 'nikolavp/vim-jape',
 Plug 'OmniSharp/omnisharp-vim',
-Plug 'pangloss/vim-javascript',
-Plug 'maxmellon/vim-jsx-pretty', { 'for': 'javascript' },
 Plug 'Quramy/tsuquyomi',
 Plug 'rizzatti/dash.vim',
 Plug 'rhysd/vim-grammarous',
@@ -82,6 +81,10 @@ Plug 'kyazdani42/nvim-web-devicons'
 "lsp
 Plug 'neovim/nvim-lspconfig'
 Plug 'tami5/lspsaga.nvim'
+Plug 'ray-x/lsp_signature.nvim'
+Plug 'jose-elias-alvarez/null-ls.nvim'
+"messages
+Plug 'folke/trouble.nvim'
 "completion
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -181,10 +184,6 @@ filetype plugin indent on
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.dialog set filetype=json
 
-"Use +/- for resizing windows by a sane amount
-map <leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
-
 "Navigate splits more easily
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -265,9 +264,6 @@ let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=grey30 ctermbg=0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=grey15 ctermbg=242
 
-"jsdoc settings
-let g:jsdoc_enable_es6=1
-
 "vim-javascript settings
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
@@ -284,7 +280,7 @@ let g:ale_ruby_rubocop_executable = 'bundle'
 let g:ale_python_auto_pipenv = 1
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠'
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 highlight ALEWarning ctermbg=100
 
 let g:coc_user_config = {

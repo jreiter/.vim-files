@@ -16,7 +16,9 @@ require('dapui').setup({
   },
   tray = {
     elements = { "repl" },
-    size = 20,
+    size = 15,
     position = "bottom", -- Can be "left", "right", "top", "bottom"
   },
 })
+
+--require("nvim-dap-virtual-text").setup()
