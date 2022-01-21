@@ -70,7 +70,6 @@ Plug 'vim-ruby/vim-ruby',
 Plug 'vim-scripts/genutils',
 Plug 'vim-scripts/TailMinusF',
 Plug 'voldikss/vim-floaterm'
-Plug 'w0rp/ale',
 Plug 'xolox/vim-misc'
 "telescope
 Plug 'nvim-lua/plenary.nvim'
@@ -268,38 +267,13 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=grey15 ctermbg=242
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 
-"ale settings
-let g:ale_linters = {'javascript': ['eslint', 'tsserver'], 'cs': ['omnisharp'], 'ruby': [], 'python': ['flake8']}
-let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'],
-                    \'javascript': ['prettier', 'eslint', 'remove_trailing_lines'],
-                    \'ruby': ['rubocop', 'remove_trailing_lines'],
-                    \'markdown': ['prettier', 'remove_trailing_lines'],
-                    \'python': ['remove_trailing_lines'],
-                    \'sql': ['sqlfmt', 'remove_trailing_lines']}
-let g:ale_ruby_rubocop_executable = 'bundle'
-let g:ale_python_auto_pipenv = 1
-let g:ale_sign_error = '❌'
-let g:ale_sign_warning = '⚠'
-let g:ale_fix_on_save = 0
-highlight ALEWarning ctermbg=100
-
-let g:coc_user_config = {
-      \ 'snippets.extends': {
-      \   'javascriptreact': ['javascript'],
-      \   'gitcommit_markdown': ['gitcommit']
-      \ },
-      \ 'snippets.ultisnips.directories': [
-      \   'UltiSnips'
-      \ ]
-      \ }
-
 " GoTo code navigation.
 nmap <silent> gd :Telescope lsp_definitions<CR>
 nmap <silent> gy :Telescope lsp_type_definitions<CR>
 nmap <silent> gi :Telescope lsp_implementations<CR>
 nmap <silent> gr :Telescope lsp_references<CR>
 " Rename symbol
-nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>rn :Lspsaga rename<CR>
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :Lspsaga hover_doc<CR>
@@ -335,7 +309,6 @@ map <Leader>a, :Tabularize /,\zs<CR>
 autocmd QuickFixCmdPost *grep* cwindow
 
 "vista binding
-"let g:vista_default_executive = 'coc'
 nmap <silent> <Leader>v :Vista!!<CR>
 
 lua require('jreiter')
