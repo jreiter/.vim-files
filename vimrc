@@ -6,7 +6,6 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'airblade/vim-gitgutter',
 Plug 'bfredl/nvim-miniyank',
 Plug 'bkad/CamelCaseMotion',
 Plug 'bling/vim-airline',
@@ -15,7 +14,6 @@ Plug 'chriskempson/base16-vim',
 Plug 'digitaltoad/vim-pug',
 Plug 'ecomba/vim-ruby-refactoring',
 Plug 'elzr/vim-json',
-Plug 'eugen0329/vim-esearch',
 Plug 'fatih/vim-nginx',
 Plug 'godlygeek/tabular',
 Plug 'hallison/vim-rdoc',
@@ -27,37 +25,31 @@ Plug 'HerringtonDarkholme/yats.vim',
 Plug 'honza/vim-snippets',
 Plug 'janko-m/vim-test',
 Plug 'jiangmiao/auto-pairs',
-Plug 'justinmk/vim-sneak',
+Plug 'ggandor/lightspeed.nvim',
 Plug 'liuchengxu/vista.vim',
 Plug 'mfussenegger/nvim-dap',
-Plug 'rcarriga/nvim-dap-ui',
 Plug 'Pocco81/DAPInstall.nvim'
 Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'David-Kunz/jester'
-Plug 'dhruvasagar/vim-marp',
-Plug 'mattf1n/vimmarp',
-Plug 'moll/vim-node',
-Plug 'mustache/vim-mustache-handlebars',
+Plug 'dhruvasagar/vim-marp'
+Plug 'mattf1n/vimmarp'
+Plug 'moll/vim-node'
+Plug 'mustache/vim-mustache-handlebars'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'},
-Plug 'modille/groovy.vim',
-Plug 'nathanaelkane/vim-indent-guides',
+Plug 'modille/groovy.vim'
 Plug 'nelstrom/vim-visual-star-search',
 Plug 'neovim/node-host', { 'do': 'npm install' },
-Plug 'nikolavp/vim-jape',
-Plug 'OmniSharp/omnisharp-vim',
+Plug 'OmniSharp/omnisharp-vim'
 Plug 'Quramy/tsuquyomi',
 Plug 'rizzatti/dash.vim',
 Plug 'rhysd/vim-grammarous',
-Plug 'scrooloose/nerdcommenter',
 Plug 'shougo/vimproc.vim', { 'do': 'make' }
-Plug 'shumphrey/fugitive-gitlab.vim',
 Plug 'skywind3000/asyncrun.vim',
 Plug 'tpope/vim-bundler',
 Plug 'tpope/vim-abolish',
 Plug 'tpope/vim-cucumber',
 Plug 'tpope/vim-dispatch',
 Plug 'tpope/vim-endwise',
-Plug 'tpope/vim-fugitive',
 Plug 'tpope/vim-haml',
 Plug 'tpope/vim-projectionist',
 Plug 'tpope/vim-rails',
@@ -82,6 +74,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'tami5/lspsaga.nvim'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'folke/lsp-colors.nvim'
 "messages
 Plug 'folke/trouble.nvim'
 "completion
@@ -94,6 +87,13 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'rafamadriz/friendly-snippets'
+"git
+Plug 'airblade/vim-gitgutter',
+Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'sindrets/diffview.nvim'
+Plug 'tpope/vim-fugitive'
+"comments
+Plug 'numToStr/Comment.nvim'
 
 "Add plugins to &runtimepath
 call plug#end()
@@ -197,14 +197,12 @@ let test#strategy = {
 \}
 
 function! DebugJest()
-  lua require'dapui'.open()
   lua require'jester'.debug()
 endfunction
 
 nmap <silent> t<C-d> :call DebugJest()<CR>
 
 function! ContinueDebug()
-  lua require'dapui'.open()
   lua require'dap'.continue()
 endfunction
 
@@ -212,7 +210,7 @@ nnoremap <silent> <F5> :call ContinueDebug()<CR>
 nnoremap <silent> <F6> :lua require'dap'.step_over()<CR>
 nnoremap <silent> <F7> :lua require'dap'.step_into()<CR>
 nnoremap <silent> <F8> :lua require'dap'.step_out()<CR>
-nnoremap <silent> <F10> :lua require'dapui'.close()<CR>
+nnoremap <silent> <F10> :lua require'dap'.close()<CR>
 nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
 nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
 nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
@@ -253,29 +251,15 @@ map p <Plug>(miniyank-autoput)
 map P <Plug>(miniyank-autoPut)
 map <leader>n <Plug>(miniyank-cycle)
 
-"indent guides settings
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_exclude_filetypes = ['help']
-
-let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=grey30 ctermbg=0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=grey15 ctermbg=242
-
-"vim-javascript settings
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_ngdoc = 1
-
 " GoTo code navigation.
 nmap <silent> gd :Telescope lsp_definitions<CR>
 nmap <silent> gy :Telescope lsp_type_definitions<CR>
 nmap <silent> gi :Telescope lsp_implementations<CR>
 nmap <silent> gr :Telescope lsp_references<CR>
+nmap <silent> <space>ca :Lspsaga code_actions<CR>
 " Rename symbol
 nmap <leader>rn :Lspsaga rename<CR>
 
-" Use K to show documentation in preview window.
 nnoremap <silent> K :Lspsaga hover_doc<CR>
 
 "make w, b, and e use CamelCaseMotion
@@ -290,9 +274,6 @@ sunmap e
 set laststatus=2
 let g:airline#extensions#eclim#enabled = 1
 let g:airline#extensions#branch#format = 2
-
-" sneak.vim settings
-let g:sneak#streak = 1
 
 " floaterm settings
 let g:floaterm_keymap_new    = '<F1>'

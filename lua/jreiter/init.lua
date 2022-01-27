@@ -1,4 +1,6 @@
-require('jreiter.debugger')
+require('jreiter.comments')
+require('jreiter.debug')
+require('jreiter.git')
 require('jreiter.telescope')
 require('jreiter.lsp')
 require('jreiter.completion')

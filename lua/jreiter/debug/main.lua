@@ -10,15 +10,4 @@ for _, debugger in ipairs(dbg_list) do
   dap_install.config(debugger)
 end
 
-require('dapui').setup({
-  sidebar = {
-    elements = {}
-  },
-  tray = {
-    elements = { "repl" },
-    size = 15,
-    position = "bottom", -- Can be "left", "right", "top", "bottom"
-  },
-})
-
---require("nvim-dap-virtual-text").setup()
+require('nvim-dap-virtual-text').setup()
