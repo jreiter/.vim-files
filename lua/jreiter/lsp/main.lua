@@ -9,7 +9,7 @@ require('lspconfig').solargraph.setup{
       checkGemVersion = false,
       diagnostics = true,
       folding = false,
-      bundlePath = '/Users/reiterj/.rbenv/shims/bundle',
+      -- bundlePath = '/Users/reiterj/.rbenv/shims/bundle',
       useBundler = true,
     },
   },

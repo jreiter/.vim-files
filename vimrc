@@ -6,94 +6,98 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'bfredl/nvim-miniyank',
-Plug 'bkad/CamelCaseMotion',
-Plug 'bling/vim-airline',
-Plug 'briancollins/vim-jst',
-Plug 'chriskempson/base16-vim',
-Plug 'digitaltoad/vim-pug',
-Plug 'ecomba/vim-ruby-refactoring',
-Plug 'elzr/vim-json',
-Plug 'fatih/vim-nginx',
-Plug 'godlygeek/tabular',
-Plug 'hallison/vim-rdoc',
-Plug 'heavenshell/vim-jsdoc', {
-  \ 'for': ['javascript', 'javascript.jsx','typescript'],
-  \ 'do': 'make install'
-\}
-Plug 'HerringtonDarkholme/yats.vim',
-Plug 'honza/vim-snippets',
-Plug 'janko-m/vim-test',
-Plug 'jiangmiao/auto-pairs',
-Plug 'ggandor/lightspeed.nvim',
-Plug 'liuchengxu/vista.vim',
-Plug 'mfussenegger/nvim-dap',
+"debugging
 Plug 'Pocco81/DAPInstall.nvim'
+Plug 'mfussenegger/nvim-dap',
 Plug 'theHamsta/nvim-dap-virtual-text'
-Plug 'David-Kunz/jester'
-Plug 'dhruvasagar/vim-marp'
-Plug 'mattf1n/vimmarp'
-Plug 'moll/vim-node'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'},
-Plug 'modille/groovy.vim'
-Plug 'nelstrom/vim-visual-star-search',
-Plug 'neovim/node-host', { 'do': 'npm install' },
-Plug 'OmniSharp/omnisharp-vim'
-Plug 'Quramy/tsuquyomi',
-Plug 'rizzatti/dash.vim',
-Plug 'rhysd/vim-grammarous',
-Plug 'shougo/vimproc.vim', { 'do': 'make' }
-Plug 'skywind3000/asyncrun.vim',
-Plug 'tpope/vim-bundler',
-Plug 'tpope/vim-abolish',
-Plug 'tpope/vim-cucumber',
-Plug 'tpope/vim-dispatch',
-Plug 'tpope/vim-endwise',
-Plug 'tpope/vim-haml',
-Plug 'tpope/vim-projectionist',
-Plug 'tpope/vim-rails',
-Plug 'tpope/vim-rake',
-Plug 'tpope/vim-rbenv',
-Plug 'tpope/vim-surround',
-Plug 'tpope/vim-unimpaired',
-Plug 'tpope/vim-vinegar',
-Plug 'vim-ruby/vim-ruby',
-Plug 'vim-scripts/genutils',
-Plug 'vim-scripts/TailMinusF',
-Plug 'voldikss/vim-floaterm'
-Plug 'xolox/vim-misc'
-"telescope
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-"icons
-Plug 'kyazdani42/nvim-web-devicons'
 "lsp
-Plug 'neovim/nvim-lspconfig'
-Plug 'tami5/lspsaga.nvim'
-Plug 'ray-x/lsp_signature.nvim'
-Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'folke/lsp-colors.nvim'
-"messages
 Plug 'folke/trouble.nvim'
+Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'ray-x/lsp_signature.nvim'
+Plug 'tami5/lspsaga.nvim'
 "completion
-Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/nvim-cmp'
 "snippets
 Plug 'L3MON4D3/LuaSnip'
-Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'rafamadriz/friendly-snippets'
+Plug 'saadparwaiz1/cmp_luasnip'
+"telescope
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'nvim-telescope/telescope.nvim'
+"testing
+Plug 'David-Kunz/jester'
+Plug 'janko-m/vim-test',
+Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
+Plug 'tpope/vim-cucumber',
 "git
 Plug 'airblade/vim-gitgutter',
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'sindrets/diffview.nvim'
 Plug 'tpope/vim-fugitive'
-"comments
+"async
+Plug 'shougo/vimproc.vim', { 'do': 'make' }
+Plug 'skywind3000/asyncrun.vim',
+Plug 'tpope/vim-dispatch',
+"ruby
+Plug 'hallison/vim-rdoc',
+Plug 'tpope/vim-bundler',
+Plug 'tpope/vim-rails',
+Plug 'tpope/vim-rake',
+Plug 'tpope/vim-rbenv',
+Plug 'vim-ruby/vim-ruby',
+"javascript
+Plug 'briancollins/vim-jst',
+Plug 'elzr/vim-json',
+Plug 'heavenshell/vim-jsdoc', {
+  \ 'for': ['javascript', 'javascript.jsx','typescript'],
+  \ 'do': 'make install'
+\}
+Plug 'moll/vim-node'
+Plug 'neovim/node-host', { 'do': 'npm install' },
+"language/syntax
+Plug 'fatih/vim-nginx',
+Plug 'modille/groovy.vim'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'},
+Plug 'tpope/vim-haml',
+"markdown
+Plug 'dhruvasagar/vim-marp'
+Plug 'mattf1n/vimmarp'
+"misc
+Plug 'HerringtonDarkholme/yats.vim',
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'Quramy/tsuquyomi',
+Plug 'andymass/vim-matchup'
+Plug 'bfredl/nvim-miniyank'
+Plug 'bkad/CamelCaseMotion'
+Plug 'bling/vim-airline'
+Plug 'chriskempson/base16-vim',
+Plug 'ggandor/lightspeed.nvim',
+Plug 'godlygeek/tabular',
+Plug 'liuchengxu/vista.vim',
+Plug 'nelstrom/vim-visual-star-search',
 Plug 'numToStr/Comment.nvim'
+Plug 'rhysd/vim-grammarous',
+Plug 'rizzatti/dash.vim',
+Plug 'rstacruz/vim-closer'
+Plug 'tpope/vim-abolish',
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-endwise',
+Plug 'tpope/vim-projectionist',
+Plug 'tpope/vim-surround',
+Plug 'tpope/vim-unimpaired',
+Plug 'tpope/vim-vinegar',
+Plug 'vim-scripts/genutils'
+Plug 'voldikss/vim-floaterm'
+Plug 'xolox/vim-misc'
 
 "Add plugins to &runtimepath
 call plug#end()
@@ -111,17 +115,6 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 
 set termguicolors
-
-"Set fonts
-if has("gui_running")
-  if has("gui_win32")
-    set guifont=Bitstream_Vera_Sans_Mono:h16:cANSI
-  elseif has("gui_macvim")
-    set guifont=Menlo\ Regular:h14
-  else
-    set guifont=Menlo\ Regular:h14
-  endif
-endif
 
 "Display ruler at 80 characters
 if exists('+colorcolumn')
@@ -145,15 +138,6 @@ set ic
 set hidden
 "smart indent
 set autoindent smartindent
-
-"turn off toolbar and menu
-set guioptions-=mcheme
-set guioptions-=T
-set guioptions-=m
-set guioptions-=l
-set guioptions-=L
-set guioptions-=r
-set guioptions-=R
 
 "wildmenu
 set wildmenu
@@ -180,8 +164,8 @@ let mapleader = ","
 syntax on
 filetype plugin indent on
 
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-autocmd BufNewFile,BufReadPost *.dialog set filetype=json
+" autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+" autocmd BufNewFile,BufReadPost *.dialog set filetype=json
 
 "Navigate splits more easily
 nnoremap <C-h> <C-w>h
@@ -189,24 +173,13 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-"vim-test settings
 let test#strategy = {
   \ 'nearest': 'neovim',
   \ 'file':    'asyncrun_background',
   \ 'suite':   'neovim',
 \}
 
-function! DebugJest()
-  lua require'jester'.debug()
-endfunction
-
-nmap <silent> t<C-d> :call DebugJest()<CR>
-
-function! ContinueDebug()
-  lua require'dap'.continue()
-endfunction
-
-nnoremap <silent> <F5> :call ContinueDebug()<CR>
+nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
 nnoremap <silent> <F6> :lua require'dap'.step_over()<CR>
 nnoremap <silent> <F7> :lua require'dap'.step_into()<CR>
 nnoremap <silent> <F8> :lua require'dap'.step_out()<CR>
@@ -217,9 +190,27 @@ nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.i
 nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
 nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
 
+"ultest
+let g:ultest_use_pty = 1
+let g:ultest_virtual_text = 1
+nmap <silent> t<C-d> :UltestDebugNearest<CR>
+
+function! UltestFile()
+  if test#test_file(expand('%'))
+    Ultest
+  elseif test#test_file(s:alternate_file())
+    " figure out how to run tests from the alternate file
+  endif
+endfunction
+
+augroup ultest
+  au!
+  au BufWritePost *.js Ultest
+augroup END
+
 augroup test
   autocmd!
-  autocmd BufWrite *.js,*.rb if test#exists() |
+  autocmd BufWrite *.rb if test#exists() |
     \   TestFile |
     \ endif
 augroup END
@@ -240,7 +231,8 @@ function! ToggleQuickFix()
     endif
 endfunction
 
-nnoremap <leader>q :call ToggleQuickFix()<cr>
+nnoremap <leader>qf :call ToggleQuickFix()<cr>
+nnoremap <leader>qt :Trouble<cr>
 
 "copying to os clipboard
 map <leader>y "*y
@@ -272,7 +264,6 @@ sunmap e
 
 " Show airline without split buffers
 set laststatus=2
-let g:airline#extensions#eclim#enabled = 1
 let g:airline#extensions#branch#format = 2
 
 " floaterm settings
