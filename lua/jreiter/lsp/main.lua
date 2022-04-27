@@ -6,11 +6,12 @@ require('lspconfig').solargraph.setup{
   filetypes = { 'ruby' },
   settings = {
     solargraph = {
-      checkGemVersion = false,
       diagnostics = true,
-      folding = false,
-      -- bundlePath = '/Users/reiterj/.rbenv/shims/bundle',
+      formatting = true,
+      folding = true,
+      checkGemVersion = false,
       useBundler = true,
+      bundlePath = vim.fn.expand('~/.rbenv/shims/bundle'),
     },
   },
   on_attach = function(client)

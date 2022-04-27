@@ -7,7 +7,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 "debugging
-Plug 'Pocco81/DAPInstall.nvim'
+Plug 'Pocco81/dap-buddy.nvim', { 'branch': 'dev' }
 Plug 'mfussenegger/nvim-dap',
 Plug 'theHamsta/nvim-dap-virtual-text'
 "lsp
@@ -78,18 +78,16 @@ Plug 'Quramy/tsuquyomi',
 Plug 'andymass/vim-matchup'
 Plug 'bfredl/nvim-miniyank'
 Plug 'bkad/CamelCaseMotion'
-Plug 'bling/vim-airline'
-Plug 'chriskempson/base16-vim',
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'ggandor/lightspeed.nvim',
 Plug 'godlygeek/tabular',
 Plug 'liuchengxu/vista.vim',
 Plug 'nelstrom/vim-visual-star-search',
 Plug 'numToStr/Comment.nvim'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'rhysd/vim-grammarous',
 Plug 'rizzatti/dash.vim',
-Plug 'rstacruz/vim-closer'
 Plug 'tpope/vim-abolish',
-Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-endwise',
 Plug 'tpope/vim-projectionist',
 Plug 'tpope/vim-surround',
@@ -97,6 +95,7 @@ Plug 'tpope/vim-unimpaired',
 Plug 'tpope/vim-vinegar',
 Plug 'vim-scripts/genutils'
 Plug 'voldikss/vim-floaterm'
+Plug 'windwp/nvim-autopairs'
 Plug 'xolox/vim-misc'
 
 "Add plugins to &runtimepath
@@ -109,12 +108,9 @@ set background=dark
 set t_Co=256
 syntax enable
 
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
-
 set termguicolors
+let g:tokyonight_style = "storm"
+colorscheme tokyonight
 
 "Display ruler at 80 characters
 if exists('+colorcolumn')
@@ -148,8 +144,7 @@ set wildignore=*.class,*.git
 set inccommand=nosplit
 
 "python
-let g:python_host_prog = $HOME.'/.pyenv/shims/python'
-let g:python3_host_prog = $HOME.'/.pyenv/shims/python3'
+let g:python3_host_prog = $HOMEBREW_PREFIX.'/bin/python3'
 
 "no swap files
 set noswapfile
@@ -164,8 +159,8 @@ let mapleader = ","
 syntax on
 filetype plugin indent on
 
-" autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-" autocmd BufNewFile,BufReadPost *.dialog set filetype=json
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd BufNewFile,BufReadPost *.attack set filetype=cucumber
 
 "Navigate splits more easily
 nnoremap <C-h> <C-w>h
@@ -193,7 +188,10 @@ nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
 "ultest
 let g:ultest_use_pty = 1
 let g:ultest_virtual_text = 1
+let g:ultest_output_on_run = 0
+let g:ultest_summary_width = 50
 nmap <silent> t<C-d> :UltestDebugNearest<CR>
+nmap <silent> t<C-s> :UltestSummary<CR>
 
 function! UltestFile()
   if test#test_file(expand('%'))
@@ -262,10 +260,6 @@ sunmap w
 sunmap b
 sunmap e
 
-" Show airline without split buffers
-set laststatus=2
-let g:airline#extensions#branch#format = 2
-
 " floaterm settings
 let g:floaterm_keymap_new    = '<F1>'
 let g:floaterm_keymap_prev   = '<F2>'
@@ -276,6 +270,9 @@ let g:floaterm_keymap_toggle = '<F4>'
 map <Leader>a= :Tabularize /=<CR>
 map <Leader>a: :Tabularize /:\zs<CR>
 map <Leader>a, :Tabularize /,\zs<CR>
+
+"base64 decode
+vnoremap <leader>64 c<c-r>=system('base64 --decode', @")<cr><esc>
 
 "fugitive
 autocmd QuickFixCmdPost *grep* cwindow
