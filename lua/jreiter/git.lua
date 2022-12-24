@@ -3,7 +3,9 @@ require('diffview').setup({
   use_icons = true,
   file_history_panel = {
     log_options = {
-      follow = true
+      single_file = {
+        follow = true
+      }
     }
   }
 })

@@ -33,4 +33,5 @@ require('lspconfig').tsserver.setup{
   end,
 }
 
+require('lspconfig').sumneko_lua.setup{}
 require('lspsaga').init_lsp_saga()

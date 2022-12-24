@@ -1,4 +1,4 @@
-" Start up Plug
+" Start up Plugticket_visit
 if has('vim_starting')
   set nocompatible
   set runtimepath+=~/.vim/bundle/Plug.vim
@@ -8,7 +8,7 @@ call plug#begin('~/.vim/plugged')
 
 "debugging
 Plug 'Pocco81/dap-buddy.nvim', { 'branch': 'dev' }
-Plug 'mfussenegger/nvim-dap',
+Plug 'mfussenegger/nvim-dap'
 Plug 'theHamsta/nvim-dap-virtual-text'
 "lsp
 Plug 'folke/lsp-colors.nvim'
@@ -17,6 +17,7 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'tami5/lspsaga.nvim'
+Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 "completion
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-cmdline'
@@ -34,25 +35,29 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-telescope/telescope.nvim'
 "testing
 Plug 'David-Kunz/jester'
-Plug 'janko-m/vim-test',
+Plug 'janko-m/vim-test'
 Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
-Plug 'tpope/vim-cucumber',
+Plug 'nvim-neotest/neotest'
+Plug 'haydenmeade/neotest-jest'
+Plug 'olimorris/neotest-rspec'
+Plug 'nvim-neotest/neotest-vim-test'
+Plug 'tpope/vim-cucumber'
 "git
-Plug 'airblade/vim-gitgutter',
+Plug 'airblade/vim-gitgutter'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'sindrets/diffview.nvim'
 Plug 'tpope/vim-fugitive'
 "async
 Plug 'shougo/vimproc.vim', { 'do': 'make' }
 Plug 'skywind3000/asyncrun.vim',
-Plug 'tpope/vim-dispatch',
+Plug 'tpope/vim-dispatch'
 "ruby
-Plug 'hallison/vim-rdoc',
-Plug 'tpope/vim-bundler',
-Plug 'tpope/vim-rails',
-Plug 'tpope/vim-rake',
-Plug 'tpope/vim-rbenv',
-Plug 'vim-ruby/vim-ruby',
+Plug 'hallison/vim-rdoc'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rake'
+Plug 'tpope/vim-rbenv'
+Plug 'vim-ruby/vim-ruby'
 "javascript
 Plug 'briancollins/vim-jst',
 Plug 'elzr/vim-json',
@@ -63,36 +68,39 @@ Plug 'heavenshell/vim-jsdoc', {
 Plug 'moll/vim-node'
 Plug 'neovim/node-host', { 'do': 'npm install' },
 "language/syntax
-Plug 'fatih/vim-nginx',
+Plug 'fatih/vim-nginx'
 Plug 'modille/groovy.vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'},
-Plug 'tpope/vim-haml',
+Plug 'tpope/vim-haml'
+Plug 'towolf/vim-helm'
 "markdown
 Plug 'dhruvasagar/vim-marp'
 Plug 'mattf1n/vimmarp'
 "misc
-Plug 'HerringtonDarkholme/yats.vim',
+Plug 'rcarriga/nvim-notify'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'OmniSharp/omnisharp-vim'
-Plug 'Quramy/tsuquyomi',
+Plug 'Quramy/tsuquyomi'
 Plug 'andymass/vim-matchup'
+Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'bfredl/nvim-miniyank'
 Plug 'bkad/CamelCaseMotion'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-Plug 'ggandor/lightspeed.nvim',
-Plug 'godlygeek/tabular',
-Plug 'liuchengxu/vista.vim',
-Plug 'nelstrom/vim-visual-star-search',
+Plug 'ggandor/lightspeed.nvim'
+Plug 'godlygeek/tabular'
+Plug 'simrat39/symbols-outline.nvim'
+Plug 'nelstrom/vim-visual-star-search'
 Plug 'numToStr/Comment.nvim'
 Plug 'nvim-lualine/lualine.nvim'
-Plug 'rhysd/vim-grammarous',
-Plug 'rizzatti/dash.vim',
-Plug 'tpope/vim-abolish',
-Plug 'tpope/vim-endwise',
-Plug 'tpope/vim-projectionist',
-Plug 'tpope/vim-surround',
-Plug 'tpope/vim-unimpaired',
-Plug 'tpope/vim-vinegar',
+Plug 'rhysd/vim-grammarous'
+Plug 'rizzatti/dash.vim'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-vinegar'
 Plug 'vim-scripts/genutils'
 Plug 'voldikss/vim-floaterm'
 Plug 'windwp/nvim-autopairs'
@@ -186,6 +194,7 @@ nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
 nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
 
 "ultest
+let g:ultest_deprecation_notice = 0
 let g:ultest_use_pty = 1
 let g:ultest_virtual_text = 1
 let g:ultest_output_on_run = 0
@@ -217,7 +226,7 @@ autocmd FileType qf wincmd J
 
 "telescope
 nnoremap <silent> <Leader>t :Telescope find_files<CR>
-nnoremap <space>/ :Telescope live_grep<CR>
+nnoremap <space>f :Telescope live_grep<CR>
 nnoremap <space>s :Telescope buffers<CR>
 
 " Quickfix
@@ -265,6 +274,8 @@ let g:floaterm_keymap_new    = '<F1>'
 let g:floaterm_keymap_prev   = '<F2>'
 let g:floaterm_keymap_next   = '<F3>'
 let g:floaterm_keymap_toggle = '<F4>'
+
+tnoremap jk <c-\><c-n>
 
 "tabular bindings
 map <Leader>a= :Tabularize /=<CR>
