@@ -3,8 +3,10 @@ require('diffview').setup({
   use_icons = true,
   file_history_panel = {
     log_options = {
-      single_file = {
-        follow = true
+      git = {
+        single_file = {
+          follow = true
+        }
       }
     }
   }
