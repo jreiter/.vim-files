@@ -1,7 +1,6 @@
 " Start up Plugticket_visit
 if has('vim_starting')
-  set nocompatible
-  set runtimepath+=~/.vim/bundle/Plug.vim
+  set runtimepath+=~/.vim
 endif
 
 call plug#begin('~/.vim/plugged')
@@ -10,6 +9,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'Pocco81/dap-buddy.nvim', { 'branch': 'dev' }
 Plug 'mfussenegger/nvim-dap'
 Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'Pocco81/DAPInstall.nvim'
 "lsp
 Plug 'folke/lsp-colors.nvim'
 Plug 'folke/trouble.nvim'
@@ -36,7 +36,6 @@ Plug 'nvim-telescope/telescope.nvim'
 "testing
 Plug 'David-Kunz/jester'
 Plug 'janko-m/vim-test'
-Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
 Plug 'nvim-neotest/neotest'
 Plug 'haydenmeade/neotest-jest'
 Plug 'olimorris/neotest-rspec'
@@ -66,7 +65,6 @@ Plug 'heavenshell/vim-jsdoc', {
   \ 'do': 'make install'
 \}
 Plug 'moll/vim-node'
-Plug 'neovim/node-host', { 'do': 'npm install' },
 "language/syntax
 Plug 'fatih/vim-nginx'
 Plug 'modille/groovy.vim'
@@ -194,32 +192,12 @@ nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
 nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
 
 "ultest
-let g:ultest_deprecation_notice = 0
-let g:ultest_use_pty = 1
-let g:ultest_virtual_text = 1
-let g:ultest_output_on_run = 0
-let g:ultest_summary_width = 50
-nmap <silent> t<C-d> :UltestDebugNearest<CR>
-nmap <silent> t<C-s> :UltestSummary<CR>
+nmap <silent> t<C-d> :lua require('neotest').run.run({strategy = 'dap'})<CR>
+nmap <silent> t<C-s> :lua require('neotest').summary.open()<CR>
 
-function! UltestFile()
-  if test#test_file(expand('%'))
-    Ultest
-  elseif test#test_file(s:alternate_file())
-    " figure out how to run tests from the alternate file
-  endif
-endfunction
-
-augroup ultest
+augroup neotest
   au!
-  au BufWritePost *.js Ultest
-augroup END
-
-augroup test
-  autocmd!
-  autocmd BufWrite *.rb if test#exists() |
-    \   TestFile |
-    \ endif
+  au BufWritePost *.js lua require('neotest').run.run(vim.fn.expand('%'))
 augroup END
 
 autocmd FileType qf wincmd J
