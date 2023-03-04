@@ -1,5 +1,10 @@
 local dap = require('dap')
 
+require('dap-vscode-js').setup({
+  adapters = { "pwa-node" },
+  debugger_path = '/Users/johnathanreiter/workspace/open_source/vscode-js-debug'
+})
+
 dap.configurations.javascript = {
   {
     name = 'launch process',
@@ -31,35 +36,6 @@ dap.configurations.javascript = {
     sourceMaps = true,
     protocol = 'inspector',
     console = 'integratedTerminal',
-    skipFiles = {'<node_internals>/**/*.js'},
-  },
-  {
-    name = 'sst start',
-    type = 'node2',
-    request = 'launch',
-    program = '${workspaceFolder}/node_modules/.bin/sst',
-    args = { 'start', '--increase-timeout'},
-    cwd = vim.fn.getcwd(),
-    protocol = 'inspector',
-    console = 'integratedTerminal',
-    skipFiles = {'<node_internals>/**/*.js'},
-  },
-  {
-    name = 'sst tests',
-    type = 'node2',
-    request = 'launch',
-    runtimeExecutable = 'npm',
-    runtimeArgs = {'run-script', 'test', '--', '--runInBand', '--no-cache', '--watchAll=false'},
-    -- args = {'--runInBand', '--no-cache', '--watchAll=false'},
-    -- runtimeExecutable = '${workspaceFolder}/node_modules/.bin/sst',
-    -- args = {'test', '--runInBand', '--no-cache', '--watchAll=false'},
-    -- args = {'test', '--'},
-    cwd = vim.fn.getcwd(),
-    -- protocol = 'inspector',
-    console = 'integratedTerminal',
-    env = { CI = true },
-    disableOptimisticBPs = true,
-    outFiles = {'${workspaceFolder}/.build/*.js'},
     skipFiles = {'<node_internals>/**/*.js'},
   },
 }

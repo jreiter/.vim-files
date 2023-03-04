@@ -8,6 +8,7 @@ call plug#begin('~/.vim/plugged')
 "debugging
 Plug 'Pocco81/dap-buddy.nvim', { 'branch': 'dev' }
 Plug 'mfussenegger/nvim-dap'
+Plug 'mxsdev/nvim-dap-vscode-js'
 Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'Pocco81/DAPInstall.nvim'
 "lsp
@@ -64,7 +65,6 @@ Plug 'heavenshell/vim-jsdoc', {
   \ 'for': ['javascript', 'javascript.jsx','typescript'],
   \ 'do': 'make install'
 \}
-Plug 'moll/vim-node'
 "language/syntax
 Plug 'fatih/vim-nginx'
 Plug 'modille/groovy.vim'
@@ -72,13 +72,11 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'},
 Plug 'tpope/vim-haml'
 Plug 'towolf/vim-helm'
-"markdown
-Plug 'dhruvasagar/vim-marp'
-Plug 'mattf1n/vimmarp'
 "misc
+Plug 'tzachar/local-highlight.nvim'
+Plug 'echasnovski/mini.nvim'
 Plug 'rcarriga/nvim-notify'
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'OmniSharp/omnisharp-vim'
 Plug 'Quramy/tsuquyomi'
 Plug 'andymass/vim-matchup'
 Plug 'antoinemadec/FixCursorHold.nvim'
@@ -88,24 +86,22 @@ Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'ggandor/lightspeed.nvim'
 Plug 'godlygeek/tabular'
 Plug 'simrat39/symbols-outline.nvim'
-Plug 'nelstrom/vim-visual-star-search'
 Plug 'numToStr/Comment.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'rhysd/vim-grammarous'
-Plug 'rizzatti/dash.vim'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'vim-scripts/genutils'
 Plug 'voldikss/vim-floaterm'
-Plug 'windwp/nvim-autopairs'
 Plug 'xolox/vim-misc'
 
 "Add plugins to &runtimepath
 call plug#end()
+
+set updatetime=500
 
 "Always use dark background
 set background=dark
@@ -127,7 +123,7 @@ endif
 set completeopt+=noinsert
 set completeopt+=preview
 
-let g:LanguageClient_autoStart = 1
+" let g:LanguageClient_autoStart = 1
 
 "set tabs to 2 spaces, soft
 set tabstop=2 shiftwidth=2 expandtab
@@ -174,12 +170,6 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-let test#strategy = {
-  \ 'nearest': 'neovim',
-  \ 'file':    'asyncrun_background',
-  \ 'suite':   'neovim',
-\}
-
 nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
 nnoremap <silent> <F6> :lua require'dap'.step_over()<CR>
 nnoremap <silent> <F7> :lua require'dap'.step_into()<CR>
@@ -207,16 +197,6 @@ nnoremap <silent> <Leader>t :Telescope find_files<CR>
 nnoremap <space>f :Telescope live_grep<CR>
 nnoremap <space>s :Telescope buffers<CR>
 
-" Quickfix
-function! ToggleQuickFix()
-    if empty(filter(getwininfo(), 'v:val.quickfix'))
-        copen
-    else
-        cclose
-    endif
-endfunction
-
-nnoremap <leader>qf :call ToggleQuickFix()<cr>
 nnoremap <leader>qt :Trouble<cr>
 
 "copying to os clipboard
