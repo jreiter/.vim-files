@@ -24,6 +24,9 @@ neotest.setup({
     }),
   },
   output_panel = {
-    enabled = false
+    enabled = false,
+  },
+  quickfix = {
+    open = false,
   }
 })

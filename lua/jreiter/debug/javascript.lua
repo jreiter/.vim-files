@@ -8,7 +8,7 @@ require('dap-vscode-js').setup({
 dap.configurations.javascript = {
   {
     name = 'launch process',
-    type = 'node2',
+    type = 'pwa-node',
     request = 'launch',
     program = '${file}',
     cwd = vim.fn.getcwd(),
@@ -18,7 +18,7 @@ dap.configurations.javascript = {
   },
   {
     name = 'attach to process',
-    type = 'node2',
+    type = 'pwa-node',
     request = 'attach',
     cwd = vim.fn.getcwd(),
     protocol = 'inspector',
@@ -27,7 +27,7 @@ dap.configurations.javascript = {
   },
   {
     name = 'attach to remote process',
-    type = 'node2',
+    type = 'pwa-node',
     request = 'attach',
     address = '127.0.0.1',
     port = '9229',
