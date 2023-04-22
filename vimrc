@@ -8,6 +8,7 @@ call plug#begin('~/.vim/plugged')
 "debugging
 Plug 'Pocco81/dap-buddy.nvim', { 'branch': 'dev' }
 Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
 Plug 'mxsdev/nvim-dap-vscode-js'
 Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'Pocco81/DAPInstall.nvim'
@@ -37,7 +38,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-telescope/telescope.nvim'
 "testing
-Plug 'janko-m/vim-test'
+Plug 'vim-test/vim-test'
 Plug 'nvim-neotest/neotest'
 Plug 'haydenmeade/neotest-jest'
 Plug 'olimorris/neotest-rspec'
@@ -86,6 +87,9 @@ Plug 'bkad/CamelCaseMotion'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'ggandor/leap.nvim'
 Plug 'godlygeek/tabular'
+Plug 'SmiteshP/nvim-navbuddy'
+Plug 'SmiteshP/nvim-navic'
+Plug 'MunifTanjim/nui.nvim'
 Plug 'simrat39/symbols-outline.nvim'
 Plug 'numToStr/Comment.nvim'
 Plug 'nvim-lualine/lualine.nvim'
@@ -180,18 +184,31 @@ nnoremap <silent> <F8> :lua require'dap'.step_out()<CR>
 nnoremap <silent> <F10> :lua require'dap'.close()<CR>
 nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
 nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
-nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
 nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
+nnoremap <silent> <leader>ds :lua require'dapui'.float_element('scopes', { width = 100, height = 100, enter = true })<CR>
 nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
 
 "ultest
 nmap <silent> t<C-d> :lua require('neotest').run.run({strategy = 'dap'})<CR>
+nmap <silent> t<C-r> :lua require('neotest').run.run()<CR>
 nmap <silent> t<C-s> :lua require('neotest').summary.open()<CR>
 
 augroup neotest
   au!
   au BufWritePost *.js lua require('neotest').run.run(vim.fn.expand('%'))
 augroup END
+
+let test#strategy = 'floaterm'
+let g:test#echo_command = 1
+
+function! DebugCucumberTransform(cmd) abort
+  let original_cmd = split(a:cmd, ' ')
+  let debug_cmd = ['node --inspect-brk', original_cmd[0], '--', original_cmd[1]]
+  return join(debug_cmd)
+endfunction
+
+let g:test#custom_transformations = {'debug_cucumber': function('DebugCucumberTransform')}
+let g:test#transformation = 'debug_cucumber'
 
 autocmd FileType qf wincmd J
 
