@@ -9,8 +9,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'Pocco81/dap-buddy.nvim', { 'branch': 'dev' }
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
-Plug 'mxsdev/nvim-dap-vscode-js'
 Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'rcarriga/cmp-dap'
+Plug 'mxsdev/nvim-dap-vscode-js'
+Plug 'suketa/nvim-dap-ruby'
 Plug 'Pocco81/DAPInstall.nvim'
 "lsp
 Plug 'folke/lsp-colors.nvim'
@@ -185,6 +187,7 @@ nnoremap <silent> <F9> :lua require'dap'.step_back()<CR>
 nnoremap <silent> <F10> :lua require'dap'.close()<CR>
 nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
 nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+nnoremap <silent> <leader>E :lua require'dap'.set_exception_breakpoints()<CR>
 nnoremap <silent> <leader>dr :lua require'dapui'.float_element('repl', { width = 100, height = 40, enter = true })<CR>
 nnoremap <silent> <leader>ds :lua require'dapui'.float_element('scopes', { width = 150, height = 50, enter = true })<CR>
 nnoremap <silent> <leader>df :lua require'dapui'.float_element('stacks', { width = 150, height = 50, enter = true })<CR>
