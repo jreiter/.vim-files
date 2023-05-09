@@ -10,7 +10,17 @@ for _, debugger in ipairs(dbg_list) do
   dap_install.config(debugger)
 end
 
+
+vim.fn.sign_define('DapBreakpoint', {text=''})
+vim.fn.sign_define('DapBreakpointCondition', {text=''})
+vim.fn.sign_define('DapLogPoint', {text=''})
+vim.fn.sign_define('DapStopped', {text=''})
+vim.fn.sign_define('DapBreakpointRejected', {text=''})
+
 require('nvim-dap-virtual-text').setup()
+
+
+-- Completion
 
 require('cmp').setup({
   enabled = function()
