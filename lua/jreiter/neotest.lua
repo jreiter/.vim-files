@@ -10,21 +10,14 @@ end
 neotest.setup({
   adapters = {
     neotest_jest,
-    require('neotest-rspec')({
-      rspec_cmd = function()
-        return vim.tbl_flatten({
-          'bundle',
-          'exec',
-          'rspec',
-        })
-      end
-    }),
+    require('neotest-rspec')({}),
     require('neotest-vim-test')({
       ignore_file_types = { 'javascript', 'ruby' },
     }),
   },
   output_panel = {
-    enabled = false,
+    enabled = true,
+    open = "botright split | resize 15"
   },
   quickfix = {
     open = false,

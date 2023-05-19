@@ -198,23 +198,9 @@ nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
 nmap <silent> t<C-d> :lua require('neotest').run.run({strategy = 'dap'})<CR>
 nmap <silent> t<C-r> :lua require('neotest').run.run()<CR>
 nmap <silent> t<C-s> :lua require('neotest').summary.open()<CR>
-
-augroup neotest
-  au!
-  au BufWritePost *.js lua require('neotest').run.run(vim.fn.expand('%'))
-augroup END
+nmap <silent> t<C-o> :lua require('neotest').output_panel.toggle()<CR>
 
 let test#strategy = 'floaterm'
-let g:test#echo_command = 1
-
-function! DebugCucumberTransform(cmd) abort
-  let original_cmd = split(a:cmd, ' ')
-  let debug_cmd = ['node --inspect-brk', original_cmd[0], '--', original_cmd[1]]
-  return join(debug_cmd)
-endfunction
-
-let g:test#custom_transformations = {'debug_cucumber': function('DebugCucumberTransform')}
-let g:test#transformation = 'debug_cucumber'
 
 autocmd FileType qf wincmd J
 
