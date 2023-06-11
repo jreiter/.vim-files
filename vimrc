@@ -22,7 +22,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'tami5/lspsaga.nvim'
 Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
-Plug 'lvimuser/lsp-inlayhints.nvim'
+Plug 'lvimuser/lsp-inlayhints.nvim', { 'branch': 'anticonceal' }
 "completion
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-cmdline'
