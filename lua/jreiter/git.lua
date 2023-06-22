@@ -11,3 +11,5 @@ require('diffview').setup({
     }
   }
 })
+
+require('octo').setup()

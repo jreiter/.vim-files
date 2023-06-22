@@ -51,6 +51,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'sindrets/diffview.nvim'
 Plug 'tpope/vim-fugitive'
+Plug 'pwntester/octo.nvim'
 "async
 Plug 'shougo/vimproc.vim', { 'do': 'make' }
 Plug 'skywind3000/asyncrun.vim',
