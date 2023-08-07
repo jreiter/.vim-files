@@ -6,5 +6,3 @@ setlocal textwidth=80
 if exists('+colorcolumn')
   setlocal colorcolumn=80
 endif
-
-autocmd BufWrite *_spec.js lua require('neotest').run.run(vim.fn.expand('%'))
