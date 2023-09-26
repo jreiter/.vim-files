@@ -1,6 +1,7 @@
 require('jreiter.colors')
 require('jreiter.comments')
 require('jreiter.debug')
+require('jreiter.docs')
 require('jreiter.git')
 require('jreiter.telescope')
 require('jreiter.lsp')

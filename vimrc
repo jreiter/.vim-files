@@ -57,7 +57,6 @@ Plug 'shougo/vimproc.vim', { 'do': 'make' }
 Plug 'skywind3000/asyncrun.vim',
 Plug 'tpope/vim-dispatch'
 "ruby
-Plug 'hallison/vim-rdoc'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rake'
@@ -68,7 +67,6 @@ Plug 'briancollins/vim-jst',
 Plug 'elzr/vim-json',
 "language/syntax
 Plug 'fatih/vim-nginx'
-Plug 'modille/groovy.vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'},
 Plug 'tpope/vim-haml'
@@ -88,6 +86,7 @@ Plug 'bfredl/nvim-miniyank'
 Plug 'bkad/CamelCaseMotion'
 Plug 'ggandor/leap.nvim'
 Plug 'godlygeek/tabular'
+Plug 'luckasRanarison/nvim-devdocs'
 Plug 'SmiteshP/nvim-navbuddy'
 Plug 'SmiteshP/nvim-navic'
 Plug 'MunifTanjim/nui.nvim'
