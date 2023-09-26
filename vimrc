@@ -66,10 +66,6 @@ Plug 'vim-ruby/vim-ruby'
 "javascript
 Plug 'briancollins/vim-jst',
 Plug 'elzr/vim-json',
-Plug 'heavenshell/vim-jsdoc', {
-  \ 'for': ['javascript', 'javascript.jsx','typescript'],
-  \ 'do': 'make install'
-\}
 "language/syntax
 Plug 'fatih/vim-nginx'
 Plug 'modille/groovy.vim'
@@ -77,6 +73,9 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'},
 Plug 'tpope/vim-haml'
 Plug 'towolf/vim-helm'
+"color schemes
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 "misc
 Plug 'tzachar/local-highlight.nvim'
 Plug 'echasnovski/mini.nvim'
@@ -87,7 +86,6 @@ Plug 'andymass/vim-matchup'
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'bfredl/nvim-miniyank'
 Plug 'bkad/CamelCaseMotion'
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'ggandor/leap.nvim'
 Plug 'godlygeek/tabular'
 Plug 'SmiteshP/nvim-navbuddy'
@@ -95,6 +93,7 @@ Plug 'SmiteshP/nvim-navic'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'simrat39/symbols-outline.nvim'
 Plug 'numToStr/Comment.nvim'
+Plug 'danymat/neogen'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'rhysd/vim-grammarous'
 Plug 'tpope/vim-abolish'
@@ -102,7 +101,6 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-" Plug 'tpope/vim-vinegar'
 Plug 'stevearc/oil.nvim'
 Plug 'vim-scripts/genutils'
 Plug 'voldikss/vim-floaterm'
@@ -122,7 +120,7 @@ syntax enable
 
 set termguicolors
 let g:tokyonight_style = "storm"
-colorscheme tokyonight
+colorscheme catppuccin-macchiato
 
 "Display ruler at 80 characters
 if exists('+colorcolumn')
@@ -197,7 +195,8 @@ nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
 
 "ultest
 nmap <silent> t<C-d> :lua require('neotest').run.run({strategy = 'dap'})<CR>
-nmap <silent> t<C-r> :lua require('neotest').run.run()<CR>
+nmap <silent> t<C-n> :lua require('neotest').run.run()<CR>
+nmap <silent> t<C-f> :lua require('neotest').run.run(vim.fn.expand('%'))<CR>
 nmap <silent> t<C-s> :lua require('neotest').summary.open()<CR>
 nmap <silent> t<C-o> :lua require('neotest').output_panel.toggle()<CR>
 

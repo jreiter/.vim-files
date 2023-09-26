@@ -6,5 +6,5 @@ function! DebugCucumberJsTransform(cmd) abort
   return join(debug_cmd)
 endfunction
 
-let g:test#custom_transformations = {'debug_cucumber_js': function('DebugCucumberJsTransform')}
-let g:test#transformation = 'debug_cucumber_js'
+" let g:test#custom_transformations = {'debug_cucumber_js': function('DebugCucumberJsTransform')}
+" let g:test#transformation = 'debug_cucumber_js'

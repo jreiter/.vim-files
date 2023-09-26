@@ -21,5 +21,9 @@ neotest.setup({
   },
   quickfix = {
     open = false,
+  },
+  status = {
+    signs = false,
+    virtual_text = true,
   }
 })

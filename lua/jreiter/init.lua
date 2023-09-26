@@ -1,3 +1,4 @@
+require('jreiter.colors')
 require('jreiter.comments')
 require('jreiter.debug')
 require('jreiter.git')

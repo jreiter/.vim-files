@@ -14,15 +14,13 @@ require('lspconfig').solargraph.setup{
       bundlePath = vim.fn.expand('~/.rbenv/shims/bundle'),
     },
   },
-  on_attach = function(client)
-    if client.server_capabilities.documentFormattingProvider then
-      vim.cmd([[
-      augroup LspFormatting
-        autocmd! * <buffer>
-        autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
-      augroup END
-      ]])
-    end
+  on_attach = function()
+    vim.cmd([[
+    augroup LspFormatting
+      autocmd! * <buffer>
+      autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
+    augroup END
+    ]])
   end,
 }
 require('lspconfig').tsserver.setup{
@@ -30,9 +28,15 @@ require('lspconfig').tsserver.setup{
   on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
-    require("lsp-inlayhints").on_attach(client, bufnr)
+    require('lsp-inlayhints').on_attach(client, bufnr)
   end,
   settings = {
+    diagnostics = {
+      ignoredCodes = {
+        80001, -- Allow CommonJS modules
+        7016, -- Allow untyped modules
+      },
+    },
     typescript = {
       inlayHints = {
         includeInlayParameterNameHints = 'all',
@@ -60,6 +64,14 @@ require('lspconfig').tsserver.setup{
   },
 }
 
-require('lspconfig').lua_ls.setup{}
+require('lspconfig').lua_ls.setup({
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = {'vim'},
+      }
+    }
+  }
+})
 require('lspsaga').init_lsp_saga()
 require('lsp-inlayhints').setup()
