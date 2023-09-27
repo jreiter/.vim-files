@@ -203,6 +203,10 @@ let test#strategy = 'floaterm'
 
 autocmd FileType qf wincmd J
 
+" devdocs
+nnoremap <silent> <leader>dd :DevdocsOpenFloat<CR>
+nnoremap <silent> <leader>dc :DevdocsOpenCurrentFloat<CR>
+
 "telescope
 nnoremap <silent> <Leader>t :Telescope find_files<CR>
 nnoremap <space>f :Telescope live_grep<CR>
