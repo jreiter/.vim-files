@@ -1,7 +1,8 @@
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local lspConfig = require('lspconfig')
 
-require('lspconfig').solargraph.setup{
+lspConfig.solargraph.setup{
   capabilities = capabilities,
   filetypes = { 'ruby' },
   settings = {
@@ -23,7 +24,8 @@ require('lspconfig').solargraph.setup{
     ]])
   end,
 }
-require('lspconfig').tsserver.setup{
+
+lspConfig.tsserver.setup{
   capabilities = capabilities,
   on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
@@ -64,7 +66,27 @@ require('lspconfig').tsserver.setup{
   },
 }
 
-require('lspconfig').lua_ls.setup({
+local configs = require('lspconfig.configs')
+local util = require('lspconfig.util')
+
+if not configs.helm_ls then
+  configs.helm_ls = {
+    default_config = {
+      cmd = {'helm_ls', 'serve'},
+      filetypes = {'helm'},
+      root_dir = function(fname)
+        return util.root_pattern('Chart.yaml')(fname)
+      end,
+    },
+  }
+end
+
+lspConfig.helm_ls.setup {
+  filetypes = {'helm'},
+  cmd = {'helm_ls', 'serve'},
+}
+
+lspConfig.lua_ls.setup({
   settings = {
     Lua = {
       diagnostics = {
