@@ -12,4 +12,6 @@ require('diffview').setup({
   }
 })
 
-require('octo').setup()
+require('octo').setup({ enable_builtin = true})
+
+vim.keymap.set('', '<Leader>O', '<cmd>Octo<cr>', { desc = 'Octo commands' })
