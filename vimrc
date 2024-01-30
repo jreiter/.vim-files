@@ -37,7 +37,9 @@ Plug 'saadparwaiz1/cmp_luasnip'
 "telescope
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'nvim-telescope/telescope-media-files.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 "testing
 Plug 'vim-test/vim-test'
@@ -47,7 +49,7 @@ Plug 'olimorris/neotest-rspec'
 Plug 'nvim-neotest/neotest-vim-test'
 Plug 'tpope/vim-cucumber'
 "git
-Plug 'airblade/vim-gitgutter'
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'sindrets/diffview.nvim'
 Plug 'tpope/vim-fugitive'
@@ -74,6 +76,9 @@ Plug 'towolf/vim-helm'
 "color schemes
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+"notes
+Plug 'renerocksai/telekasten.nvim'
+Plug 'renerocksai/calendar-vim'
 "misc
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'MunifTanjim/nui.nvim'

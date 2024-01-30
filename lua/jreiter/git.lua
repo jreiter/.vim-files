@@ -13,5 +13,6 @@ require('diffview').setup({
 })
 
 require('octo').setup({ enable_builtin = true})
+require('gitsigns').setup()
 
 vim.keymap.set('', '<Leader>O', '<cmd>Octo<cr>', { desc = 'Octo commands' })
