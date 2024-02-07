@@ -64,6 +64,8 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-rbenv'
 Plug 'vim-ruby/vim-ruby'
+"java
+Plug 'mfussenegger/nvim-jdtls'
 "javascript
 Plug 'briancollins/vim-jst',
 Plug 'elzr/vim-json',
