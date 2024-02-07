@@ -35,7 +35,7 @@ Plug 'L3MON4D3/LuaSnip', { 'do': 'make install_jsregexp' }
 Plug 'rafamadriz/friendly-snippets'
 Plug 'saadparwaiz1/cmp_luasnip'
 "telescope
-Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-web-devicons', { 'tag': 'nerd-v2-compat' }
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }

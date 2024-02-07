@@ -20,18 +20,7 @@ null_ls.setup({
   end,
 })
 
--- Use lsp-lines instead of virtual text for diagnostics
-
-require('lsp_lines').setup()
-
-vim.keymap.set(
-  '',
-  '<Leader>l',
-  require('lsp_lines').toggle,
-  { desc = 'Toggle lsp_lines' }
-)
-
 vim.diagnostic.config({
-  virtual_text = false,
+  virtual_text = true,
   signs = false,
 })
