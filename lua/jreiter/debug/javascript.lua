@@ -2,7 +2,7 @@ local dap = require('dap')
 
 require('dap-vscode-js').setup({
   adapters = { "pwa-node" },
-  debugger_path = '/Users/johnathanreiter/workspace/open_source/vscode-js-debug'
+  debugger_path = os.getenv('HOME') .. '/workspace/open_source/vscode-js-debug'
 })
 
 dap.configurations.javascript = {

@@ -20,7 +20,6 @@ Plug 'folke/trouble.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'ray-x/lsp_signature.nvim'
-Plug 'tami5/lspsaga.nvim'
 Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 Plug 'lvimuser/lsp-inlayhints.nvim', { 'branch': 'anticonceal' }
 "completion
@@ -67,12 +66,13 @@ Plug 'vim-ruby/vim-ruby'
 "java
 Plug 'mfussenegger/nvim-jdtls'
 "javascript
-Plug 'briancollins/vim-jst',
 Plug 'elzr/vim-json',
+"typescript
+Plug 'pmizio/typescript-tools.nvim'
 "language/syntax
 Plug 'fatih/vim-nginx'
 Plug 'mustache/vim-mustache-handlebars'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'},
+Plug 'nvim-treesitter/nvim-treesitter', { 'tag': 'v0.9.1', 'do': ':TSUpdate'},
 Plug 'tpope/vim-haml'
 Plug 'towolf/vim-helm'
 "color schemes
@@ -82,6 +82,7 @@ Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'renerocksai/telekasten.nvim'
 Plug 'renerocksai/calendar-vim'
 "misc
+Plug 'folke/noice.nvim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'Quramy/tsuquyomi'
@@ -268,11 +269,8 @@ nmap <silent> gd :Telescope lsp_definitions<CR>
 nmap <silent> gy :Telescope lsp_type_definitions<CR>
 nmap <silent> gi :Telescope lsp_implementations<CR>
 nmap <silent> gr :Telescope lsp_references<CR>
-nmap <silent> <space>ca :Lspsaga code_actions<CR>
 " Rename symbol
-nmap <leader>rn :Lspsaga rename<CR>
-
-nnoremap <silent> K :Lspsaga hover_doc<CR>
+nmap <leader>rn :lua vim.lsp.buf.rename()<CR>
 
 "make w, b, and e use CamelCaseMotion
 map <silent>w <Plug>CamelCaseMotion_w
