@@ -22,6 +22,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 Plug 'lvimuser/lsp-inlayhints.nvim', { 'branch': 'anticonceal' }
+Plug 'smjonas/inc-rename.nvim'
 "completion
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-cmdline'
@@ -269,8 +270,6 @@ nmap <silent> gd :Telescope lsp_definitions<CR>
 nmap <silent> gy :Telescope lsp_type_definitions<CR>
 nmap <silent> gi :Telescope lsp_implementations<CR>
 nmap <silent> gr :Telescope lsp_references<CR>
-" Rename symbol
-nmap <leader>rn :lua vim.lsp.buf.rename()<CR>
 
 "make w, b, and e use CamelCaseMotion
 map <silent>w <Plug>CamelCaseMotion_w

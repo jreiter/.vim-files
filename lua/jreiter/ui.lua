@@ -3,5 +3,8 @@ require('noice').setup({
     signature = {
       enabled = false,
     }
+  },
+  presets = {
+    inc_rename = true,
   }
 })
