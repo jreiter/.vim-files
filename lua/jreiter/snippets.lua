@@ -1,5 +1,6 @@
 require('luasnip/loaders/from_vscode').lazy_load()
 require('luasnip').filetype_extend('ruby', { 'rails' })
+require('luasnip').filetype_extend('typescript', { 'tsdoc', 'javascript' })
 
 local function prequire(...)
 local status, lib = pcall(require, ...)
