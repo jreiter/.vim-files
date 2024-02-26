@@ -18,6 +18,9 @@ null_ls.setup({
       ]])
     end
   end,
+  should_attach = function(bufnr)
+    return not vim.api.nvim_buf_get_name(bufnr):match('^octo://')
+  end,
 })
 
 vim.diagnostic.config({
