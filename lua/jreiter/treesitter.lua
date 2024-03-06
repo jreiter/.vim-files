@@ -2,7 +2,7 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = { "c", "c_sharp", "comment", "cpp", "dart", "dockerfile",
     "elixir", "go", "graphql", "html", "java", "javascript", "jsdoc", "json",
     "json5", "kotlin", "latex", "lua", "perl", "php", "python", "ruby", "rust",
-    "scala", "scss", "toml", "typescript", "vim", "vue", "yaml" },
+    "scala", "scss", "toml", "tsx", "typescript", "vim", "vue", "yaml" },
 
   -- Install languages synchronously (only applied to `ensure_installed`)
   sync_install = false,
