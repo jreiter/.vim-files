@@ -45,6 +45,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'vim-test/vim-test'
 Plug 'nvim-neotest/neotest'
 Plug 'haydenmeade/neotest-jest'
+Plug 'marilari88/neotest-vitest'
 Plug 'olimorris/neotest-rspec'
 Plug 'nvim-neotest/neotest-vim-test'
 Plug 'tpope/vim-cucumber'
@@ -73,7 +74,7 @@ Plug 'pmizio/typescript-tools.nvim'
 "language/syntax
 Plug 'fatih/vim-nginx'
 Plug 'mustache/vim-mustache-handlebars'
-Plug 'nvim-treesitter/nvim-treesitter', { 'tag': 'v0.9.1', 'do': ':TSUpdate'},
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate'},
 Plug 'tpope/vim-haml'
 Plug 'towolf/vim-helm'
 "color schemes

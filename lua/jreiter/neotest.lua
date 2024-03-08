@@ -4,12 +4,18 @@ local neotest_jest = require('neotest-jest')({
   jestCommand = 'npm test --'
 })
 neotest_jest.filter_dir = function (name)
-  return name ~= 'node_modules' and name ~= '__snapshots__'
+  return name ~= 'node_modules' or name ~= '__snapshots__'
+end
+
+local neotest_vitest = require('neotest-vitest')
+neotest_vitest.filter_dir = function (name)
+  return name ~= 'node_modules' or name ~= '__snapshots__'
 end
 
 neotest.setup({
   adapters = {
     neotest_jest,
+    neotest_vitest,
     require('neotest-rspec')({}),
     require('neotest-vim-test')({
       ignore_file_types = { 'javascript', 'ruby' },
