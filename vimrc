@@ -146,6 +146,7 @@ set completeopt+=preview
 
 "set tabs to 2 spaces, soft
 set tabstop=2 shiftwidth=2 expandtab
+set formatoptions+=t
 "line numbers
 set number
 set ruler
