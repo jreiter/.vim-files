@@ -273,6 +273,7 @@ nmap <silent> gd :Telescope lsp_definitions<CR>
 nmap <silent> gy :Telescope lsp_type_definitions<CR>
 nmap <silent> gi :Telescope lsp_implementations<CR>
 nmap <silent> gr :Telescope lsp_references<CR>
+nmap <silent> <CR> :lua vim.lsp.buf.hover()<CR>
 
 "make w, b, and e use CamelCaseMotion
 map <silent>w <Plug>CamelCaseMotion_w
