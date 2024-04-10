@@ -3,8 +3,11 @@ local root_markers = {'gradlew', 'mvnw', '.git'}
 local root_dir = require('jdtls.setup').find_root(root_markers)
 local workspace_folder = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
 local jdtls_version = '1.34.0'
-local launcher_version = '1.6.800.v20240304-1850'
 local lombok_version = '1.18.24'
+
+local jdtls = require('jdtls')
+local extendedClientCapabilities = jdtls.extendedClientCapabilities;
+extendedClientCapabilities.onCompletionItemSelectedCommand = "editor.action.triggerParameterHints"
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
@@ -27,7 +30,7 @@ local config = {
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
     -- Configure lombok
     '-javaagent:' .. home .. '/.m2/repository/org/projectlombok/lombok/' .. lombok_version .. '/lombok-'.. lombok_version .. '.jar',
-    '-jar', vim.fn.glob('/opt/homebrew/Cellar/jdtls/' .. jdtls_version .. '/libexec/plugins/org.eclipse.equinox.launcher_' .. launcher_version .. '.jar'),
+    '-jar', vim.fn.glob('/opt/homebrew/Cellar/jdtls/' .. jdtls_version .. '/libexec/plugins/org.eclipse.equinox.launcher_*.jar'),
     -- 💀
     -- '-jar', '/path/to/jdtls_install_location/plugins/org.eclipse.equinox.launcher_VERSION_NUMBER.jar',
          -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
@@ -53,11 +56,16 @@ local config = {
   -- One dedicated LSP server & client will be started per unique root_dir
   root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'}),
 
+  on_attach = function(client, bufnr)
+    vim.lsp.inlay_hint.enable(bufnr, true)
+  end,
+
   -- Here you can configure eclipse.jdt.ls specific settings
   -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
   -- for a list of options
   settings = {
     java = {
+      inlayHints = { parameterNames = { enabled = 'all' } }
     }
   },
 
@@ -69,16 +77,17 @@ local config = {
   --
   -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
   init_options = {
+    extendedClientCapabilities = extendedClientCapabilities,
     bundles = {}
   },
 }
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
-require('jdtls').start_or_attach(config)
-
-local jdtls = require('jdtls')
 jdtls.start_or_attach(config)
 
 vim.keymap.set('n', '<Leader>i', function()
   jdtls.organize_imports()
+end, { noremap = true, silent = true })
+vim.keymap.set('n', 'gs', function()
+  jdtls.super_implementation()
 end, { noremap = true, silent = true })
