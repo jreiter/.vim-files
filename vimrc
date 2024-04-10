@@ -51,9 +51,9 @@ Plug 'nvim-neotest/neotest-vim-test'
 Plug 'tpope/vim-cucumber'
 "git
 Plug 'lewis6991/gitsigns.nvim'
-Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'sindrets/diffview.nvim'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'pwntester/octo.nvim'
 "async
 Plug 'shougo/vimproc.vim', { 'do': 'make' }
