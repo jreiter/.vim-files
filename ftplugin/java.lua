@@ -57,7 +57,7 @@ local config = {
   root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'}),
 
   on_attach = function(client, bufnr)
-    vim.lsp.inlay_hint.enable(bufnr, true)
+    vim.lsp.inlay_hint.enable(true, { bufnr })
   end,
 
   -- Here you can configure eclipse.jdt.ls specific settings
@@ -78,7 +78,9 @@ local config = {
   -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
   init_options = {
     extendedClientCapabilities = extendedClientCapabilities,
-    bundles = {}
+    bundles = {
+      vim.fn.glob(home .. '/workspace/open_source/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*', 1)
+    }
   },
 }
 -- This starts a new client & server,
