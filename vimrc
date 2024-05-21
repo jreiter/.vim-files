@@ -84,6 +84,7 @@ Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'renerocksai/telekasten.nvim'
 Plug 'renerocksai/calendar-vim'
 "misc
+Plug 'nvim-neotest/nvim-nio'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'Quramy/tsuquyomi'
