@@ -2,7 +2,7 @@ local home = os.getenv('HOME')
 local root_markers = {'gradlew', 'mvnw', '.git'}
 local root_dir = require('jdtls.setup').find_root(root_markers)
 local workspace_folder = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
-local jdtls_version = '1.34.0'
+local jdtls_version = '1.35.0'
 local lombok_version = '1.18.24'
 
 local jdtls = require('jdtls')
