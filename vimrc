@@ -59,6 +59,9 @@ Plug 'pwntester/octo.nvim'
 Plug 'shougo/vimproc.vim', { 'do': 'make' }
 Plug 'skywind3000/asyncrun.vim',
 Plug 'tpope/vim-dispatch'
+"go
+Plug 'ray-x/go.nvim'
+Plug 'ray-x/guihua.lua'
 "ruby
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
