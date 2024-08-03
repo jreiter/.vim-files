@@ -3,10 +3,14 @@ return {
   "echasnovski/mini.pairs",
   "echasnovski/mini.bracketed",
   "tpope/vim-abolish",
-  "tpope/vim-endwise",
   "tpope/vim-projectionist",
   "tpope/vim-repeat",
   "tpope/vim-surround",
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = true
+  },
   {
     "folke/noice.nvim",
     opts = {
