@@ -2,6 +2,7 @@ return {
   "bfredl/nvim-miniyank",
   "echasnovski/mini.pairs",
   "echasnovski/mini.bracketed",
+  "godlygeek/tabular",
   "tpope/vim-abolish",
   "tpope/vim-projectionist",
   "tpope/vim-repeat",

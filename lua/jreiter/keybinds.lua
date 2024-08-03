@@ -35,7 +35,7 @@ nnoremap <silent> <Leader>t :Telescope find_files<CR>
 nnoremap <space>f :Telescope live_grep<CR>
 nnoremap <space>s :Telescope buffers<CR>
 " trouble
-nnoremap <leader>qt :Trouble<cr>
+nnoremap <leader>qt :Trouble diagnostics<cr>
 " copying to os clipboard
 map <leader>y "*y
 map <leader>Y "+y

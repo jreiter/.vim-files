@@ -24,8 +24,8 @@ vim.opt.termguicolors = true
 vim.opt.colorcolumn = "80"
 
 -- Enable persistent undo so that undo history persists across vim sessions
--- vim.opt.undofile = true
--- vim.opt.undodir = os.getenv("HOME") .. "/.local/share/nvim/undo"
+vim.opt.undofile = true
+vim.opt.undodir = os.getenv("HOME") .. "/.local/share/nvim/undo"
 
 -- tabs and indenting
 vim.opt.tabstop = 2
