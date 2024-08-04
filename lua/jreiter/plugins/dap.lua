@@ -4,26 +4,30 @@ return {
     dependencies = {
       {
         "rcarriga/nvim-dap-ui",
-        layouts = {
-          {
-            elements = {},
-            position = "left",
-            size = 40
-          },
-          {
-            elements = {
-              {
-                id = "console",
-                size = 0.5
-              }
-            },
-            position = "bottom",
-            size = 10
-          }
+        opts = {
+          -- layouts = {
+          --   {
+          --     elements = {},
+          --     position = "left",
+          --     size = 40
+          --   },
+          --   {
+          --     elements = {
+          --       {
+          --         id = "console",
+          --         size = 0.5
+          --       }
+          --     },
+          --     position = "bottom",
+          --     size = 10
+          --   }
+          -- },
         },
-        config = function()
+        config = function(_, opts)
           local dap = require("dap")
           local dapui = require("dapui")
+
+          dapui.setup(opts)
 
           dap.listeners.after.event_initialized["dapui_config"] = function()
             dapui.open()
@@ -39,46 +43,30 @@ return {
         end,
       },
       "theHamsta/nvim-dap-virtual-text",
-      "Pocco81/dap-buddy.nvim",
-      {
-        "Pocco81/DAPInstall.nvim",
-        opts = {
-          installation_path = vim.fn.stdpath('data') .. '/dapinstall/',
-        },
-        config = function()
-          -- local dap_install = require('dap-install')
-          -- local dbg_list = require('dap-install.api.debuggers').get_installed_debuggers()
-          --
-          -- for _, debugger in ipairs(dbg_list) do
-          --   dap_install.config(debugger)
-          -- end
-
-          vim.fn.sign_define('DapBreakpoint', {text=''})
-          vim.fn.sign_define('DapBreakpointCondition', {text=''})
-          vim.fn.sign_define('DapLogPoint', {text=''})
-          vim.fn.sign_define('DapStopped', {text=''})
-          vim.fn.sign_define('DapBreakpointRejected', {text=''})
-
-          require('cmp').setup({
-            enabled = function()
-              return vim.api.nvim_buf_get_option(0, 'buftype') ~= 'prompt'
-                  or require('cmp_dap').is_dap_buffer()
-            end
-          })
-
-          require('cmp').setup.filetype({ 'dap-repl', 'dapui_watches', 'dapui_hover' }, {
-            sources = {
-              { name = 'dap' },
-            },
-          })
-        end,
-      },
       "suketa/nvim-dap-ruby",
       {
         "mxsdev/nvim-dap-vscode-js",
         adapters = { "pwa-node" },
-        debugger_path = os.getenv('HOME') .. '/workspace/open_source/vscode-js-debug'
-      }
+        debugger_path = os.getenv("HOME") .. "/workspace/open_source/vscode-js-debug"
+      },
+      {
+        "jay-babu/mason-nvim-dap.nvim",
+        dependencies = "mason.nvim",
+        cmd = { "DapInstall", "DapUninstall" },
+        opts = {
+          -- Makes a best effort to setup the various debuggers with
+          -- reasonable debug configurations
+          automatic_installation = true,
+
+          -- You can provide additional configuration to the handlers,
+          -- see mason-nvim-dap README for more information
+          handlers = {},
+
+          -- You'll need to check that you have the required things installed
+          -- online, please don't ask me how to install them :)
+          ensure_installed = { "delve" },
+        },
+      },
     },
   },
 }

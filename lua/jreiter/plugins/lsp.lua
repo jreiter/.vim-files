@@ -35,6 +35,22 @@ return {
     end,
   },
   {
+    "williamboman/mason.nvim",
+    cmd = "Mason",
+    opts = {
+      ensure_installed = {
+        "dockerfile-language-server",
+        "eslint_d",
+        "hadolint",
+        "nginx-language-server",
+        "shellcheck",
+        "stylua",
+        "typescript-language-server",
+        "gopls",
+      },
+    },
+  },
+  {
     "lvimuser/lsp-inlayhints.nvim",
     branch = "anticonceal",
     lazy = false,
@@ -52,5 +68,10 @@ return {
       }
     }
   },
-  "smjonas/inc-rename.nvim",
+  {
+    "smjonas/inc-rename.nvim",
+    dependencies = {
+      "folke/noice.nvim"
+    }
+  }
 }
