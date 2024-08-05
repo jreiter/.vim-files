@@ -32,7 +32,16 @@ return {
     }
   },
   {
-    'stevearc/dressing.nvim',
+    "stevearc/dressing.nvim",
     opts = {},
   },
+  {
+    "voldikss/vim-floaterm",
+    keys = {
+      { "<F1>", "<cmd>FloatermNew<cr>", desc = "New floating terminal"},
+      { "<F2>", "<cmd>FloatermPrev<cr>", desc = "Previous floating terminal"},
+      { "<F3>", "<cmd>FloatermNext<cr>", desc = "Next floating terminal"},
+      { "<F4>", "<cmd>FloatermToggle<cr>", desc = "Toggle floating terminal"},
+    }
+  }
 }
