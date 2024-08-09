@@ -10,6 +10,7 @@ return {
       "nvim-neotest/nvim-nio",
       "nvim-treesitter/nvim-treesitter",
       "olimorris/neotest-rspec",
+      "suketa/nvim-dap-ruby",
     },
     config = function()
       local neotest_jest = require("neotest-jest")({
