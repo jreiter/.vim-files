@@ -1,9 +1,6 @@
 local home = os.getenv('HOME')
-local root_markers = {'gradlew', 'mvnw', '.git'}
-local root_dir = require('jdtls.setup').find_root(root_markers)
-local workspace_folder = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
-local jdtls_version = '1.35.0'
-local lombok_version = '1.18.24'
+local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+local workspace_dir = home .. '/workspace/CanopieHQ/' .. project_name
 
 local jdtls = require('jdtls')
 local extendedClientCapabilities = jdtls.extendedClientCapabilities;
@@ -29,8 +26,8 @@ local config = {
     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
     -- Configure lombok
-    '-javaagent:' .. home .. '/.m2/repository/org/projectlombok/lombok/' .. lombok_version .. '/lombok-'.. lombok_version .. '.jar',
-    '-jar', vim.fn.glob('/opt/homebrew/Cellar/jdtls/' .. jdtls_version .. '/libexec/plugins/org.eclipse.equinox.launcher_*.jar'),
+    '-javaagent:' .. home .. '/.local/share/nvim/mason/packages/jdtls/lombok.jar',
+    '-jar', vim.fn.glob(home .. '/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar'),
     -- 💀
     -- '-jar', '/path/to/jdtls_install_location/plugins/org.eclipse.equinox.launcher_VERSION_NUMBER.jar',
          -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
@@ -38,7 +35,7 @@ local config = {
          -- eclipse.jdt.ls installation                                           the actual version
 
 
-    '-configuration', '/opt/homebrew/Cellar/jdtls/' .. jdtls_version .. '/libexec/config_mac',
+    '-configuration', home .. '/.local/share/nvim/mason/packages/jdtls/config_mac',
     -- 💀
     -- '-configuration', '/path/to/jdtls_install_location/config_SYSTEM',
                     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ^^^^^^
@@ -48,7 +45,7 @@ local config = {
 
     -- 💀
     -- See `data directory configuration` section in the README
-    '-data', workspace_folder,
+    '-data', workspace_dir,
   },
 
   -- 💀
@@ -79,7 +76,7 @@ local config = {
   init_options = {
     extendedClientCapabilities = extendedClientCapabilities,
     bundles = {
-      vim.fn.glob(home .. '/workspace/open_source/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*', 1)
+      vim.fn.glob(home .. '/.local/share/nvim/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*', 1)
     }
   },
 }
