@@ -71,6 +71,7 @@
   "vim-bundler": { "branch": "master", "commit": "c261509e78fc8dc55ad1fcf3cd7cdde49f35435c" },
   "vim-floaterm": { "branch": "master", "commit": "4e28c8dd0271e10a5f55142fb6fe9b1599ee6160" },
   "vim-fugitive": { "branch": "master", "commit": "0444df68cd1cdabc7453d6bd84099458327e5513" },
+  "vim-matchup": { "branch": "master", "commit": "1535a769d5dca851fe7d41b0be95f7c7203a4bef" },
   "vim-projectionist": { "branch": "master", "commit": "3736bd4a5f23b30821cbb892385bb1f1b0088cfc" },
   "vim-rails": { "branch": "master", "commit": "2fba7907f585819a8653f0bc7dd7f437a822d9c6" },
   "vim-rake": { "branch": "master", "commit": "af4ee966f5479fa89e60be067b6183f6addf9e4e" },

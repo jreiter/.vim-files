@@ -115,4 +115,8 @@ return {
     opts = {},
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
   },
+  {
+    'andymass/vim-matchup',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+  }
 }
