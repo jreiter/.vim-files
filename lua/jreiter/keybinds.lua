@@ -68,6 +68,10 @@ vnoremap <leader>64 c<c-r>=system('base64 --decode', @")<cr><esc>
 nmap <silent> <Leader>v :Vista!!<CR>
 ]])
 
+vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false
+})
 vim.keymap.set('', '<Leader>O', '<cmd>Octo<cr>', { desc = 'Octo commands' })
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 vim.keymap.set("n", "<leader>rn", function()
