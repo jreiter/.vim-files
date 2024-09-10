@@ -4,30 +4,34 @@ return {
     dependencies = {
       {
         "rcarriga/nvim-dap-ui",
-        opts = {
-          -- layouts = {
-          --   {
-          --     elements = {},
-          --     position = "left",
-          --     size = 40
-          --   },
-          --   {
-          --     elements = {
-          --       {
-          --         id = "console",
-          --         size = 0.5
-          --       }
-          --     },
-          --     position = "bottom",
-          --     size = 10
-          --   }
-          -- },
-        },
-        config = function(_, opts)
+        opts = {},
+        config = function(_, _)
           local dap = require("dap")
           local dapui = require("dapui")
 
-          dapui.setup(opts)
+          dapui.setup({
+            layouts = {
+              {
+                elements = {},
+                position = "left",
+                size = 40
+              },
+              {
+                elements = {
+                  {
+                    id = "console",
+                    size = 0.5
+                  },
+                  {
+                    id = "repl",
+                    size = 0.5
+                  }
+                },
+                position = "bottom",
+                size = 10
+              }
+            }
+          })
 
           dap.listeners.after.event_initialized["dapui_config"] = function()
             dapui.open()
