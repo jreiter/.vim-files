@@ -50,8 +50,13 @@ return {
       "suketa/nvim-dap-ruby",
       {
         "mxsdev/nvim-dap-vscode-js",
-        adapters = { "pwa-node" },
-        debugger_path = os.getenv("HOME") .. "/workspace/open_source/vscode-js-debug"
+        dependencies = {
+          {
+            "microsoft/vscode-js-debug",
+            commit = "4d7c704d3f07",
+            build = "npm i && npm run compile vsDebugServerBundle && mv dist out",
+          }
+        }
       },
       {
         "jay-babu/mason-nvim-dap.nvim",
