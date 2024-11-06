@@ -34,6 +34,7 @@ nnoremap <silent> <leader>dc :DevdocsOpenCurrentFloat<CR>
 nnoremap <silent> <Leader>t :Telescope find_files<CR>
 nnoremap <space>f :Telescope live_grep<CR>
 nnoremap <space>s :Telescope buffers<CR>
+nnoremap <space>o :Telescope lsp_document_symbols<CR>
 " trouble
 nnoremap <leader>qt :Trouble diagnostics<cr>
 " copying to os clipboard
