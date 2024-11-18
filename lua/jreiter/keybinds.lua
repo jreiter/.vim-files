@@ -37,6 +37,7 @@ nnoremap <space>s :Telescope buffers<CR>
 nnoremap <space>o :Telescope lsp_document_symbols<CR>
 " trouble
 nnoremap <leader>qt :Trouble diagnostics<cr>
+nnoremap <leader>qf :copen<cr>
 " copying to os clipboard
 map <leader>y "*y
 map <leader>Y "+y
