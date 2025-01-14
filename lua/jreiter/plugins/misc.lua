@@ -8,6 +8,10 @@ return {
   "tpope/vim-repeat",
   "tpope/vim-surround",
   {
+    'karb94/neoscroll.nvim',
+    opts = {},
+  },
+  {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
     config = true
