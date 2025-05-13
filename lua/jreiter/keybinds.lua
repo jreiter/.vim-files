@@ -60,22 +60,16 @@ sunmap b
 sunmap e
 " exit terminal mode more easily
 tnoremap jk <c-\><c-n>
-" tabular bindings
-map <Leader>a= :Tabularize /=<CR>
-map <Leader>a: :Tabularize /:\zs<CR>
-map <Leader>a, :Tabularize /,\zs<CR>
 " base64 decode
 vnoremap <leader>64 c<c-r>=system('base64 --decode', @")<cr><esc>
-"vista binding
-nmap <silent> <Leader>v :Vista!!<CR>
 ]])
 
-vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
-  expr = true,
-  replace_keycodes = false
+vim.keymap.set("i", "<C-J>", 'copilot#Accept("\\<CR>")', {
+	expr = true,
+	replace_keycodes = false,
 })
-vim.keymap.set('', '<Leader>O', '<cmd>Octo<cr>', { desc = 'Octo commands' })
+vim.keymap.set("", "<Leader>O", "<cmd>Octo<cr>", { desc = "Octo commands" })
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 vim.keymap.set("n", "<leader>rn", function()
-  return ":IncRename " .. vim.fn.expand("<cword>")
+	return ":IncRename " .. vim.fn.expand("<cword>")
 end, { expr = true })
