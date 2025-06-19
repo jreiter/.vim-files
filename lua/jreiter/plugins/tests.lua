@@ -38,11 +38,19 @@ return {
 				return name ~= "node_modules" or name ~= "__snapshots__"
 			end
 
+			local neotest_golang_opts = {
+				go_test_args = {
+					"-v",
+					"-race",
+					"-count=1",
+				},
+			}
+
 			require("neotest").setup({
 				adapters = {
 					neotest_jest,
 					neotest_vitest,
-					require("neotest-golang")({}),
+					require("neotest-golang")(neotest_golang_opts),
 					require("neotest-rspec")({}),
 					require("neotest-vim-test")({
 						ignore_file_types = { "javascript", "ruby" },

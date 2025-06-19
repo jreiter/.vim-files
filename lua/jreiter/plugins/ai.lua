@@ -13,9 +13,9 @@ return {
 		},
 		opts = {
 			display = {
-				chat = {
-					show_settings = true,
-				},
+				-- chat = {
+				-- 	show_settings = true,
+				-- },
 			},
 			strategies = {
 				chat = {

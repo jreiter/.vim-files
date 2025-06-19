@@ -1,68 +1,64 @@
 return {
-  "bfredl/nvim-miniyank",
-  "echasnovski/mini.pairs",
-  "echasnovski/mini.bracketed",
-  "godlygeek/tabular",
-  "tpope/vim-abolish",
-  "tpope/vim-projectionist",
-  "tpope/vim-repeat",
-  "tpope/vim-surround",
-  {
-    'karb94/neoscroll.nvim',
-    opts = {},
-  },
-  {
-    'windwp/nvim-autopairs',
-    event = "InsertEnter",
-    config = true
-  },
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {
-      lsp = {
-        signature = {
-          enabled = false,
-        }
-      },
-      presets = {
-        inc_rename = true,
-      },
-      routes = {
-      {
-        filter = {
-          event = "msg_show",
-          kind = "",
-          find = "written",
-        },
-        opts = { skip = true },
-      },
-    },
-    },
-    dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    }
-  },
-  {
-    "stevearc/dressing.nvim",
-    opts = {},
-  },
-  {
-    "voldikss/vim-floaterm",
-    keys = {
-      { "<F1>", "<cmd>FloatermNew<cr>", desc = "New floating terminal"},
-      { "<F2>", "<cmd>FloatermPrev<cr>", desc = "Previous floating terminal"},
-      { "<F3>", "<cmd>FloatermNext<cr>", desc = "Next floating terminal"},
-      { "<F4>", "<cmd>FloatermToggle<cr>", desc = "Toggle floating terminal"},
-    }
-  },
-  {
-  "folke/flash.nvim",
-    event = "VeryLazy",
-    ---@type Flash.Config
-    opts = {},
+	"bfredl/nvim-miniyank",
+	"echasnovski/mini.pairs",
+	"echasnovski/mini.bracketed",
+	"godlygeek/tabular",
+	"tpope/vim-abolish",
+	"tpope/vim-projectionist",
+	"tpope/vim-repeat",
+	"tpope/vim-surround",
+	{
+		"karb94/neoscroll.nvim",
+		opts = {},
+	},
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true,
+	},
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {
+			lsp = {
+				signature = {
+					enabled = false,
+				},
+			},
+			presets = {
+				inc_rename = true,
+			},
+			routes = {
+				{
+					filter = {
+						event = "msg_show",
+						kind = "",
+						find = "written",
+					},
+					opts = { skip = true },
+				},
+			},
+		},
+		dependencies = {
+			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+			"MunifTanjim/nui.nvim",
+			"rcarriga/nvim-notify",
+		},
+	},
+	{
+		"https://github.com/nvzone/floaterm",
+		dependencies = "nvzone/volt",
+		opts = {},
+		cmd = "FloatermToggle",
+		keys = {
+			{ "<F4>", "<cmd>FloatermToggle<cr>", desc = "Toggle floating terminal" },
+		},
+	},
+	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		---@type Flash.Config
+		opts = {},
     -- stylua: ignore
     keys = {
       { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
@@ -71,5 +67,5 @@ return {
       { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
-  }
+	},
 }
