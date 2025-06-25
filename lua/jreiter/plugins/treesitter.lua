@@ -98,6 +98,7 @@ return {
 			end
 		end,
 		dependencies = {
+			"OXY2DEV/markview.nvim",
 			"nvim-treesitter/playground",
 			{
 				"nvim-treesitter/nvim-treesitter-textobjects",
@@ -108,7 +109,6 @@ return {
 			},
 		},
 	},
-
 	{
 		"danymat/neogen",
 		event = { "BufReadPost", "BufNewFile" },
