@@ -10,7 +10,4 @@ lspconfig.sorbet.setup({
 lspconfig.ruby_lsp.setup({
 	capabilities = capabilities,
 	filetypes = { "ruby" },
-	on_attach = function(client)
-		client.server_capabilities.semanticTokensProvider = nil
-	end,
 })
