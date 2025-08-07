@@ -1,1 +1,19 @@
-require("lspconfig").sourcekit.setup({})
+vim.lsp.enable("sourcekit")
+vim.lsp.config("sourcekit", {
+	capabilities = {
+		workspace = {
+			didChangeWatchedFiles = {
+				dynamicRegistration = true,
+			},
+		},
+		textDocument = {
+			inlayHints = {
+				enable = false,
+			},
+			diagnostic = {
+				dynamicRegistration = true,
+				relatedDocumentSupport = true,
+			},
+		},
+	},
+})
