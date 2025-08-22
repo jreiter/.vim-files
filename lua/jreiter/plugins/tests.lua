@@ -1,31 +1,19 @@
 return {
 	{
 		"nvim-neotest/neotest",
+		commit = "52fca6717ef972113ddd6ca223e30ad0abb2800c",
 		dependencies = {
 			"antoinemadec/FixCursorHold.nvim",
 			"haydenmeade/neotest-jest",
 			"marilari88/neotest-vitest",
 			"fredrikaverpil/neotest-golang",
 			"nvim-lua/plenary.nvim",
-			"nvim-neotest/neotest-vim-test",
 			"nvim-neotest/nvim-nio",
 			"nvim-treesitter/nvim-treesitter",
 			"olimorris/neotest-rspec",
 			"suketa/nvim-dap-ruby",
 		},
 		config = function()
-			local neotest_ns = vim.api.nvim_create_namespace("neotest")
-			-- vim.diagnostic.config({
-			-- 	virtual_text = {
-			-- 		format = function(diagnostic)
-			-- 			-- Replace newline and tab characters with space for more compact diagnostics
-			-- 			local message =
-			-- 				diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
-			-- 			return message
-			-- 		end,
-			-- 	},
-			-- }, neotest_ns)
-
 			local neotest_jest = require("neotest-jest")({
 				jestCommand = "npm test --",
 			})
@@ -38,22 +26,17 @@ return {
 				return name ~= "node_modules" or name ~= "__snapshots__"
 			end
 
-			local neotest_golang_opts = {
-				go_test_args = {
-					"-v",
-					"-race",
-					"-count=1",
-				},
-			}
-
 			require("neotest").setup({
 				adapters = {
 					neotest_jest,
 					neotest_vitest,
-					require("neotest-golang")(neotest_golang_opts),
-					require("neotest-rspec")({}),
-					require("neotest-vim-test")({
-						ignore_file_types = { "javascript", "ruby" },
+					require("neotest-rspec"),
+					require("neotest-golang")({
+						go_test_args = {
+							"-v",
+							"-race",
+							"-count=1",
+						},
 					}),
 				},
 				output_panel = {

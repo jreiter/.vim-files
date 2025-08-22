@@ -56,6 +56,9 @@ return {
 				-- Instead of true it can also be a list of languages
 				additional_vim_regex_highlighting = false,
 			},
+			incremental_selection = {
+				enable = true,
+			},
 		},
 		config = function(_, opts)
 			require("nvim-treesitter.configs").setup(opts)
@@ -98,7 +101,6 @@ return {
 			end
 		end,
 		dependencies = {
-			"OXY2DEV/markview.nvim",
 			"nvim-treesitter/playground",
 			{
 				"nvim-treesitter/nvim-treesitter-textobjects",
