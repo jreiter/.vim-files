@@ -1,17 +1,19 @@
 return {
 	{
 		"nvim-neotest/neotest",
-		commit = "52fca6717ef972113ddd6ca223e30ad0abb2800c",
 		dependencies = {
 			"antoinemadec/FixCursorHold.nvim",
 			"haydenmeade/neotest-jest",
 			"marilari88/neotest-vitest",
-			"fredrikaverpil/neotest-golang",
 			"nvim-lua/plenary.nvim",
 			"nvim-neotest/nvim-nio",
 			"nvim-treesitter/nvim-treesitter",
 			"olimorris/neotest-rspec",
 			"suketa/nvim-dap-ruby",
+			{
+				"fredrikaverpil/neotest-golang",
+				commit = "ad6ae703e18874eb66fee539224eac2dd9cc0890",
+			},
 		},
 		config = function()
 			local neotest_jest = require("neotest-jest")({
