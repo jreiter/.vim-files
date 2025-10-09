@@ -10,10 +10,7 @@ return {
 			"nvim-treesitter/nvim-treesitter",
 			"olimorris/neotest-rspec",
 			"suketa/nvim-dap-ruby",
-			{
-				"fredrikaverpil/neotest-golang",
-				commit = "ad6ae703e18874eb66fee539224eac2dd9cc0890",
-			},
+			"fredrikaverpil/neotest-golang",
 		},
 		config = function()
 			local neotest_jest = require("neotest-jest")({

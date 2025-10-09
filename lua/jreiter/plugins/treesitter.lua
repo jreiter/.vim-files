@@ -1,6 +1,7 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "master",
 		build = ":TSUpdate",
 		event = { "BufReadPost", "BufNewFile" },
 		opts = {
@@ -13,6 +14,7 @@ return {
 				"git_config",
 				"gitattributes",
 				"go",
+				"gotmpl",
 				"graphql",
 				"html",
 				"http",
