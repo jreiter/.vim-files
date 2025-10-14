@@ -1,2 +1,2 @@
-require("go").setup{}
-require("lspconfig").gopls.setup{}
+require("go").setup({})
+vim.lsp.enable("gopls")

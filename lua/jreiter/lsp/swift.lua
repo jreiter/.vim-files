@@ -1,4 +1,3 @@
-vim.lsp.enable("sourcekit")
 vim.lsp.config("sourcekit", {
 	capabilities = {
 		workspace = {
@@ -17,3 +16,4 @@ vim.lsp.config("sourcekit", {
 		},
 	},
 })
+vim.lsp.enable("sourcekit")

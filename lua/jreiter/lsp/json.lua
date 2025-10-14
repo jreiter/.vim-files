@@ -1,1 +1,1 @@
-require("lspconfig").jsonls.setup{}
+vim.lsp.enable("jsonls")
