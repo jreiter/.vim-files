@@ -28,3 +28,30 @@ require("typescript-tools").setup({
 		},
 	},
 })
+
+vim.lsp.config.eslint = {
+	cmd = { "vscode-eslint-language-server", "--stdio" },
+	filetypes = {
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+		"vue",
+		"svelte",
+		"astro",
+	},
+	root_markers = {
+		".eslintrc",
+		".eslintrc.js",
+		".eslintrc.cjs",
+		".eslintrc.yaml",
+		".eslintrc.yml",
+		".eslintrc.json",
+		"eslint.config.js",
+		"eslint.config.mjs",
+		"eslint.config.cjs",
+		"package.json",
+	},
+}
+
+vim.lsp.enable("eslint")
