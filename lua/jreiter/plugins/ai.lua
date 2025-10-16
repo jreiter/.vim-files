@@ -38,6 +38,15 @@ return {
 						},
 					})
 				end,
+				acp = {
+					claude_code = function()
+						return require("codecompanion.adapters").extend("claude_code", {
+							env = {
+								CLAUDE_CODE_OAUTH_TOKEN = vim.env.CLAUDE_CODE_OAUTH_TOKEN,
+							},
+						})
+					end,
+				},
 			},
 			extensions = {
 				mcphub = {
