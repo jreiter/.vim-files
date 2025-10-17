@@ -1,3 +1,4 @@
+require("jreiter.util")
 require("jreiter.lazy")
 require("jreiter.options")
 require("jreiter.colorscheme")

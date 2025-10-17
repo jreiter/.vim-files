@@ -7,10 +7,15 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
+			"j-hui/fidget.nvim",
 		},
 		keys = {
 			{ "<leader>ccc", "<cmd>CodeCompanionChat<CR>", desc = "Chat" },
 		},
+		config = function(_, opts)
+			require("codecompanion").setup(opts)
+			require("jreiter.plugins.custom.spinner"):init()
+		end,
 		opts = {
 			display = {
 				-- chat = {
