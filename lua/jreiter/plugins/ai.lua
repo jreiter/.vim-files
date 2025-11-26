@@ -17,40 +17,37 @@ return {
 			require("jreiter.plugins.custom.spinner"):init()
 		end,
 		opts = {
-			display = {
-				-- chat = {
-				-- 	show_settings = true,
-				-- },
-			},
 			strategies = {
 				chat = {
-					adapter = "copilot",
+					adapter = "claude_code",
 				},
 				inline = {
-					adapter = "copilot",
+					adapter = "claude_code",
 				},
 				agent = {
-					adapter = "copilot",
+					adapter = "claude_code",
 				},
 			},
 			adapters = {
-				copilot = function()
-					return require("codecompanion.adapters").extend("copilot", {
-						schema = {
-							model = {
-								default = "gpt-4.1",
-							},
-						},
-					})
-				end,
-				acp = {
-					claude_code = function()
-						return require("codecompanion.adapters").extend("claude_code", {
-							env = {
-								CLAUDE_CODE_OAUTH_TOKEN = vim.env.CLAUDE_CODE_OAUTH_TOKEN,
+				http = {
+					copilot = function()
+						return require("codecompanion.adapters").extend("copilot", {
+							schema = {
+								model = {
+									default = "gpt-4.1",
+								},
 							},
 						})
 					end,
+					acp = {
+						claude_code = function()
+							return require("codecompanion.adapters").extend("claude_code", {
+								env = {
+									CLAUDE_CODE_OAUTH_TOKEN = vim.env.CLAUDE_CODE_OAUTH_TOKEN,
+								},
+							})
+						end,
+					},
 				},
 			},
 			extensions = {
