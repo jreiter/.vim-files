@@ -1,12 +1,12 @@
 local api = vim.api
 
 -- Set the global namespace
-_G.om = {}
+_G.jr = {}
 
 ---Check if a certain feature/version/commit exists in nvim
 ---@param feature string
 ---@return boolean
-function om.has(feature)
+function jr.has(feature)
 	return vim.fn.has(feature) > 0
 end
 
@@ -16,7 +16,7 @@ end
 ---@param mode string The mode in which the keymap should be set (e.g., "n" for normal mode)
 ---@param opts? table Optional parameters for the keymap, such as silent or noremap
 ---@return nil
-function om.set_keymaps(lhs, rhs, mode, opts)
+function jr.set_keymaps(lhs, rhs, mode, opts)
 	opts = opts or {}
 	vim.keymap.set(mode, lhs, rhs, opts)
 end
@@ -27,7 +27,7 @@ end
 ---@param command string|function The command to execute, can be a string or a function
 ---@param opts table Optional parameters for the command, such as nargs
 ---@return nil
-function om.create_user_command(name, desc, command, opts)
+function jr.create_user_command(name, desc, command, opts)
 	api.nvim_create_user_command(name, command, {
 		desc = desc,
 		nargs = opts and opts.nargs or 0,
@@ -38,7 +38,7 @@ end
 ---@param autocmd string|table The autocmd event(s) to trigger the command
 ---@param opts {group: string, buffer: number, pattern: string, callback: function|string} Optional parameters for the autocmd
 ---@return nil
-function om.create_autocmd(autocmd, opts)
+function jr.create_autocmd(autocmd, opts)
 	opts = opts or {}
 
 	-- Pattern takes precedence over buffer

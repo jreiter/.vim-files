@@ -42,7 +42,6 @@ return {
 	-- 	dependencies = {
 	-- 		-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
 	-- 		"MunifTanjim/nui.nvim",
-	-- 		"rcarriga/nvim-notify",
 	-- 	},
 	-- },
 	{
@@ -82,7 +81,7 @@ return {
 			image = { enabled = true },
 			indent = { enabled = false },
 			input = { enabled = true },
-			picker = { enabled = false },
+			picker = { enabled = true },
 			notifier = { enabled = true },
 			quickfile = { enabled = false },
 			scope = { enabled = false },
@@ -149,6 +148,13 @@ return {
 					Snacks.scratch.select()
 				end,
 				desc = "Select Scratch Buffer",
+			},
+			{
+				"<leader>sn",
+				function()
+					Snacks.notifier.show_history()
+				end,
+				desc = "Snacks Notifications History",
 			},
 		},
 	},

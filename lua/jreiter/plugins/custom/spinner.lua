@@ -5,7 +5,7 @@ local M = {}
 function M:init()
 	local group = vim.api.nvim_create_augroup("dotfiles.codecompanion.spinner", {})
 
-	om.create_autocmd({ "User" }, {
+	jr.create_autocmd({ "User" }, {
 		pattern = "CodeCompanionRequestStarted",
 		group = group,
 		callback = function(request)
@@ -14,7 +14,7 @@ function M:init()
 		end,
 	})
 
-	om.create_autocmd({ "User" }, {
+	jr.create_autocmd({ "User" }, {
 		pattern = "CodeCompanionRequestFinished",
 		group = group,
 		callback = function(request)
