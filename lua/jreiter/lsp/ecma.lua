@@ -1,22 +1,20 @@
 local api = require("typescript-tools.api")
+local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 require("typescript-tools").setup({
-	root_dir = function(fname_or_bufnr)
-		-- Handle both filename string and buffer number
-		local fname
-		if type(fname_or_bufnr) == "number" then
-			fname = vim.api.nvim_buf_get_name(fname_or_bufnr)
-		else
-			fname = fname_or_bufnr
-		end
+	capabilities = capabilities,
+	root_dir = function(bufnr, on_dir)
+		local fname = vim.api.nvim_buf_get_name(bufnr)
 
 		-- Don't attach LSP to diff buffers
 		if fname:match("_diff_") then
-			return nil
+			on_dir(nil)
+			return
 		end
 
 		-- Use default root_dir detection for normal files
-		return require("typescript-tools.config").default_config.root_dir(fname)
+		local root = vim.fs.root(fname, { "package.json", "tsconfig.json", "jsconfig.json", ".git" })
+		on_dir(root)
 	end,
 	on_attach = function(client, bufnr)
 		client.server_capabilities.documentFormattingProvider = false
@@ -69,22 +67,18 @@ vim.lsp.config.eslint = {
 		"eslint.config.cjs",
 		"package.json",
 	},
-	root_dir = function(fname_or_bufnr)
-		-- Handle both filename string and buffer number
-		local fname
-		if type(fname_or_bufnr) == "number" then
-			fname = vim.api.nvim_buf_get_name(fname_or_bufnr)
-		else
-			fname = fname_or_bufnr
-		end
+	capabilities = capabilities,
+	root_dir = function(bufnr, on_dir)
+		local fname = vim.api.nvim_buf_get_name(bufnr)
 
 		-- Don't attach LSP to diff buffers
 		if fname:match("_diff_") then
-			return nil
+			on_dir(nil)
+			return
 		end
 
 		-- Use default root_dir detection for normal files
-		return vim.fs.root(fname, {
+		local root = vim.fs.root(fname, {
 			".eslintrc",
 			".eslintrc.js",
 			".eslintrc.cjs",
@@ -96,6 +90,7 @@ vim.lsp.config.eslint = {
 			"eslint.config.cjs",
 			"package.json",
 		})
+		on_dir(root)
 	end,
 }
 
